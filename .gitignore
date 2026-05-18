@@ -1,0 +1,6 @@
+/.*/
+/build/
+/log/*
+!/log/replaySample.txt
+/napoleon.properties
+/error.txt

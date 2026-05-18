@@ -1,0 +1,2209 @@
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -  H12  -
+ -   -   -
+---
+H12 **
+S6 S4 H4 -> -J H2 HA
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ S3    ST    SJ   [S4]   **  |  0     0     0     0     4(4)
+ C2    CK    CT    C6   [CQ] |  3(3)  0     0     0     4
+[S2]   @A    H5    S8    S9  |  3     1(1)  0     0     4
+ HT   [H7]   H8    +J    H6  |  3     1     0     2(2)  4
+ S7    SK    C7   [S6]   D8  |  3     2(1)  0     2     4
+ H9   [SQ]   H3    HQ    C5  |  3     2     0     4(2)  4
+ DQ    DK    D6   [D9]   D4  |  3     4(2)  0     4     4
+ D7   [D3]   D5    DT    D2  |  3     4     0     4     5(1)
+ CA    C3    C9    H4   [C4] |  3     4     0     5(1)  5
+ CJ    S5    C8   [HK]   DA  |  3     4     0     8(3)  5
+---
+ -4    -4    -4    +6    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -   -  C12  -
+ -   -   -
+---
+C12 **
+D2 CQ S6 -> H5 CT H6
+---
+a:AL  b:AD  c:AL  d:NP  e:AL | a:AL  b:AD  c:AL  d:NP  e:AL 
+ C3    C9    C7   [CQ]   C5  |  0     0     0     2(2)  0
+ HJ    H8    H9   [H7]   HA  |  0     0     0     2     2(2)
+ S8    H4    S7    @A   [S9] |  0     0     0     3(1)  2
+ DQ    D6    D9   [D2]   D5  |  0     0     0     4(1)  2
+ S2    **    HK   [HQ]   D8  |  0     2(2)  0     4     2
+ DT   [DK]   DJ    S6    D3  |  0     5(3)  0     4     2
+ SQ   [H3]   SK    HT    -J  |  0     5     0     4     6(4)
+ S5    C2    C4    +J   [CK] |  0     5     0     6(2)  6
+ DA    D4    C8   [CA]   D7  |  0     5     0     8(2)  6
+---
+ ST    H2    S3    C6    S4
+---
+ -4    +6    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+        H12  -   -
+C13  -  H13  -   -
+ -   -
+---
+H13 **
+S9 D9 S6 -> DT C5 HA
+---
+a:AD  b:AL  c:NP  d:AL  e:AL | a:AD  b:AL  c:NP  d:AL  e:AL 
+ **    C9   [C7]   CK    CJ  |  4(4)  0     0     0     0
+[CQ]   C6    H9    C4    C8  |  4     0     1(1)  0     0
+ S7    S3   [SK]   S5    D4  |  4     0     2(1)  0     0
+ SJ    S4   [S9]   SQ    H4  |  4     0     2     0     2(2)
+ DQ    D3    D9    D5   [D2] |  4     0     2     0     3(1)
+ D8    D6    H7    D7   [DA] |  4     0     3(1)  0     3
+ HK    CA   [+J]   HT    H3  |  4     0     7(4)  0     3
+ C3    S8   [S6]   S2    H6  |  4     0     7     0     3(0)
+ CT    ST    HQ    H5   [H8] |  4     0    10(3)  0     3
+---
+ C2    -J    @A    DK    H2
+---
+ +6    -4    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+S12  -   -   -   -
+---
+S12 @A
+CK H4 C6 -> C6 H3 **
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[S2]   SQ    ST    @A    D7  |  0     0     0     3(3)  0
+ D3    D2    D6   [D4]   DK  |  0     1(1)  0     3     0
+ +J   [S3]   S4    S7    H5  |  1(1)  1     0     3     0
+[H4]   H9    HQ    HA    HT  |  1     1     0     6(3)  0
+ SK    C5    HK   [H8]   H6  |  3(2)  1     0     6     0
+[DQ]   D8    D9    DA    DJ  |  3     1     0     9(3)  0
+---
+ C9    C3    C2    D5    DT
+ CK    C8    C7    C4    CT
+ S8    S5    H2    CA    -J
+ S9    S6    H7    HJ    CQ
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+ -  D12  -   -   -
+ -
+---
+D12 **
+HT DA DT -> C5 H8 D8
+---
+a:AL  b:NP  c:AD  d:AL  e:AL | a:AL  b:NP  c:AD  d:AL  e:AL 
+ D2   [D3]   **    DQ    +J  |  0     0     2(2)  0     0
+ C3    DA   [D5]   S2    D6  |  0     1(1)  2     0     0
+ C9   [D7]   D9    H6    S6  |  0     1     2(0)  0     0
+ H5    -J   [H9]   HQ    H2  |  0     3(2)  2     0     0
+ S8   [SJ]   ST    @A    SQ  |  0     3     2     4(4)  0
+ S7    HT    S9   [SK]   S5  |  0     3     2     6(2)  0
+ CA    CQ    S4   [C7]   CJ  |  3(3)  3     2     6     0
+---
+ C4    D4    H3    C2    CT
+ H4    DT    H7    C6    CK
+ S3    DK    HK    C8    HA
+---
+ +4    -6    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+        C12  -  D12
+ -   -  C13  -   -
+ -   -
+---
+C13 **
+CK HA D2 -> C3 H6 -J
+---
+a:AD  b:AL  c:NP  d:AL  e:AL | a:AD  b:AL  c:NP  d:AL  e:AL 
+ **    C6   [C8]   CQ    @A  |  0     0     0     0     3(3)
+ D4    DT    D2    DK   [D5] |  0     0     2(2)  0     3
+ H4    H7   [H8]   HJ    HK  |  0     0     2     0     5(2)
+ D6    DQ    +J    DA   [DJ] |  0     0     6(4)  0     5
+ C5    CT   [CA]   H3    D8  |  0     0     8(2)  0     5
+ C4    C9   [C7]   D9    D3  |  0     0(0)  8     0     5
+ HQ   [H9]   HT    H2    S4  |  2(2)  0     8     0     5
+[S5]   ST    CK    S2    SQ  |  2     0    11(3)  0     5
+---
+ C2    D7    H5    S3    S6
+ S7    S8    HA    SK    S9
+---
+ +6    -4    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -   -   -
+D12  -   -   -   -
+---
+D12 @A
+HQ H5 DT -> H5 CJ D3
+---
+a:NP  b:AD  c:AL  d:AL  e:AL | a:NP  b:AD  c:AL  d:AL  e:AL 
+[-J]   HA    H4    H3    HK  |  4(4)  0     0     0     0
+[D2]   D7    D4    C3    +J  |  4     0     0     0     1(1)
+ SK    S9    SJ    S6   [S7] |  6(2)  0     0     0     1
+[H7]   H9    H8    H2    CQ  |  6     1(1)  0     0     1
+ **   [H6]   SQ    HT    D6  |  8(2)  1     0     0     1
+[HQ]   S4    CK    CA    DK  |  8     1     0     0     5(4)
+ S2    C8    CT    C4   [C2] |  8     1     1(1)  0     5
+ D8    C7   [DA]   C6    D9  |  8     1     2(1)  0     5
+ DT    ST   [S5]   S8    S3  | 10(2)  1     2     0     5
+[D5]   @A    DQ    C5    C9  | 10     3(2)  2     0     5
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -   -   -
+S12  -   -   -   -
+---
+S12 SQ
+S3 D8 S8 -> H7 D8 SK
+---
+a:NP  b:AD  c:AL  d:AL  e:AL | a:NP  b:AD  c:AL  d:AL  e:AL 
+[S3]   ST    S4    DA    S2  |  0     3(3)  0     0     0
+ **   [CK]   C3    C4    CA  |  2(2)  3     0     0     0
+[@A]   S9    DQ    C6    S5  |  4(2)  3     0     0     0
+[HT]   H4    HQ    HJ    H8  |  4     3     3(3)  0     0
+ H3    HA   [H2]   HK    S6  |  4     3     3     0     2(2)
+ D4    SQ    D5    D9   [DK] |  4     5(2)  3     0     2
+ -J   [CQ]   CT    C5    C8  |  7(3)  5     3     0     2
+---
+ H5    C2    D7    D2    D3
+ S8    C9    DJ    H6    D6
+ +J    S7    C7    H9    DT
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+C12  -   -   -   -
+---
+C12 **
+C9 S3 H8 -> D9 -J CT
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[C9]   C8    C3    C7    C2  |  2(2)  0     0     0     0
+[SK]   S7    S8    S9    ST  |  4(2)  0     0     0     0
+[SQ]   HA    S6    S4    S5  |  6(2)  0     0     0     0
+[CA]   D2    C4    **    CQ  |  6     0     0     2(2)  0
+ H8    HT    +J   [H6]   H2  |  6     0     2(2)  2     0
+ DJ    D3   [D5]   D7    DK  |  6     0     2     2     2(2)
+ C6    H7    C5    H5   [HJ] |  7(1)  0     2     2     2
+[S2]   DQ    D8    D6    H4  |  8(1)  0     2     2     2
+[S3]   HK    DT    CK    D4  |  8     0     2     5(3)  2
+---
+ @A    HQ    DA    H3    H9
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  H12
+ -   -   -   -
+---
+H12 @A
+S6 C4 D8 -> C4 H2 **
+---
+a:AD  b:AL  c:AL  d:AL  e:NP | a:AD  b:AL  c:AL  d:AL  e:NP 
+ C9    CK    C6    CJ   [CQ] |  0     3(3)  0     0     0
+ D7   [-J]   D4    D5    D8  |  0     4(1)  0     0     0
+ SK   [S7]   ST    SQ    SJ  |  4(4)  4     0     0     0
+[S2]   S4    HA    S9    S6  |  4     4     1(1)  0     0
+ D3    +J   [DA]   DK    D2  |  4     7(3)  1     0     0
+ C7   [C5]   CT    CA    C3  |  4     7     1     2(2)  0
+---
+ H5    C8    D6    DT    H6
+ S5    H3    D9    DQ    H7
+ S8    H4    C2    HT    H8
+ @A    HK    H9    S3    HQ
+---
+ -6    +4    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -   -  D12
+ -   -   -   -
+---
+D12 **
+H3 S9 D7 -> D3 D8 DA
+---
+a:AL  b:AL  c:AL  d:AD  e:NP | a:AL  b:AL  c:AL  d:AD  e:NP 
+ +J    D2    D6    DQ   [DT] |  4(4)  0     0     0     0
+[C8]   C9    CT    **    CQ  |  4     0     0     2(2)  0
+ CJ    C6    C7   [CK]   D9  |  4     0     0     2     2(2)
+ H7    H6    -J    HK   [HA] |  4     0     3(3)  2     2
+ C5    H5   [H8]   H9    H3  |  4     0     3     2(0)  2
+ C4    SK    S4   [H4]   HT  |  4     0     3     2     4(2)
+ SQ    S2    S5    SJ   [S9] |  4     2(2)  3     2     4
+---
+ C2    D4    CA    DK    D7
+ S7    D5    S6    HQ    H2
+ ST    C3    S8    S3    @A
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  D12
+ -   -   -   -
+---
+D12 **
+H7 S5 H9 -> -J H4 HQ
+---
+a:AD  b:AL  c:AL  d:AL  e:NP | a:AD  b:AL  c:AL  d:AL  e:NP 
+ **    D2    D4    D3   [DQ] |  3(3)  0     0     0     0
+[S4]   S9    S7    @A    SQ  |  3     0     0     2(2)  0
+ HA    H5    HT   [H3]   H7  |  5(2)  0     0     2     0
+[D7]   DA    DK    D5    D6  |  5     2(2)  0     2     0
+ HK   [H2]   H8    H6    H9  |  5     3(1)  0     2     0
+ CA   [CT]   C2    C7    S8  |  7(2)  3     0     2     0
+[SJ]   CQ    ST    SK    S6  |  7     3     0     6(4)  0
+---
+ D8    C4    C3    C8    D9
+ DT    C6    S2    C9    +J
+ C5    CJ    S3    CK    S5
+---
+ -6    +4    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -  H12  -
+ -   -   -
+---
+H12 +J
+C4 S2 C2 -> ** HK HT
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ SJ    S3    SK   [ST]   SQ  |  0     0     6(6)  0     0
+ D3    DT   [D9]   C2    -J  |  0     0     6     0     2(2)
+ H2    D2    H3    HA   [H6] |  0     0     6     1(1)  2
+ H9    CT    H8   [HQ]   +J  |  0     0     6     1     5(3)
+ CA    CQ    C3    C4   [C9] |  2(2)  0     6     1     5
+[H4]   C5    DK    H5    H7  |  2     0     6     1     6(1)
+ C7    S7    DA    S6   [C8] |  2     0     6     1     7(1)
+ D4    S5    D7    S2   [D6] |  2     0     6(0)  1     7
+ D8    S9   [D5]   @A    CK  |  2     0     6     3(2)  7
+ C6    S4    DQ   [S8]   CJ  |  2     0     6     5(2)  7
+---
+ -4    -4    -4    +6    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -  H12  -   -   -
+ -
+---
+H12 +J
+S3 -J DA -> C5 H8 DA
+---
+a:AL  b:NP  c:AL  d:AD  e:AL | a:AL  b:NP  c:AL  d:AD  e:AL 
+ S8   [S*]   ST    SJ    S5  |  0     3(3)  0     0     0
+ S6   [S4]   SQ    SK    D3  |  0     3     0     2(2)  0
+ D8    D4    D6   [DQ]   CQ  |  0     3     0     4(2)  0
+ H7    H9    H5   [+J]   H4  |  0     3     0     5(1)  0
+ C4    CT    CK   [C8]   C6  |  0     3     2(2)  5     0
+ DK    -J   [D9]   DT    CA  |  0     7(4)  2     5     0
+---
+ C7    D5    D2    D7    C9
+ H3    H2    C3    C2    H6
+ HA    S3    CJ    HT    HQ
+ S7    @A    S2    S9    HK
+---
+ -4    +6    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            H12  -
+ -   -   -
+---
+H12 @A
+H7 C6 C7 -> H6 C6 DK
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ -J    DQ    DA   [D*]   D7  |  0     0     0     4(4)  0
+ C8    CQ    C3   [CT]   C9  |  0     2(2)  0     4     0
+ S9   [S8]   S4    S7    SJ  |  0     2     0     4     1(1)
+ SQ    D9    D8    D3   [D6] |  0     3(1)  0     4     1
+ CJ   [D4]   D5    C7    C2  |  0     3     1(1)  4     1
+ H3    HK   [H2]   HT    H5  |  0     3     3(2)  4     1
+ S2    H9   [HA]   H8    S5  |  0     3     4(1)  4     1
+ CA    DT   [H4]   +J    C4  |  0     3     4     7(3)  1
+ C5    D2    HQ   [CK]   S3  |  0     3     6(2)  7     1
+---
+ SK    ST    S6    H7    @A
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -  C12  -
+ -   -   -
+---
+C12 **
+D3 -J C8 -> H6 S2 @A
+---
+a:AD  b:AL  c:AL  d:NP  e:AL | a:AD  b:AL  c:AL  d:NP  e:AL 
+ C7    C9    C2   [CQ]   C5  |  0     0     0     2(2)  0
+ C3    CT    CA   [C4]   CK  |  0     0     3(3)  2     0
+ **    HA   [H7]   HT    H8  |  2(2)  0     3     2     0
+[S9]   SQ    SK    -J    S3  |  2     0     3     5(3)  0
+ H2    HK    H4   [H9]   H3  |  3(1)  0     3     5     0
+[S8]   S5    S4    C8    ST  |  3     0     3     6(1)  0
+ DK    D7    D5   [+J]   DT  |  3     0     3     9(3)  0
+---
+ DJ    D6    D8    D2    D4
+ DA    HQ    DQ    D3    D9
+ S7    S6    H5    C6    HJ
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -  C12  -
+ -   -   -
+---
+C12 **
+S4 CQ S5 -> C8 @A +J
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ H8    H4    H6   [HJ]   HT  |  0     0     0     4(4)  0
+ C4    SK    CT   [C7]   C9  |  0     0     2(2)  4     0
+ D7    S2   [ST]   S6    S8  |  0     0     3(1)  4     0
+ DQ    D2   [DJ]   S9    DK  |  0     0     3     4     3(3)
+ DA    S7    -J    S5   [S3] |  0     0     5(2)  4     3
+ D4    D9   [D5]   S4    D3  |  0     0(0)  5     4     3
+ HQ   [H5]   H7    H3    H9  |  1(1)  0     5     4     3
+[C5]   DT    C6    CQ    CK  |  1     0     5     4     6(3)
+ D6    D8    HA    CA   [D*] |  1     0     5     4     8(2)
+---
+ C2    H2    SQ    HK    C3
+---
+ -4    -4    -4    +6    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                C12
+H12  -  S12  -   -
+ -   -
+---
+S12 **
+HQ H8 C7 -> C9 H8 C7
+---
+a:AD  b:AL  c:NP  d:AL  e:AL | a:AD  b:AL  c:NP  d:AL  e:AL 
+ **    H6   [-J]   C8    CK  |  2(2)  0     0     0     0
+[CQ]   ST    S6    CA    C4  |  2     3(3)  0     0     0
+ DJ   [SQ]   S7    S3    @A  |  2     3     0     0     3(3)
+ DA    D9    DK    D5   [D3] |  4(2)  3     0     0     3
+[H2]   HJ    H7    H4    H9  |  5(1)  3     0     0     3
+[D2]   DT    D6    S5    D8  |  5     3     0     1(1)  3
+ HA    H3    HQ   [HT]   C5  |  8(3)  3     0     1     3
+[C2]   S8    +J    HK    C3  |  8     3     2(2)  1     3
+ H5    DQ   [D7]   S2    D4  |  8     3     2     2(1)  3
+ CT    SK    S4   [S9]   C6  |  8     5(2)  2     2     3
+---
+ -6    +4    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+H12  -   -   -   -
+---
+H12 **
+S8 H3 C2 -> HK S8 @A
+---
+a:NP  b:AD  c:AL  d:AL  e:AL | a:NP  b:AD  c:AL  d:AL  e:AL 
+[H6]   H9    H4    HA    H7  |  0     0     0     3(3)  0
+ S5    SQ    S6   [S3]   ST  |  0     2(2)  0     3     0
+ +J   [H2]   HT    S7    H8  |  2(2)  2     0     3     0
+[C2]   C6    C8    C7    CJ  |  3(1)  2     0     3     0
+[CT]   **    C3    C9    CA  |  3     4(2)  0     3     0
+ D5   [D8]   D2    DA    D6  |  3     4     1(1)  3     0
+ DT    -J   [D4]   D9    D7  |  3     6(2)  1     3     0
+ SK   [SJ]   DQ    S4    S9  |  6(3)  6     1     3     0
+---
+ H3    C4    D3    C5    H5
+ HQ    CQ    DK    CK    S2
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+    C12  -   -   -
+H12  -   -   -   -
+---
+H12 **
+CA S9 D4 -> H2 D4 CK
+---
+a:NP  b:AL  c:AL  d:AL  e:AD | a:NP  b:AL  c:AL  d:AL  e:AD 
+[SQ]   SJ    S4    @A    S6  |  0     0     0     4(4)  0
+ SK    S7    S2   [S5]   **  |  0     0     0     4     1(1)
+ S9    C6    HK    S3   [ST] |  0     0     2(2)  4     1
+ -J    D7   [DT]   D3    D5  |  2(2)  0     2     4     1
+[H5]   HA    H4    +J    HT  |  2     0     2     7(3)  1
+---
+ DA    DK    D2    D8    D6
+ CA    C7    D9    C4    C3
+ H3    CT    DQ    C5    C8
+ H7    CJ    C2    CQ    H8
+ HQ    H6    C9    S8    H9
+---
+ -6    +4    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+C12  -   -   -   -
+---
+C12 +J
+ST H7 H3 -> S4 S5 **
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[ST]   SK    SQ    S3    S9  |  0     3(3)  0     0     0
+ CQ   [C6]   CA    CK    C9  |  0     3     3(3)  0     0
+ -J    S7   [S6]   +J    H9  |  0     3     3     2(2)  0
+ C4    DJ    DQ   [D5]   DT  |  3(3)  3     3     2     0
+[H3]   HK    H5    H6    H2  |  3     3     3     2     1(1)
+ C5    C3    C7    CT   [C2] |  3     3     3     2     2(1)
+ HJ    D6    H8    D9   [HQ] |  3     3     3     2     4(2)
+---
+ H4    D3    D2    D7    DA
+ H7    D4    C8    D8    HT
+ @A    S8    S2    DK    HA
+---
+ -6    +4    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  H12
+ -   -   -   -
+---
+H12 @A
+C6 CA C3 -> S6 ** C6
+---
+a:AL  b:AL  c:AL  d:AD  e:NP | a:AL  b:AL  c:AL  d:AD  e:NP 
+ D6    DK    DQ    DT   [D3] |  0     3(3)  0     0     0
+ C4   [CQ]   CJ    C7    C3  |  0     5(2)  0     0     0
+ SJ   [S4]   SQ    @A    S9  |  0     5     0     3(3)  0
+ HK    H7    H2   [H6]   H4  |  0     5     1(1)  3     0
+ SK    CK   [S7]   S3    HT  |  0     5     1     3     3(3)
+ C5    CT    H8    D9   [CA] |  0     5     3(2)  3     3
+ D8    D7   [D2]   H9    -J  |  0     5     3     3     4(1)
+ HA    C9    H5    HQ   [H3] |  2(2)  5     3     3     4
+---
+ S2    C2    D5    S5    D4
+ S8    C8    DA    ST    +J
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -   -  H12  -
+ -   -   -
+---
+H12 **
+S4 CK H8 -> H4 H8 SJ
+---
+a:AL  b:AL  c:AD  d:NP  e:AL | a:AL  b:AL  c:AD  d:NP  e:AL 
+ C9    C7    **   [CK]   C5  |  0     0     2(2)  0     0
+ CA    H5   [CQ]   C2    C8  |  0     2(2)  2     0     0
+ D9   [-J]   D3    DT    D8  |  0     4(2)  2     0     0
+ H2   [HQ]   HA    +J    H6  |  0     4     2     3(3)  0
+ S3    S5    S7   [S9]   S2  |  0     4     2     3     0(0)
+ CJ    HT    C3    S4   [C4] |  0     6(2)  2     3     0
+ DK   [D4]   D5    @A    D2  |  0     6     2     5(2)  0
+ H9    H7    DA   [HK]   D6  |  0     6     2     7(2)  0
+ ST    S6    D7   [SQ]   S8  |  0     6     2     9(2)  0
+ C6    DQ    CT   [H3]   SK  |  0     6     2    12(3)  0
+---
+ -4    -4    +6    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+        D12  -  H12
+ -   -   -   -
+---
+H12 @A
+C4 S8 H4 -> C4 S8 HA
+---
+a:AL  b:AL  c:AL  d:AD  e:NP | a:AL  b:AL  c:AL  d:AD  e:NP 
+ S9    SJ    ST    S2   [S3] |  0     3(3)  0     0     0
+ S6   [SK]   DA    @A    S4  |  0     3     0     3(3)  0
+ C5    C7    C2   [C8]   **  |  0     3     0     3     0(0)
+ CQ    CK    CA    C3   [C9] |  0     3     3(3)  3     0
+ H2    H9   [+J]   D3    H8  |  0     3     4(1)  3     0
+ D6    DT   [D2]   DQ    D7  |  0     3     6(2)  3     0
+---
+ D8    -J    D5    D4    H4
+ CT    C6    D9    S5    H5
+ H6    CJ    DK    S7    HQ
+ H7    HT    H3    SQ    HK
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -  D12  -   -
+ -   -
+---
+D12 @A
+C3 DQ @A -> @A D7 D2
+---
+a:AL  b:AL  c:NP  d:AL  e:AL | a:AL  b:AL  c:NP  d:AL  e:AL 
+ D8    D4   [DT]   D3    D5  |  0     0     2(2)  0     0
+ CT    C5   [C9]   C6    CQ  |  0     0     2     0     2(2)
+ CJ    C8    **    CA   [CK] |  0     0     5(3)  0     2
+ HK    H9   [H3]   H2    H8  |  0     0     5     1(1)  2
+ S2    S7    H5   [S6]   S8  |  0     0     5     1     2(0)
+ S9    SQ    DQ    SK   [SJ] |  0     0     9(4)  1     2
+ D6    DK   [+J]   C7    C4  |  0     0    11(2)  1     2
+ HQ    HA   [C3]   ST    C2  |  0     0    14(3)  1     2
+---
+ H6    HT    D9    S3    H4
+ -J    S4    DA    S5    H7
+---
+ -3    -3    +12   -3    -3
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -  D12
+ -   -   -   -
+---
+D12 **
+DT C5 DQ -> S6 @A SJ
+---
+a:AD  b:AL  c:AL  d:AL  e:NP | a:AD  b:AL  c:AL  d:AL  e:NP 
+ **    D2    S3    D3   [DT] |  3(3)  0     0     0     0
+[CT]   CK    C4    C9    C7  |  3     2(2)  0     0     0
+ C3   [CQ]   S2    CJ    C5  |  3     4(2)  0     0     0
+ CA   [C2]   H9    H8    D7  |  3     4     0     0     1(1)
+ D8    H6    HT    D5   [DQ] |  3     4     0     0     3(2)
+ D6    H4    HK    D9   [+J] |  3     4     0     0     5(2)
+ H3    H7    HQ    H5   [H2] |  3     4     0     0     6(1)
+ ST    C6    S4    S9   [DK] |  3     4     0     0     8(2)
+ S5    C8    -J    SQ   [D4] |  3     4     2(2)  0     8
+ HA    SK   [S8]   S7    DA  |  3     4     2     0    11(3)
+---
+ +6    -4    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+H12  -   -   -   -
+---
+H12 +J
+H4 C3 CK -> DQ CT C3
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[H3]   HK    DK    HQ    HA  |  0     0     0     0     6(6)
+ CK    C8    C2    C4   [CQ] |  0     0     2(2)  0     6
+ **    DA   [D8]   D7    D2  |  1(1)  0     2     0     6
+[H2]   S6    S8    H8    H5  |  1     0     2     0(0)  6
+ CA    C5    SJ   [CJ]   C7  |  4(3)  0     2     0     6
+[H7]   S3    S2    HT    H6  |  4     0     2     1(1)  6
+ -J    DT    D4   [D6]   D5  |  6(2)  0     2     1     6
+[@A]   SQ    S9    S5    S4  |  8(2)  0     2     1     6
+[H4]   SK    D9    +J    C9  |  8     0     2     3(2)  6
+ H9    S7    D3   [ST]   C6  |  9(1)  0     2     3     6
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+C12  -   -   -   -
+---
+C12 **
+DA D4 D7 -> D7 S5 HT
+---
+a:NP  b:AL  c:AL  d:AL  e:AD | a:NP  b:AL  c:AL  d:AL  e:AD 
+[+J]   C4    CQ    -J    **  |  0     0     0     0     4(4)
+ D4    D8    D9    D5   [D3] |  0     0     0(0)  0     4
+ H9    H2   [H4]   H3    HA  |  0     1(1)  0     0     4
+ DK   [DJ]   D2    DQ    D6  |  0     1     3(3)  0     4
+ C3    CT   [C2]   HK    C9  |  0     3(2)  3     0     4
+ H5   [H7]   HJ    H8    S2  |  0     3     4(1)  0     4
+ @A    C5   [S6]   SK    S7  |  2(2)  3     4     0     4
+[DA]   CA    C8    S4    DT  |  2     6(3)  4     0     4
+---
+ C6    H6    CK    S8    S3
+ C7    HQ    ST    S9    SQ
+---
+ -6    +4    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                S12
+ -   -   -   -
+---
+S12 +J
+HK H2 C8 -> ** SK CQ
+---
+a:AL  b:AD  c:AL  d:AL  e:NP | a:AL  b:AD  c:AL  d:AL  e:NP 
+ D6    D3    D9    DK   [D2] |  0     0     0     3(3)  0
+ CA    C6    CT   [-J]   C8  |  0     0     0     6(3)  0
+ DT    DQ    D5   [D7]   H2  |  0     2(2)  0     6     0
+ S7   [C2]   C7    CK    C9  |  1(1)  2     0     6     0
+[S3]   S2    S9    C5    S8  |  1     2     0(0)  6     0
+ D8    +J   [C4]   C3    S6  |  1     3(1)  0     6     0
+ H7   [H5]   HT    H9    HK  |  1     3     0     6     2(2)
+ SQ    HQ    S4    DA   [S5] |  4(3)  3     0     6     2
+---
+ DJ    H3    H4    D4    HJ
+ H8    HA    ST    H6    @A
+---
+ +4    -6    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+    C12  -  D12  -
+ -   -   -
+---
+D12 @A
+CJ SK CQ -> HQ -J CJ
+---
+a:AL  b:AD  c:AL  d:NP  e:AL | a:AL  b:AD  c:AL  d:NP  e:AL 
+ D3    D5    DA   [DK]   +J  |  0     0     0     0     6(6)
+ HT    H9    H2    H6   [HA] |  0     0     2(2)  0     6
+ D2    DT   [DQ]   D8    S6  |  0     0     4(2)  0     6
+---
+ CT    D4    D6    D9    CK
+ HK    D7    C2    C5    CA
+ S3    C3    C6    C9    H3
+ S5    C4    C7    CQ    H5
+ S9    C8    H4    S7    H8
+ ST    SJ    H7    SK    S2
+ SQ    @A    S4    **    S8
+---
+ +4    -6    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -   -
+ -  H12  -   -   -
+ -
+---
+H12 @A
+S2 C5 D9 -> H8 H6 C6
+---
+a:AL  b:NP  c:AL  d:AL  e:AD | a:AL  b:NP  c:AL  d:AL  e:AD 
+ S8   [S2]   ST    S9    @A  |  0     0     0     0     2(2)
+ SK    S7    SJ    C4   [S4] |  2(2)  0     0     0     2
+[CK]   C5    C7    C3    C9  |  3(1)  0     0     0     2
+[CJ]   **    DA    C2    CA  |  3     3(3)  0     0     2
+ HT   [H2]   HQ    H4    HA  |  3     6(3)  0     0     2
+ -J   [D9]   DT    D7    D6  |  5(2)  6     0     0     2
+[CT]   SQ    H9    D5    CQ  |  5     6     3(3)  0     2
+ DK    S6   [D4]   D2    D3  |  6(1)  6     3     0     2
+---
+ C8    H5    DQ    D8    H3
+ S5    +J    S3    H7    HK
+---
+ +4    -6    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -  C12  -   -   -
+ -
+---
+C12 +J
+H5 D6 DJ -> H5 C7 SK
+---
+a:AL  b:NP  c:AL  d:AD  e:AL | a:AL  b:NP  c:AL  d:AD  e:AL 
+ HQ   [H6]   H8    HK    H7  |  0     0     0     3(3)  0
+ C4    C2    C6   [+J]   C3  |  0     0     0     4(1)  0
+ S8    H3    S7   [H4]   HJ  |  0     0     0     4     1(1)
+ -J    @A    CT    S4   [S6] |  0     3(3)  0     4     1
+ D7   [HT]   DQ    H2    H9  |  0     5(2)  0     4     1
+ D5   [D*]   D8    D9    D4  |  0     5(0)  0     4     1
+ DT   [D6]   DK    SQ    S9  |  0     5     3(3)  4     1
+ D2    DJ   [DA]   C8    HA  |  0     5     3     7(3)  1
+---
+ D3    CK    C9    CA    S3
+ C5    S5    CQ    S2    ST
+---
+ -4    +6    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            D12  -
+ -   -  S12 D13  -
+ -   -   -
+---
+D13 **
+** H8 D4 -> D2 ** D4
+---
+a:AL  b:AL  c:AL  d:NP  e:AL | a:AL  b:AL  c:AL  d:NP  e:AL 
+ C5    D7    DT   [D8]   D9  |  0     0     1(1)  0     0
+ S8    S7   [ST]   H8    S4  |  0     0     2(1)  0     0
+ C6    C2   [CT]   CK    C9  |  0     2(2)  2     0     0
+ H2   [H3]   H6    H9    H4  |  0(0)  2     2     0     0
+[HA]   HQ    -J    HK    HT  |  0     2     7(5)  0     0
+---
+ C8    DA    DQ    D3    C7
+ CA    C3    S3    D5    CJ
+ H5    C4    S6    D6    H7
+ S2    CQ    SJ    +J    S9
+ S5    SQ    @A    DK    SK
+---
+ +2    +2    +2    -8    +2
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+ -   -  S12  -   -
+ -   -
+---
+S12 @A
+DT S2 C7 -> ST S8 S2
+---
+a:AL  b:AL  c:NP  d:AL  e:AD | a:AL  b:AL  c:NP  d:AL  e:AD 
+ C9    C6   [-J]   CA    CK  |  0     0     4(4)  0     0
+ DA    DK   [D2]   DJ    D8  |  0     0     7(3)  0     0
+ SQ    +J   [S*]   S3    @A  |  0     0     7     0     3(3)
+ C8    CQ    C7    CT   [C3] |  0     2(2)  7     0     3
+ HK   [H4]   SK    H6    H8  |  0     2     9(2)  0     3
+---
+ D9    D7    D4    C2    D3
+ H2    DQ    D5    H7    D6
+ H3    H9    DT    HJ    C5
+ HT    HQ    C4    S4    H5
+ HA    S5    S7    S9    S6
+---
+ -4    -4    +6    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -   -  D12  -
+ -   -   -
+---
+D12 @A
+ST C9 S7 -> H2 ST D8
+---
+a:AD  b:AL  c:AL  d:NP  e:AL | a:AD  b:AL  c:AL  d:NP  e:AL 
+ S2    HQ    H3   [-J]   H8  |  0     0     0     3(3)  0
+ C7    C8    CJ   [C*]   C4  |  0     0     0     4(1)  0
+ D2    H5    DQ   [D4]   D5  |  0     0     1(1)  4     0
+ S5    H9   [H6]   C9    H7  |  0     0(0)  1     4     0
+ C5   [HK]   HA    CQ    SJ  |  0     0     5(4)  4     0
+ D7    H4   [HT]   S7    S4  |  1(1)  0     5     4     0
+[S3]   S6    SQ    S8    S9  |  1     0     6(1)  4     0
+ D6    CA   [DK]   DT    +J  |  1     0     6     4     4(4)
+---
+ C2    C6    C3    D3    D9
+ @A    CK    SK    DA    CT
+---
+ -6    +4    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -  C12  -   -   -
+ -
+---
+C12 +J
+C9 D4 S7 -> C9 @A C4
+---
+a:AL  b:NP  c:AL  d:AD  e:AL | a:AL  b:NP  c:AL  d:AD  e:AL 
+ S4   [S7]   S5    SK    -J  |  0     0     0     0     3(3)
+ DJ    D4    D6    D2   [DT] |  0     0     0     2(2)  3
+ H7    H6    H3   [H2]   HJ  |  0     0     0     3(1)  3
+ HK    **    HA   [H4]   CK  |  0     3(3)  0     3     3
+ S9   [D7]   D8    CQ    DQ  |  0     3     0     5(2)  3
+ C2    C3    D9   [+J]   C6  |  0     3     0     6(1)  3
+ H9    H8    HQ   [HT]   C5  |  0     3     0     6     5(2)
+ ST    DK    D5    CA   [DA] |  0     3     0    10(4)  5
+---
+ H5    C8    D3    CT    C7
+ S2    S8    S6    SQ    S3
+---
+ -4    +6    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+ -   -  S12  -   -
+ -   -
+---
+S12 @A
+DK ST D8 -> S5 H2 DK
+---
+a:AL  b:AL  c:NP  d:AL  e:AD | a:AL  b:AL  c:NP  d:AL  e:AD 
+ H6    S6   [ST]   S7    S2  |  0     0     2(2)  0     0
+ DQ    DJ   [D9]   DA    D6  |  0     0     2     3(3)  0
+ D2    D3    **   [D7]   S3  |  0     0     2(0)  3     0
+ HA    H9   [+J]   SK    @A  |  0     0     2     3     4(4)
+ CK    C5    -J    CT   [C3] |  0     0     5(3)  3     4
+ C9    D5   [D8]   DT    HQ  |  0     0     5     5(2)  4
+ HK    HJ    H7   [H5]   HT  |  3(3)  0     5     5     4
+[C6]   C7    S4    S9    CQ  |  3     0     5     6(1)  4
+---
+ C8    C2    D4    H4    S8
+ CA    C4    H3    H8    SQ
+---
+ +4    +4    -6    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+H12 S12  -   -   -
+ -
+---
+S12 **
+SQ D7 CA -> -J D3 S2
+---
+a:AD  b:NP  c:AL  d:AL  e:AL | a:AD  b:NP  c:AL  d:AL  e:AL 
+ **   [D7]   DQ    D4    DK  |  3(3)  0     0     0     0
+[HJ]   @A    H7    H8    H5  |  3     2(2)  0     0     0
+ DT   [DA]   D2    D8    D6  |  3     2     2(2)  0     0
+ S4    S9   [+J]   S5    S3  |  3     2     3(1)  0     0
+ C5    C4   [CQ]   CK    C8  |  3     2     3     2(2)  0
+ H4    S6    H2   [H6]   HK  |  3     3(1)  3     2     0
+ HQ   [SQ]   S7    H9    ST  |  3     6(3)  3     2     0
+ C3   [C9]   CT    C2    D9  |  3     6     4(1)  2     0
+ D5    CA   [C7]   C6    S8  |  3     6     4     2     1(1)
+ H3    SK    DJ    HA   [HT] |  3    10(4)  4     2     1
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+S12  -   -   -   -
+---
+S12 **
+C2 C8 H8 -> C5 SQ H8
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[S8]   C9    S2    S4    SK  |  0     0     0     0     2(2)
+ S5    DT    CQ    S7   [S9] |  0     0     0     0     4(2)
+ H7    HA    H9    **   [HJ] |  0     0     0     2(2)  4
+ D3    DK    D8   [DQ]   D6  |  0     2(2)  0     2     4
+ C2   [C7]   CT    C4    -J  |  0     2     0     2     6(2)
+ HT    H3    HQ    H4   [HK] |  0     2     0     2     9(3)
+---
+ C8    D5    D2    D9    H2
+ S6    D7    D4    C3    H5
+ +J    C6    DJ    CA    S3
+ @A    CK    DA    H6    ST
+---
+ -6    +4    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  S12
+ -   -   -   -
+---
+S12 **
+CT C6 D6 -> D3 C6 +J
+---
+a:AL  b:AD  c:AL  d:AL  e:NP | a:AL  b:AD  c:AL  d:AL  e:NP 
+ S7    S2    S5    S6   [ST] |  0     0     0     0     2(2)
+ DT    **    D7    D9   [D5] |  0     1(1)  0     0     2
+ C4   [C7]   C8    C9    CA  |  0     1     0     0     3(1)
+ C5    CK    C3    -J   [CT] |  0     1     0     3(3)  3
+ H5    S4    S8   [SQ]   @A  |  0     1     0     3     5(2)
+ DQ    D8    DJ    SK   [D6] |  0     1     0     6(3)  5
+ H9    H3    H2   [HK]   H4  |  0     1     1(1)  6     5
+ H8    D2   [DK]   HT    S3  |  0     1     1     6     7(2)
+ HA    C2    DA    H6   [CQ] |  0     1     1     6    10(3)
+ H7    HQ    D4    HJ   [S9] |  0     1     1     6    12(2)
+---
+ -4    +6    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+    D12  -   -   -
+ -
+---
+D12 **
+C5 @A CJ -> C7 H6 DQ
+---
+a:AL  b:NP  c:AL  d:AL  e:AD | a:AL  b:NP  c:AL  d:AL  e:AD 
+ D3   [DT]   D7    +J    D9  |  0     0     0     3(3)  0
+ HQ    -J    H3   [H4]   H9  |  0     2(2)  0     3     0
+ SQ   [@A]   S9    SJ    SK  |  0     6(4)  0     3     0
+ CQ   [CJ]   C9    C8    **  |  0     6     0     3     2(2)
+ DK    D6    D8    S5   [D5] |  1(1)  6     0     3     2
+[C4]   C5    CK    S4    C6  |  1     6     1(1)  3     2
+ H2    S6   [S7]   S2    S8  |  1     6     1     3     2(0)
+ CA    D2    CT    H7   [C2] |  1     8(2)  1     3     2
+ H5   [D4]   HA    HT    DA  |  1     8     1     3     5(3)
+---
+ HK    ST    S3    H8    C3
+---
+ -4    +6    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -  S12  -   -
+ -   -
+---
+S12 @A
+D2 D3 CK -> D3 H3 SQ
+---
+a:AL  b:AL  c:NP  d:AL  e:AD | a:AL  b:AL  c:NP  d:AL  e:AD 
+ S5    S2   [S4]   S9    ST  |  0     0     0     0     2(2)
+ H5    H4    S3    S8   [SK] |  0     0     0     0     3(1)
+ DT    DQ    **    D9   [D6] |  0     0     2(2)  0     3
+ D5    D8   [D2]   D7    DJ  |  0     0     3(1)  0     3
+ C2    HT   [S7]   HA    +J  |  0     0     3     0     6(3)
+ CQ    CT    C6    -J   [C4] |  0     0     3     3(3)  6
+ C7    C9    CK   [CA]   C3  |  0     0     3     5(2)  6
+ H6    HQ    DA   [HJ]   H9  |  0     3(3)  3     5     6
+ H2   [DK]   S6    HK    D4  |  0     3     5(2)  5     6
+ H7    H8   [C5]   C8    @A  |  0     3     5     5     7(1)
+---
+ -4    -4    +6    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -  H12  -   -   -
+ -
+---
+H12 @A
+CJ DQ H4 -> H5 +J H9
+---
+a:AL  b:NP  c:AL  d:AL  e:AD | a:AL  b:NP  c:AL  d:AL  e:AD 
+ D4   [C6]   C9    C7    CK  |  0     0     0     0     2(2)
+ H7    H3    HT    H2   [HQ] |  0     0     0     2(2)  2
+ H8    H4    C4   [H6]   HA  |  0     0     0     2     3(1)
+ SJ    ST    S2    S7   [SQ] |  0     0     3(3)  2     3
+ S9    **   [S3]   C8    S5  |  0     0(0)  3     2     3
+ HK   [C2]   CQ    CT    C5  |  3(3)  0     3     2     3
+[D7]   DT    D9    D2    D6  |  3     0     3     3(1)  3
+---
+ D5    D8    S4    D3    -J
+ DA    DQ    S6    C3    DK
+ S8    CJ    SK    CA    @A
+---
+ +4    -6    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -  S12  -
+ -   -   -
+---
+S12 **
+S8 HJ C3 -> C2 @A +J
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ D8    D9    D6   [DA]   DK  |  0     0     0     4(4)  0
+ H2    H7    H6   [H5]   **  |  0     0     0     4     0(0)
+ D3    D7    D5    C3   [D4] |  0     0(0)  0     4     0
+ S4   [S3]   S9    S5    S2  |  0     0     0     4     0(0)
+ C5    HA    DJ    C6   [DT] |  0     0     3(3)  4     0
+ H3    H8   [HQ]   HJ    H4  |  0     0     5(2)  4     0
+ ST    CT   [SK]   SQ    S6  |  0     0     9(4)  4     0
+---
+ C9    C4    C7    HT    D2
+ CQ    C8    CK    S7    DQ
+ CA    H9    HK    S8    -J
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+H12  -   -   -   -
+---
+H12 **
+S5 @A H8 -> DA H5 C2
+---
+a:NP  b:AL  c:AL  d:AL  e:AD | a:NP  b:AL  c:AL  d:AL  e:AD 
+[HA]   HT    H6    H7    **  |  0     0     0     0     3(3)
+ S5    S9    S7    S3   [S4] |  0     0(0)  0     0     3
+ @A   [S2]   S6    DT    SQ  |  3(3)  0     0     0     3
+[HQ]   HK    SJ    H2    H9  |  3     3(3)  0     0     3
+ CT   [ST]   D3    DK    SK  |  3     3     0     0     7(4)
+ -J    H3    C9    C4   [S8] |  4(1)  3     0     0     7
+[D6]   D2    D9    D8    D7  |  4     3(0)  0     0     7
+ C5   [C6]   CA    CQ    C7  |  4     3     2(2)  0     7
+ +J    C3   [C8]   CK    D4  |  6(2)  3     2     0     7
+---
+ H8    H4    CJ    D5    DQ
+---
+ +6    -4    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -  H12  -   -
+ -   -
+---
+H12 +J
++J H2 HT -> SQ HA @A
+---
+a:AL  b:AL  c:NP  d:AL  e:AL | a:AL  b:AL  c:NP  d:AL  e:AL 
+ D6    D3   [-J]   D2    DK  |  0     0     5(5)  0     0
+ H4    DT   [HT]   H3    ST  |  0     0     8(3)  0     0
+ H7    D9   [H5]   H8    C3  |  0     0     8     0(0)  0
+ C6    CK    **   [C2]   CT  |  0     0    10(2)  0     0
+ HQ    DQ   [H2]   CQ    DA  |  4(4)  0    10     0     0
+[S2]   S3    H9    S8    SJ  |  4     0    11(1)  0     0
+ CA    C9   [CJ]   C4    D8  |  6(2)  0    11     0     0
+[S4]   S5    H6    S7    SK  |  6     0    12(1)  0     0
+---
+ D7    D4    C8    C5    D5
+ HK    C7    +J    S6    S9
+---
+ -3    -3    +12   -3    -3
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -   -
+ -  C12  -   -   -
+ -
+---
+C12 +J
+D7 C8 HJ -> DA ** SK
+---
+a:AD  b:NP  c:AL  d:AL  e:AL | a:AD  b:NP  c:AL  d:AL  e:AL 
+ DK   [D2]   D4    H9    D6  |  3(3)  0     0     0     0
+[S6]   -J    S3    SQ    S9  |  3     2(2)  0     0     0
+ DT   [D7]   D3    S4    DQ  |  3     2     0     0     2(2)
+ C5    C8    C6    C3   [CQ] |  3     2     0     0     3(1)
+ DJ    C9    D8    C4   [D5] |  3     3(1)  0     0     3
+ H3   [HJ]   HA    H8    H7  |  3     3     2(2)  0     3
+ C2    CK   [CA]   C7    H4  |  3     3     4(2)  0     3
+ HK    HQ   [H2]   H5    S8  |  5(2)  3     4     0     3
+[+J]   HT    CT    S2    D9  |  8(3)  3     4     0     3
+[H6]   @A    S7    S5    ST  |  8     5(2)  4     0     3
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -   -   -
+S12  -   -   -   -
+---
+S12 **
+S2 -J ** -> H9 ** D3
+---
+a:NP  b:AL  c:AL  d:AL  e:AL | a:NP  b:AL  c:AL  d:AL  e:AL 
+[H7]   H3    H8    H6    HQ  |  0     0     0     0     1(1)
+ S8    D6    D5    D8   [D4] |  0(0)  0     0     0     1
+[SK]   +J    C4    S3    S7  |  0     2(2)  0     0     1
+ -J   [CT]   C6    C2    C5  |  2(2)  2     0     0     1
+[@A]   H2    DQ    ST    S9  |  5(3)  2     0     0     1
+[S4]   DK    D7    D2    D9  |  6(1)  2     0     0     1
+[S6]   H4    DT    DJ    C3  |  8(2)  2     0     0     1
+[S2]   HJ    CQ    DA    C7  | 11(3)  2     0     0     1
+[SQ]   C9    HT    H5    HK  | 14(3)  2     0     0     1
+---
+ S5    HA    CA    C8    CK
+---
+ +12   -3    -3    -3    -3
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -  D12  -   -   -
+ -
+---
+D12 @A
+C7 H6 S3 -> +J H4 C7
+---
+a:AL  b:NP  c:AL  d:AD  e:AL | a:AL  b:NP  c:AL  d:AD  e:AL 
+ D3   [D6]   D4    DT    D2  |  0     0     0     2(2)  0
+ SJ    S3    S8   [@A]   S6  |  0     0     0     4(2)  0
+ H5    H9    DQ   [H3]   HK  |  0     0     2(2)  4     0
+ C4    **   [C3]   CQ    C6  |  0     1(1)  2     4     0
+ C2   [DK]   DA    D7    S4  |  0     1     4(2)  4     0
+ ST    CJ   [C9]   D8    CT  |  0     1     4     7(3)  0
+ S9    S5    C8   [S2]   S7  |  0(0)  1     4     7     0
+[HQ]   H6    D5    H2    -J  |  0     1     4     7     2(2)
+ HA    HT    C5    SQ   [CA] |  0     1     4     7     6(4)
+---
+ H8    D9    CK    SK    H7
+---
+ +4    -6    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+D12  -   -   -   -
+---
+D12 **
+C8 HQ D5 -> DQ CA D6
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[H2]   H7    HA    **    H4  |  0     0     0     3(3)  0
+ D5    S7    D4   [D9]   DT  |  0     0     0     3     1(1)
+ CJ    C6    C5    C7   [C3] |  1(1)  0     0     3     1
+[S8]   S9    S5    S6    S3  |  1     0(0)  0     3     1
+ SQ   [@A]   SK    SJ    ST  |  1     5(5)  0     3     1
+ C8   [CQ]   C2    H3    C4  |  1     6(1)  0     3     1
+ +J   [S4]   D8    DK    H6  |  3(2)  6     0     3     1
+[-J]   HT    C9    HK    H5  |  6(3)  6     0     3     1
+[HQ]   S2    D7    H9    H8  |  6     6     1(1)  3     1
+ DA    CK   [D2]   D3    CT  |  9(3)  6     1     3     1
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -  C12  -   -   -
+ -
+---
+C12 @A
+DK H2 D4 -> C7 C3 D4
+---
+a:AD  b:NP  c:AL  d:AL  e:AL | a:AD  b:NP  c:AL  d:AL  e:AL 
+ ST   [S2]   -J    S4    SQ  |  0     0     3(3)  0     0
+ CT    C6   [C5]   CK    C9  |  0     0     3     2(2)  0
+ H6    **    H7   [HA]   H8  |  0     1(1)  3     2     0
+ CQ   [C2]   +J    C8    S3  |  0     1     5(2)  2     0
+ S7    H9   [HT]   H4    H5  |  0     1     6(1)  2     0
+ D3    DK   [DJ]   DQ    D5  |  0     4(3)  6     2     0
+ DA   [C4]   CA    H3    S5  |  0     4     8(2)  2     0
+---
+ D6    D7    D8    D2    DT
+ S6    H2    D9    HK    S8
+ @A    HJ    HQ    SK    S9
+---
+ -6    -6    +4    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -  D12  -   -
+ -   -
+---
+D12 @A
+-J SK DQ -> D6 DQ D4
+---
+a:AL  b:AL  c:NP  d:AD  e:AL | a:AL  b:AL  c:NP  d:AD  e:AL 
+ DT    D2   [D7]   DK    C8  |  0     0     0     3(3)  0
+ S7    SJ    **   [S9]   S3  |  0     0     1(1)  3     0
+ HT    ST   [S5]   S6    S8  |  0     2(2)  1     3     0
+ H6   [H7]   H5    H2    HK  |  0     2     1     4(1)  0
+ CQ    CT    SK   [C5]   C2  |  3(3)  2     1     4     0
+[D9]   +J    D5    C7    S4  |  3     3(1)  1     4     0
+ C4   [SQ]   H9    @A    S2  |  3     3     1     6(2)  0
+ CK    H8    H3   [HA]   C9  |  3     3     1     8(2)  0
+ C3    C6    -J   [HQ]   CJ  |  3     3     4(3)  8     0
+---
+ D3    D8    DA    H4    CA
+---
+ -4    -4    +6    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  H12
+ -   -  S12  -   -
+ -   -
+---
+S12 -J
+H7 C4 D2 -> ** @A H4
+---
+a:AL  b:AL  c:NP  d:AD  e:AL | a:AL  b:AL  c:NP  d:AD  e:AL 
+ CA    C9   [C4]   C2    C5  |  2(2)  0     0     0     0
+[C8]   CK    CT    C3    H9  |  2     2(2)  0     0     0
+ DQ   [D6]   DK    DJ    D8  |  2     2     3(3)  0     0
+ HK    HT   [H7]   H2    H5  |  2     2     3     2(2)  0
+ SK    ST    S3   [SQ]   H3  |  5(3)  2     3     2     0
+[S5]   S7    +J    S2    HJ  |  5     2     5(2)  2     0
+ S8    DA   [D4]   D9    D5  |  6(1)  2     5     2     0
+[S9]   S4    S6    C6    HQ  |  7(1)  2     5     2     0
+---
+ C7    H8    D2    D3    D7
+ CQ    HA    DT    -J    H6
+---
+ +4    +4    -6    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            C12  -
+ -   -   -
+---
+C12 @A
+DT H5 SQ -> DT H7 H4
+---
+a:AL  b:AD  c:AL  d:NP  e:AL | a:AL  b:AD  c:AL  d:NP  e:AL 
+ C7    C8    C3   [CA]   C5  |  0     0     0     2(2)  0
+ HQ    CT    CQ   [C6]   C9  |  0     0     3(3)  2     0
+ ST    S3   [S6]   **    S2  |  0     0     3     3(1)  0
+ D3    SK    +J   [C4]   D2  |  0     0     5(2)  3     0
+ HK    HT   [H2]   HA    H3  |  0     0     8(3)  3     0
+ D4    DA   [DJ]   H9    D5  |  0     2(2)  8     3     0
+ S4   [@A]   S7    SQ    S5  |  0     4(2)  8     3     0
+ DQ   [D8]   D6    H5    D9  |  1(1)  4     8     3     0
+---
+ DK    D7    H8    C2    H6
+ -J    S8    HJ    CK    S9
+---
+ +4    -6    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -  H12  -   -
+ -   -
+---
+H12 @A
+C4 H5 H3 -> DT H7 S4
+---
+a:AL  b:AL  c:NP  d:AD  e:AL | a:AL  b:AL  c:NP  d:AD  e:AL 
+ CA    C2   [CT]   C9    C8  |  3(3)  0     0     0     0
+[SJ]   S9    **    @A    S6  |  3     0     0     2(2)  0
+ C6    D6    C4   [C7]   CK  |  3     0     0     2     1(1)
+ H2    S5    H3    CQ   [C3] |  3     0     1(1)  2     1
+ H4    HT   [HA]   +J    HQ  |  3     0     1     6(4)  1
+ S7    ST    SQ   [S2]   C5  |  3     0     3(2)  6     1
+ HK    H6   [H8]   S3    DK  |  5(2)  0     3     6     1
+[SK]   DA    H5    D3    CJ  |  5     0     6(3)  6     1
+---
+ D9    D4    -J    D7    D2
+ S8    D5    H9    DQ    D8
+---
+ -4    -4    +6    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            S12  -
+ -   -  D13  -   -
+ -   -
+---
+D13 @A
+C6 ST SQ -> +J H8 HK
+---
+a:AL  b:AD  c:NP  d:AL  e:AL | a:AL  b:AD  c:NP  d:AL  e:AL 
+ H3    HQ   [H4]   H7    H9  |  0     3(3)  0     0     0
+ DA   [D3]   D6    DQ    D9  |  2(2)  3     0     0     0
+[DK]   D8    D5    S3    S4  |  3(1)  3     0     0     0
+[D4]   C5    **    S8    CA  |  3     3     1(1)  0     0
+ D2    S7   [DT]   SK    H2  |  3     3     3(2)  0     0
+ C3    C2   [C6]   CJ    C7  |  3     4(1)  3     0     0
+ S6   [H5]   HA    -J    H6  |  3     4     3     2(2)  0
+ CT    CQ    ST   [C8]   C4  |  3     7(3)  3     2     0
+ S9   [HT]   SQ    SJ    S2  |  3    10(3)  3     2     0
+---
+ S5    @A    D7    C9    CK
+---
+ -4    +6    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -   -  S12
+D13  -   -   -   -
+---
+D13 @A
+S8 HA CK -> ** CK D9
+---
+a:NP  b:AL  c:AD  d:AL  e:AL | a:NP  b:AL  c:AD  d:AL  e:AL 
+[HT]   H4    HK    H6    H9  |  0     0     3(3)  0     0
+ C3    CA   [C9]   DK    CJ  |  0     0     3     3(3)  0
+ S8    S2    S3   [SQ]   S7  |  0     1(1)  3     3     0
+ D4   [C2]   CQ    D3    C7  |  1(1)  1     3     3     0
+[-J]   H5    C5    H7    H3  |  2(1)  1     3     3     0
+[H2]   D6    C8    SJ    HQ  |  2     3(2)  3     3     0
+ DT   [D5]   DQ    D2    S4  |  2     3     5(2)  3     0
+ HA    CT   [@A]   ST    S6  |  2     3     9(4)  3     0
+ D7    C6   [DA]   +J    SK  |  2     3     9     6(3)  0
+---
+ H8    C4    D8    S9    S5
+---
+ -6    +4    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -  S12
+ -   -   -   -
+---
+S12 +J
+D9 S3 D7 -> S8 -J D9
+---
+a:AL  b:AL  c:AD  d:AL  e:NP | a:AL  b:AL  c:AD  d:AL  e:NP 
+ S2    S4    SQ    S9   [S3] |  0     0     2(2)  0     0
+ S6    SK   [+J]   HQ    ST  |  0     0     6(4)  0     0
+ H6    H8   [H9]   H7    C7  |  0     0     6(0)  0     0
+ D2    C6   [S5]   D6    **  |  0     0     6     0     0(0)
+ D8    DK    DQ    D4   [DJ] |  0     3(3)  6     0     0
+ HT   [H2]   HA    HK    D7  |  0     3     9(3)  0     0
+ C3    C5   [C2]   CA    C4  |  0     3    10(1)  0     0
+ CQ    CK   [C9]   CT    @A  |  0     3    10     0     4(4)
+---
+ D5    H4    C8    D3    DT
+ HJ    H5    H3    DA    S7
+---
+ -4    -4    +6    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            D12  -
+ -   -   -
+---
+D12 **
+SJ D4 D8 -> C3 DQ D8
+---
+a:AD  b:AL  c:AL  d:NP  e:AL | a:AD  b:AL  c:AL  d:NP  e:AL 
+ **    S3    S4   [SK]   S7  |  2(2)  0     0     0     0
+[S9]   CT    S5    SJ    H6  |  2     0     0     2(2)  0
+ D5    +J    D7   [D4]   D3  |  2     1(1)  0     2     0
+ CQ   [C6]   C7    C4    CK  |  2     1     0     2     2(2)
+ SQ    C9    S2    C5   [CA] |  2     1     0     2     4(2)
+ H3    H8    H9    -J   [HK] |  2     1     0     4(2)  4
+ ST    C8    D6   [@A]   CJ  |  2     1     0     7(3)  4
+ HA    D2    DT   [DK]   H2  |  2     1     0    10(3)  4
+---
+ H5    H4    DA    D9    C2
+ S6    HT    HQ    S8    H7
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+D12  -  S12  -   -
+ -   -
+---
+S12 @A
+H8 CQ CA -> ** H4 D9
+---
+a:AD  b:AL  c:NP  d:AL  e:AL | a:AD  b:AL  c:NP  d:AL  e:AL 
+ CT    C6   [C9]   C7    C2  |  1(1)  0     0     0     0
+[D6]   D2    H3    D8    DA  |  1     0     0     0     1(1)
+ DQ    -J    CA    C5   [C4] |  1     3(3)  0     0     1
+ @A   [S4]   S2    S6    SQ  |  3(2)  3     0     0     1
+[HK]   HJ    H2    H6    HQ  |  3     3     3(3)  0     1
+ S7    S9   [S3]   HT    SK  |  3     3     3     0     3(2)
+ DT    D4    H8    D5   [D7] |  4(1)  3     3     0     3
+[DJ]   D3    +J    C8    DK  |  4     3     6(3)  0     3
+ ST    C3   [S8]   H7    HA  |  6(2)  3     6     0     3
+---
+ S5    H5    CQ    CK    H9
+---
+ +6    -4    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -   -   -
+H12  -   -   -   -
+---
+H12 @A
+CQ C4 D5 -> H2 H6 D7
+---
+a:NP  b:AL  c:AD  d:AL  e:AL | a:NP  b:AL  c:AD  d:AL  e:AL 
+[S4]   SJ    @A    SK    S6  |  0     0     3(3)  0     0
+ **    CK   [C6]   C9    C7  |  1(1)  0     3     0     0
+[C4]   C2    CA    C8    C3  |  1     1(1)  3     0     0
+ D5   [DQ]   D2    D8    D6  |  1     1     4(1)  0     0
+ S7    H9   [S3]   S5    S2  |  1     1(0)  4     0     0
+ H3   [H7]   HK    H5    H4  |  1     1     5(1)  0     0
+ CQ    DK   [D9]   DA    D4  |  1     1     5     3(3)  0
+ S8    HT    C5   [S9]   ST  |  1     3(2)  5     3     0
+ +J   [H8]   HQ    HA    -J  |  5(4)  3     5     3     0
+[CT]   CJ    D3    SQ    DT  |  5     7(4)  5     3     0
+---
+ -6    +4    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+        D12  -   -
+ -   -
+---
+D12 @A
+HQ H9 C4 -> S5 H2 H9
+---
+a:AL  b:AD  c:NP  d:AL  e:AL | a:AL  b:AD  c:NP  d:AL  e:AL 
+ H3    H4   [HQ]   HA    H7  |  0     0     0     2(2)  0
+ DA    DK    D2   [D7]   D9  |  0     0     2(2)  2     0
+ S8    @A   [SQ]   ST    SK  |  0     4(4)  2     2     0
+ S3   [S6]   S2    D3    S9  |  0     4     2     2(0)  0
+ D4    H8    **   [DT]   D5  |  0     4     3(1)  2     0
+ C9    C7   [C3]   CQ    CA  |  0     4     3     2     2(2)
+ SJ    CJ    C4    H6   [S7] |  2(2)  4     3     2     2
+[HT]   HK    -J    CK    H5  |  2     4     7(4)  2     2
+ DQ    C5   [+J]   D8    D6  |  2     4     9(2)  2     2
+---
+ S4    CT    C8    C6    C2
+---
+ -4    +6    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            D12 C13
+ -   -   -   -
+---
+C13 **
+H6 HT S2 -> SK CQ HT
+---
+a:AD  b:AL  c:AL  d:AL  e:NP | a:AD  b:AL  c:AL  d:AL  e:NP 
+ **    C7    CK    +J   [C4] |  5(5)  0     0     0     0
+[DJ]   D5    D2    D3    @A  |  5     0     0     0     2(2)
+ S7    SQ    S9    S8   [S2] |  5     0     0     0     3(1)
+ C6    -J    CT    C2   [C9] |  5     2(2)  0     0     3
+ H3   [H7]   H9    HJ    H2  |  5     2     0     0     4(1)
+ C5    S4    HK    H4   [C8] |  5     2     0     0     5(1)
+ D8    HA    HQ    DT   [H6] |  5     5(3)  0     0     5
+ DK   [DA]   D7    D9    S5  |  5     7(2)  0     0     5
+ S6   [H5]   ST    D6    C3  |  5     7     0     0     6(1)
+ S3    H8    D4    DQ   [CA] |  5     7     0     0     8(2)
+---
+ +6    -4    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -  D12  -
+ -   -   -
+---
+D12 @A
+CJ D9 D7 -> C4 ** D4
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ CA    C8    +J   [D6]   D3  |  0     0     2(2)  0     0
+ -J    CT   [C6]   CJ    C2  |  3(3)  0     2     0     0
+[S4]   S8    SJ    S6    S3  |  3     0     3(1)  0     0
+ H6    H9   [H4]   H7    HA  |  3     0     3     0     1(1)
+ S9    C7    C9    DK   [CQ] |  3     0     3     2(2)  1
+ HQ    CK    DQ   [D9]   D8  |  3     0     6(3)  2     1
+---
+ HK    C5    DA    D2    DT
+ S7    H8    H2    D5    C3
+ ST    S2    H3    D7    H5
+ SQ    SK    HT    S5    @A
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -  H12  -   -
+ -   -
+---
+H12 @A
+CJ DQ S2 -> DQ -J C6
+---
+a:AL  b:AL  c:NP  d:AD  e:AL | a:AL  b:AL  c:NP  d:AD  e:AL 
+ S8    SJ   [SK]   S9    S6  |  0     0     4(4)  0     0
+ C7    D2   [S2]   S4    S5  |  0     0     4     0     0(0)
+ HA    HT    H2    HQ   [H9] |  0     0     7(3)  0     0
+ HK    H6   [+J]   H8    H3  |  0     0     9(2)  0     0
+ H4    D9   [H5]   DA    D3  |  0     0    10(1)  0     0
+ CA    CQ   [H7]   C8    D8  |  0     0    12(2)  0     0
+ D4    D7   [D*]   S3    DT  |  0     0    13(1)  0     0
+ C2    CK   [CJ]   C9    C5  |  2(2)  0    13     0     0
+---
+ D5    C3    ST    S7    D6
+ DK    C4    SQ    @A    CT
+---
+ -4    -4    +6    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -  C12  -   -
+ -   -
+---
+C12 **
+D6 D9 C6 -> HK C9 CQ
+---
+a:AD  b:AL  c:NP  d:AL  e:AL | a:AD  b:AL  c:NP  d:AL  e:AL 
+ C7    CA   [CK]   C5    S8  |  0     4(4)  0     0     0
+ HT   [H5]   H8    H6    H4  |  1(1)  4     0     0     0
+[DA]   DJ    DT    D2    D5  |  1     4     0     3(3)  0
+ DK    D3    D9   [D8]   H3  |  2(1)  4     0     3     0
+[ST]   SK    C6    S5    S7  |  2     4     2(2)  3     0
+ **    C4   [C3]   CT    S2  |  3(1)  4     2     3     0
+[HQ]   H2    HJ    S3    HA  |  3     4     2     3     3(3)
+---
+ D4    D7    D6    C8    H7
+ H9    DQ    C2    -J    S6
+ S4    S9    +J    SQ    @A
+---
+ -6    +4    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -  D12  -   -
+ -   -
+---
+D12 @A
+S8 S2 C5 -> C5 C7 ST
+---
+a:AL  b:AL  c:NP  d:AD  e:AL | a:AL  b:AL  c:NP  d:AD  e:AL 
+ S3    S9   [S8]   SJ    SQ  |  0     0     0     0     3(3)
+ H5    HK    -J    H4   [H9] |  0     0     2(2)  0     3
+ C4    CJ   [C*]   C2    C8  |  0     0     3(1)  0     3
+ DK    D6   [+J]   D9    D2  |  0     0     5(2)  0     3
+ H8    HA   [H3]   H6    H2  |  0     0     5     0     4(1)
+ D7    DT    D8    DQ   [D5] |  0     0     5     2(2)  4
+ S4    SK    S7   [S5]   S6  |  0     1(1)  5     2     4
+ HT   [HQ]   S2    CQ    H7  |  0     4(3)  5     2     4
+ CA   [CT]   CK    C6    C3  |  3(3)  4     5     2     4
+---
+ D3    C9    DA    @A    D4
+---
+ +4    +4    -6    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+C12  -   -   -   -
+---
+C12 **
+C9 H8 D8 -> C5 H5 -J
+---
+a:NP  b:AL  c:AD  d:AL  e:AL | a:NP  b:AL  c:AD  d:AL  e:AL 
+[H4]   H2    HT    H9    HK  |  0     0     0     0     3(3)
+ @A    S4    **    S7   [S2] |  1(1)  0     0     0     3
+[C9]   C7    C4    CT    C3  |  1     0     0     1(1)  3
+ D6    D5    C8   [DJ]   DK  |  1     0     2(2)  1     3
+ D8    S3   [ST]   S9    S5  |  1     0     3(1)  1     3
+ HA    HQ   [HJ]   H7    H6  |  4(3)  0     3     1     3
+[CQ]   C6    CA    DT    +J  |  4     0     3     1     7(4)
+ D3    DQ    H3    D9   [D2] |  4     1(1)  3     1     7
+---
+ C2    D7    S6    D4    CK
+ H8    SQ    S8    DA    SK
+---
+ -6    +4    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -  H12  -
+ -   -   -
+---
+H12 -J
+C3 S9 H2 -> +J C3 HA
+---
+a:AL  b:AD  c:AL  d:NP  e:AL | a:AL  b:AD  c:AL  d:NP  e:AL 
+ C4    -J    C6   [CA]   CQ  |  0     5(5)  0     0     0
+ D3   [D7]   DT    **    D5  |  0     5     0     1(1)  0
+ D9    SJ    S5   [SK]   SQ  |  0     5     0     4(3)  0
+ H7    HK    HQ   [H3]   H4  |  0     7(2)  0     4     0
+ DQ   [S7]   S2    @A    S4  |  0     7     0     6(2)  0
+ C9    H9    C7   [C5]   C8  |  0     7(0)  0     6     0
+ DK   [S8]   CT    S9    S3  |  0     7     0     8(2)  0
+ D6    HT    H8   [H5]   CK  |  0     9(2)  0     8     0
+ D4   [ST]   H6    H2    CJ  |  0     9     2(2)  8     0
+---
+ D2    S6    C2    DA    D8
+---
+ -4    +6    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -  S12  -
+ -   -   -
+---
+S12 @A
+H8 +J C2 -> ST ** SQ
+---
+a:AL  b:AL  c:AD  d:NP  e:AL | a:AL  b:AL  c:AD  d:NP  e:AL 
+ DK    D5    D9   [D6]   DT  |  4(4)  0     0     0     0
+[S5]   SK    S2    +J    S7  |  4     0     0     2(2)  0
+ S4    C9    @A   [S8]   H5  |  4     0     1(1)  2     0
+ CK    H4   [H9]   H8    HQ  |  4     0     1     2     2(2)
+ D7    H6    HA    S3   [HJ] |  4     0     1     4(2)  2
+ C6    D4    D8   [D3]   DQ  |  4     0     1     4     3(1)
+ CT    DJ    H3    DA   [D2] |  4     0     1     7(3)  3
+ S9    HK    C8   [S6]   HT  |  6(2)  0     1     7     3
+---
+ C4    C3    C5    C2    H2
+ CA    C7    CQ    -J    H7
+---
+ +4    +4    -6    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -  H12  -
+ -   -   -
+---
+H12 +J
+SQ C2 ST -> HT C2 H7
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ H8    HQ    HA   [H6]   +J  |  0     0     0     0     4(4)
+ S8    SK    S7    S5   [SJ] |  0     2(2)  0     0     4
+ H4   [H2]   H3    C8    HK  |  0     2     0     0     5(1)
+ C3    D9    D6    -J   [DA] |  0     2     0     2(2)  5
+ S2    DQ    S9   [@A]   S6  |  0     2     0     4(2)  5
+ S3    CT    C5   [S*]   S4  |  0     2     0     5(1)  5
+ H5    D5    C7   [SQ]   C6  |  1(1)  2     0     5     5
+[C9]   D3    C4    CQ    CK  |  1     2     0     5     7(2)
+---
+ CA    D8    D2    D7    D4
+ H9    DK    DT    ST    CJ
+---
+ -4    -4    -4    +6    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -  D12  -  S12
+ -   -   -   -
+---
+S12 **
+HA C8 D8 -> S3 C3 D8
+---
+a:AL  b:AL  c:AD  d:AL  e:NP | a:AL  b:AL  c:AD  d:AL  e:NP 
+ CA    CQ    C9    C2   [C8] |  2(2)  0     0     0     0
+[ST]   S8    **    D5    SK  |  2     0     2(2)  0     0
+ DA    D2   [DJ]   D4    S2  |  2     0     2     0     2(2)
+ +J    DT    CK    -J   [C6] |  6(4)  0     2     0     2
+[H7]   H5    H4    H8    HA  |  6     0     2     0     3(1)
+ D3    S9    SQ    H3   [S5] |  6     0     3(1)  0     3
+ D9    H9   [D6]   C4    S7  |  6     0     3     0     3(0)
+ H2    S6    CT    @Q   [@A] |  6     0     3     3(3)  3
+---
+ DK    HT    D7    C5    C7
+ HK    HJ    DQ    H6    S4
+---
+ +4    +4    -6    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -   -
+S12  -   -   -   -
+---
+S12 **
+C6 H2 C7 -> D7 H4 CK
+---
+a:NP  b:AD  c:AL  d:AL  e:AL | a:NP  b:AD  c:AL  d:AL  e:AL 
+[S6]   S8    S9    S4    +J  |  0     0     0     0     2(2)
+ C6    **    CQ    CT   [C3] |  0     2(2)  0     0     2
+ C7   [CA]   C5    C8    H9  |  0     3(1)  0     0     2
+ H2   [HQ]   H3    H7    HA  |  2(2)  3     0     0     2
+[@A]   S7    SK    S5    SQ  |  5(3)  3     0     0     2
+[HT]   HK    H6    H8    H5  |  5     5(2)  0     0     2
+ -J   [C9]   C2    C4    D8  |  6(1)  5     0     0     2
+[S2]   D5    D4    DQ    D3  |  7(1)  5     0     0     2
+---
+ S3    D6    D2    DJ    DK
+ ST    D9    DT    HJ    DA
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -   -  D12  -
+ -   -   -
+---
+D12 @A
+C5 CK HT -> +J C5 C9
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ DQ    D5    DK   [D2]   D8  |  0     0     3(3)  0     0
+ S4    -J   [H8]   **    H2  |  0     0     3     1(1)  0
+ DA    H5    H4   [H6]   H9  |  1(1)  0     3     1     0
+[SQ]   S6    S2    SJ    ST  |  1     0     6(3)  1     0
+ S7    D7   [D4]   DT    D6  |  1     0     6     2(1)  0
+ C4    H7    HK   [HT]   SK  |  1     0     9(3)  2     0
+---
+ CJ    C6    D9    D3    C2
+ CQ    C8    C7    C3    S8
+ CA    HQ    CT    CK    S9
+ S3    HA    S5    H3    @A
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -   -   -  C12  -
+ -   -   -
+---
+C12 **
+C6 H8 +J -> +J HK C3
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ H2    HJ    H4   [H8]   **  |  0     0     0     0     3(3)
+ D2    D8    D4    DQ   [DT] |  2(2)  0     0     0     3
+[HT]   HQ    H7    H9    H5  |  2     2(2)  0     0     3
+ DJ   [DK]   D6    DA    D5  |  2     2     0     3(3)  3
+ CQ    SK    CK   [C6]   CA  |  2     2     0     3     7(4)
+ C8    SQ    C2    C5   [CT] |  2     2     0     3     9(2)
+---
+ D3    D7    C4    C7    H3
+ D9    H6    S4    S2    HA
+ C9    S6    S7    -J    S3
+ S5    S9    ST    @A    S8
+---
+ -4    -4    -4    +6    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                H12
+ -   -   -   -
+---
+H12 +J
+C7 S9 DT -> C7 DT HQ
+---
+a:AL  b:AD  c:AL  d:AL  e:NP | a:AL  b:AD  c:AL  d:AL  e:NP 
+ C5    SJ    S8    S7   [S9] |  0     3(3)  0     0     0
+ H6   [H5]   HK    HT    **  |  0     3     0     0     2(2)
+ D5    SK    CJ    S3   [SQ] |  0     6(3)  0     0     2
+ D7   [D9]   D2    -J    DK  |  0     6     0     2(2)  2
+ D8    ST    C8   [S2]   S6  |  0     7(1)  0     2     2
+ H7   [H8]   CA    H3    H2  |  0     8(1)  0     2     2
+ DQ   [D3]   D6    C4    @A  |  0     8     0     2     4(2)
+---
+ DA    C6    D4    CT    C3
+ H4    C9    C2    CK    HA
+ H9    +J    CQ    S4    S5
+---
+ -4    +6    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+    D12  -   -  C13
+ -   -   -   -
+---
+C13 **
+D5 D8 D2 -> HQ D5 ST
+---
+a:AL  b:AD  c:AL  d:AL  e:NP | a:AL  b:AD  c:AL  d:AL  e:NP 
+ CA    C7    +J    C3   [CT] |  0     0     5(5)  0     0
+ H4    H3   [HK]   H2    H8  |  0     0     5     1(1)  0
+ S3    **    S9   [SQ]   @A  |  0     0     5     1     2(2)
+ S6    S7    S5    S4   [-J] |  0     0     5     1     3(1)
+ C5    C8    DQ    C4   [CQ] |  0     0     5     1     5(2)
+ DK    DA    D6    D7   [D2] |  0     0     5     1     7(2)
+ H5    D4    DT    DJ   [D8] |  0     0     5     3(2)  7
+---
+ S2    D3    H7    C2    D9
+ S8    H6    H9    C6    C9
+ SK    HJ    HT    HA    CK
+---
+ +4    -6    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -   -
+ -  C12  -   -   -
+ -
+---
+C12 @A
+S3 CA HQ -> HQ CA C8
+---
+a:AL  b:NP  c:AL  d:AD  e:AL | a:AL  b:NP  c:AL  d:AD  e:AL 
+ S6   [S3]   S4    ST    S9  |  0     0     0     3(3)  0
+ D6    DQ    DA   [D5]   D4  |  0     0     2(2)  3     0
+ D7    **   [D9]   H9    DT  |  0     1(1)  2     3     0
+ C2   [C6]   C5    C3    C4  |  0(0)  1     2     3     0
+[D3]   DK    H5    @A    D2  |  0     1     2     5(2)  0
+ HA    H3    HK   [H2]   HT  |  0     1     2     8(3)  0
+ SK    S2    -J   [S7]   S5  |  0     1     4(2)  8     0
+ H7    +J   [H6]   SQ    H8  |  0     3(2)  4     8     0
+ D8   [C9]   CK    CT    C7  |  0     3     6(2)  8     0
+ H4    CQ   [HJ]   S8    DJ  |  0     6(3)  6     8     0
+---
+ -4    +6    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+D12  -   -   -   -
+---
+D12 +J
+C3 D2 S6 -> D6 S7 DT
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[C3]   C6    CA    C7    CJ  |  0     0     3(3)  0     0
+ **    H7   [H3]   S5    HQ  |  1(1)  0     3     0     0
+[@A]   S2    S3    SJ    S8  |  3(2)  0     3     0     0
+[D2]   D8    D5    D4    D9  |  3(0)  0     3     0     0
+[S9]   H4    SQ    SK    S4  |  3     0     3     2(2)  0
+ D3    DA    CT   [+J]   D7  |  3     0     3     5(3)  0
+ C4    CK    H2   [C2]   CQ  |  3     2(2)  3     5     0
+ H6   [HK]   HA    DK    -J  |  3     2     3     5     4(4)
+---
+ H8    C8    H5    C5    DQ
+ S6    C9    H9    ST    HT
+---
+ -6    +4    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            D12  -
+ -   -   -
+---
+D12 @A
+S6 H7 DA -> S6 H7 ST
+---
+a:AD  b:AL  c:AL  d:NP  e:AL | a:AD  b:AL  c:AL  d:NP  e:AL 
+ +J    CJ    D6   [D5]   D4  |  3(3)  0     0     0     0
+[@A]   SQ    C8    SJ    S4  |  6(3)  0     0     0     0
+[DQ]   H4    D2    DT    D9  |  8(2)  0     0     0     0
+[HK]   H3    HQ    -J    HT  |  8     0     0     4(4)  0
+ S9    S5    H9   [S3]   S8  |  8(0)  0     0     4     0
+[HA]   C5    H6    **    H2  |  8     0     0     5(1)  0
+ S7    S2    D8   [D3]   DK  |  8     0     0     5     1(1)
+---
+ C3    C2    C6    D7    C7
+ C4    C9    CA    DA    CQ
+ CK    CT    H8    SK    H5
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+S12  -   -   -   -
+---
+S12 **
+H2 CT C5 -> S3 C7 SQ
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[@A]   S9    S2    ST    S6  |  3(3)  0     0     0     0
+[CT]   C2    CQ    C8    C4  |  3     2(2)  0     0     0
+ D8   [D7]   DT    D2    D5  |  3     2     0     1(1)  0
+ D3    DA    D6   [DK]   DJ  |  3     5(3)  0     1     0
+ S7   [D4]   D9    C6    DQ  |  4(1)  5     0     1     0
+[C5]   C9    CA    **    H7  |  4     5     0     2(1)  0
+ H2    H6    HA   [HT]   HQ  |  7(3)  5     0     2     0
+[-J]   SK    HK    CK    H8  | 11(4)  5     0     2     0
+---
+ HJ    H9    H3    C3    H5
+ S5    +J    S8    H4    S4
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+C12  -   -   -   -
+---
+C12 **
+C3 C6 CQ -> C6 C9 S2
+---
+a:NP  b:AD  c:AL  d:AL  e:AL | a:NP  b:AD  c:AL  d:AL  e:AL 
+[D6]   D2    DQ    D8    D4  |  0     0     1(1)  0     0
+ HK    H7   [H4]   HT    HJ  |  3(3)  0     1     0     0
+[@A]   **    D7    S4    S7  |  4(1)  0     1     0     0
+[C7]   CK    C8    C4    CT  |  4     2(2)  1     0     0
+ C2   [HQ]   H8    S6    H6  |  5(1)  2     1     0     0
+[S9]   S3    CA    ST    SQ  |  5     2     4(3)  0     0
+ +J    H2   [HA]   DK    H3  |  8(3)  2     4     0     0
+[CQ]   DA    H9    C5    S5  | 10(2)  2     4     0     0
+---
+ C3    DT    D5    D3    S8
+ -J    H5    D9    DJ    SK
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+    C12  -   -   -
+ -
+---
+C12 +J
+H5 D8 H8 -> DQ C3 C7
+---
+a:AL  b:NP  c:AD  d:AL  e:AL | a:AL  b:NP  c:AD  d:AL  e:AL 
+ H2   [HQ]   H3    S4    H7  |  0     2(2)  0     0     0
+ H9   [H8]   HJ    D7    HK  |  0     2     0     0     2(2)
+ C8    CT    C2    C6   [C4] |  0     2     1(1)  0     2
+ S2    @A   [ST]   -J    S3  |  0     5(3)  1     0     2
+ H4   [H5]   HT    DJ    S6  |  0     5     3(2)  0     2
+ HA    S9   [S7]   SQ    SK  |  0     5     3     0     5(3)
+ D9    D8    D2    DK   [D3] |  0     5     4(1)  0     5
+ CA    CK   [+J]   CQ    C5  |  0     5     8(4)  0     5
+---
+ DT    D4    D5    C9    D6
+ H6    **    S5    S8    DA
+---
+ -4    +6    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -  C12
+ -  D12  -   -   -
+ -
+---
+D12 **
+CT CA H6 -> CA H7 S5
+---
+a:AL  b:NP  c:AL  d:AL  e:AD | a:AL  b:NP  c:AL  d:AL  e:AD 
+ S9   [ST]   SJ    S6    S4  |  0     0     3(3)  0     0
+ CK    CT   [C6]   C4    **  |  0     0     3     0     2(2)
+ HQ    -J    H5    H4   [HT] |  0     3(3)  3     0     2
+ H9   [HA]   HK    H8    H2  |  0     3     3     0     4(2)
+ C2    C3    CQ    DQ   [C8] |  0     3     3     2(2)  4
+ S2    DT    SQ   [SK]   D2  |  0     6(3)  3     2     4
+ D8   [D6]   D3    D7    C9  |  0(0)  6     3     2     4
+[S8]   +J    S3    @A    C5  |  0     6     3     4(2)  4
+ D4    DA    DK   [D9]   H3  |  0     8(2)  3     4     4
+---
+ D5    H6    C7    S7    CJ
+---
+ -4    +6    -4    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                D12
+ -   -   -  H12 D13
+ -   -   -   -
+---
+D13 @A
+C4 C9 S5 -> S5 C9 DT
+---
+a:AL  b:AL  c:AL  d:AD  e:NP | a:AL  b:AL  c:AL  d:AD  e:NP 
+ S6    HQ    H3    -J   [H2] |  0     0     0     3(3)  0
+ SK    S4    SQ   [S9]   **  |  0     0     0     3     2(2)
+ D9    DA    D2    DK   [D5] |  0     0     2(2)  3     2
+ C3    C6   [C5]   CJ    C4  |  0     0     2     4(1)  2
+ S3    S8    D7   [@A]   S7  |  0     0     2     5(1)  2
+ DQ    ST    H9   [S2]   D6  |  2(2)  0     2     5     2
+[CA]   H7    C7    H5    CQ  |  4(2)  0     2     5     2
+[CT]   SJ    CK    HA    H8  |  4     0     6(4)  5     2
+---
+ D8    H4    C8    D3    D4
+ C2    HT    H6    HK    +J
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            S12 C13
+ -   -   -  S13  -
+ -   -   -
+---
+S13 +J
+DT S7 D7 -> DT @A S9
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ S2    S5    SK   [S7]   +J  |  0     0     0     0     4(4)
+ CQ    C7    C8    CK   [C6] |  0     0     0     2(2)  4
+ H5    HK    ST   [S6]   CT  |  0     0     3(3)  2     4
+ DA    DK   [D9]   D7    D3  |  2(2)  0     3     2     4
+[HJ]   H6    H2    HQ    H7  |  2     0     5(2)  2     4
+ H9    C5   [H8]   DQ    HA  |  2     0     5     2     6(2)
+ D5    CA    D4    **   [C3] |  2     0     5     3(1)  6
+ HT    C2    S8   [S3]   H4  |  2     0     6(1)  3     6
+---
+ D6    D8    D2    S4    C4
+ H3    C9    DJ    SQ    -J
+---
+ +4    +4    +4    -6    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+                 -
+ -  D12  -   -   -
+ -
+---
+D12 **
+S8 S4 SK -> C9 D5 S6
+---
+a:AL  b:NP  c:AD  d:AL  e:AL | a:AL  b:NP  c:AD  d:AL  e:AL 
+ H7   [-J]   **    H9    HT  |  0     0     2(2)  0     0
+ C4    CA   [C7]   C3    C5  |  0     1(1)  2     0     0
+ +J   [DK]   C2    DQ    D6  |  3(3)  1     2     0     0
+[CK]   S4    C6    H4    CQ  |  5(2)  1     2     0     0
+[H8]   D4    H5    H2    H3  |  5     1(0)  2     0     0
+ D7   [DT]   S3    DA    D2  |  5     1     2     2(2)  0
+ SJ    SQ    C8   [@A]   ST  |  5     1     2     6(4)  0
+---
+ D3    D9    CT    HQ    CJ
+ D8    S8    H6    S2    HA
+ S5    SK    HK    S7    S9
+---
+ +4    -6    -6    +4    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+            D12  -
+ -   -   -
+---
+D12 @A
+S9 D2 C7 -> -J C5 **
+---
+a:AL  b:AL  c:AD  d:NP  e:AL | a:AL  b:AL  c:AD  d:NP  e:AL 
+ CJ    C6    CT   [C7]   C3  |  3(3)  0     0     0     0
+[HK]   H5    DQ    D9    H2  |  3     0     2(2)  0     0
+ SQ    S5   [S2]   S9    SK  |  3     0     4(2)  0     0
+ C8    H6   [C2]   CK    C9  |  3     0     4     1(1)  0
+ S3    S8    S4   [S6]   S7  |  3     0(0)  4     1     0
+ D8   [ST]   @A    SJ    D5  |  3     0     7(3)  1     0
+ H9    D3   [D7]   D2    DA  |  3     0     7     1     1(1)
+ H7    HT    CA    +J   [H8] |  3     0     7     4(3)  1
+ HA    DT    D6   [D4]   H3  |  3     2(2)  7     4     1
+ HQ   [DK]   C4    CQ    H4  |  3     5(3)  7     4     1
+---
+ +4    +4    -6    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -  H12 C13
+ -   -   -   -
+---
+C13 @A
+S3 C7 S7 -> C4 C8 -J
+---
+a:AL  b:AD  c:AL  d:AL  e:NP | a:AL  b:AD  c:AL  d:AL  e:NP 
+ C3    D2    CK    HK   [C7] |  0     0     3(3)  0     0
+ C9    SQ   [C5]   HQ    +J  |  0     0     3     0     3(3)
+ ST    S2    S4    DA   [S7] |  2(2)  0     3     0     3
+[S8]   S9    DQ    H5    **  |  2     0     3     0     4(1)
+ SK    @A    D5    D6   [S3] |  2     2(2)  3     0     4
+ H8   [HT]   DT    H6    H4  |  2     4(2)  3     0     4
+ D4   [DJ]   D3    D7    S6  |  2     5(1)  3     0     4
+ H9   [DK]   CA    D9    CT  |  2     5     6(3)  0     4
+---
+ H2    D8    C6    H7    C2
+ H3    HA    CQ    HJ    S5
+---
+ +4    -6    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  C12
+ -   -   -   -
+---
+C12 @A
+D7 S5 SQ -> C2 D8 +J
+---
+a:AL  b:AD  c:AL  d:AL  e:NP | a:AL  b:AD  c:AL  d:AL  e:NP 
+ D9    C9    D4    DK   [D7] |  0     2(2)  0     0     0
+ HQ   [H5]   H8    HA    **  |  0     2     0     0     2(2)
+ C3    CA    CQ    C7   [CT] |  0     5(3)  0     0     2
+ S7   [@A]   ST    S6    SQ  |  0     8(3)  0     0     2
+ -J   [S4]   S2    S8    S5  |  1(1)  8     0     0     2
+[C6]   SK    C8    C4    C5  |  1     8     1(1)  0     2
+ DJ    H2   [D6]   D3    D2  |  2(1)  8     1     0     2
+[CK]   H6    HK    DQ    H4  |  5(3)  8     1     0     2
+[H3]   HT    H7    HJ    DA  |  5     8     1     3(3)  2
+---
+ D5    S9    H9    DT    S3
+---
+ +4    -6    +4    +4    -6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+     -  H12  -   -
+ -   -
+---
+H12 +J
+SK D5 +J -> SK H4 CA
+---
+a:AL  b:AL  c:NP  d:AL  e:AL | a:AL  b:AL  c:NP  d:AL  e:AL 
+ DA    D7   [-J]   DQ    D8  |  0     0     5(5)  0     0
+ D3    H3   [D2]   D4    D9  |  0     0(0)  5     0     0
+ CK   [C8]   C5    C7    C4  |  1(1)  0     5     0     0
+[S7]   S9    **    S5    S4  |  1     0     5(0)  0     0
+ SJ    C3   [CT]   CQ    C2  |  1     0     5     3(3)  0
+ H2    HA    H9   [H6]   CJ  |  1     2(2)  5     3     0
+ S6   [S2]   @A    S3    DT  |  1     2     7(2)  3     0
+ S8    H8   [H7]   HT    C9  |  1     2     7     4(1)  0
+ DK    HQ    +J   [HK]   C6  |  1     2    11(4)  4     0
+ SQ    ST   [D5]   H5    D6  |  1     2    11     6(2)  0
+---
+ +2    +2    -8    +2    +2
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -  H12  -
+ -   -   -
+---
+H12 **
+HT DA S4 -> H6 HK HQ
+---
+a:AL  b:AL  c:AD  d:NP  e:AL | a:AL  b:AL  c:AD  d:NP  e:AL 
+ H3    H5    H7   [HA]   H9  |  0     0     0     3(3)  0
+ H8    S7    **   [HT]   H2  |  0     0     1(1)  3     0
+ C3    C9   [C2]   CK    CQ  |  0     0     3(2)  3     0
+ CJ    CT   [+J]   H4    S8  |  0     0     6(3)  3     0
+ D2    DK   [D5]   DA    D7  |  2(2)  0     6     3     0
+[S9]   S2    S5    ST    SQ  |  2     2(2)  6     3     0
+ D6   [D8]   D9    D3    -J  |  2     2     6     3     1(1)
+ DQ    SK    C4    S4   [D4] |  4(2)  2     6     3     1
+[SJ]   C8    C6    @A    CA  |  4     2     6     6(3)  1
+---
+ S6    C7    C5    S3    DT
+---
+ -4    -4    +6    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -  H12  -
+S12  -   -   -   -
+---
+S12 @A
+S9 H9 -J -> H9 S5 C4
+---
+a:NP  b:AL  c:AL  d:AD  e:AL | a:NP  b:AL  c:AL  d:AD  e:AL 
+[D5]   DA    D9    D3    DQ  |  0     2(2)  0     0     0
+ S2   [ST]   C6    S7    SK  |  0     2     0     0     2(2)
+ +J    DJ    DT    DK   [D4] |  4(4)  2     0     0     2
+[H5]   H4    HK    H2    H8  |  4     2     0     1(1)  2
+ CT    HQ    H6   [H7]   H3  |  4     4(2)  0     1     2
+ -J   [C9]   CA    CQ    CK  |  8(4)  4     0     1     2
+[S8]   S3    C3    @A    S4  |  8     4     0     2(1)  2
+ **    C8    HT   [HJ]   D6  | 10(2)  4     0     2     2
+---
+ S6    D8    D2    C5    D7
+ S9    C2    C7    HA    SQ
+---
+ +6    -4    -4    +6    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+ -  C12  -   -   -
+ -
+---
+C12 @A
+S5 SQ DA -> DJ DQ C7
+---
+a:AL  b:NP  c:AL  d:AD  e:AL | a:AL  b:NP  c:AL  d:AD  e:AL 
+ C4   [C9]   C6    C3    CT  |  0     0     0     0     3(3)
+ H9    **    HQ    H7   [H6] |  0     1(1)  0     0     3
+ +J   [C2]   D5    S8    CA  |  2(2)  1     0     0     3
+[H8]   H5    HA    H4    H2  |  2     1     0     0     4(1)
+ D4    D7    D8    DK   [D6] |  2     1     0     1(1)  4
+ S6    DA    DT   [D9]   D3  |  2     3(2)  0     1     4
+ S4   [SQ]   S2    S9    ST  |  2     3     2(2)  1     4
+ S7    C5   [D2]   @A    C8  |  2     3     2     2(1)  4
+ HT    CK    HJ   [HK]   SK  |  2     8(5)  2     2     4
+ S3   [S5]   -J    H3    CQ  |  2     8     4(2)  2     4
+---
+ +4    -6    +4    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -   -
+ -   -  C12  -   -
+ -   -
+---
+C12 **
+ST H9 +J -> H8 DK ST
+---
+a:AL  b:AL  c:NP  d:AD  e:AL | a:AL  b:AL  c:NP  d:AD  e:AL 
+ H2    H5   [HQ]   HK    HA  |  0     0     0     0     5(5)
+ DJ    DT    D8    D4   [D7] |  2(2)  0     0     0     5
+[DA]   D3    @A    D5    D9  |  2     0     2(2)  0     5
+ HT    H3   [H9]   H4    HJ  |  2     0     2     0     7(2)
+---
+ CQ    CA    C3    D2    D6
+ S2    H6    C5    C4    DQ
+ S7    S3    C6    C7    C2
+ S8    S5    C9    CT    C8
+ -J    S9    +J    H7    S4
+ SK    SQ    CK    **    S6
+---
+ +4    +4    -6    -6    +4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+             -  H12
+ -   -   -   -
+---
+H12 **
+CK HK S9 -> C4 D5 S8
+---
+a:AL  b:AL  c:AD  d:AL  e:NP | a:AL  b:AL  c:AD  d:AL  e:NP 
+ ST    S7    **    S5   [@A] |  0     0     0     0     2(2)
+ H9    H3    HA    HQ   [H6] |  0     0     2(2)  0     2
+ DQ    D8   [D3]   D2    DA  |  0     0     2     2(2)  2
+ CQ    CJ    C7   [C5]   CK  |  0     0     2     2     5(3)
+ H2    -J    HT    H7   [H5] |  0     2(2)  2     2     5
+ S6   [SJ]   S2    D6    S9  |  0     3(1)  2     2     5
+ DT   [DK]   D9    C2    H8  |  0     3     2     2     7(2)
+ SQ    C8    C3    C9   [CT] |  0     3     2     2     9(2)
+ S4    S3    D4    H4   [+J] |  0     3     2     2    10(1)
+---
+ SK    CA    D7    C6    HK
+---
+ -4    -4    +6    -4    +6
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -   -
+ -  H12  -   -   -
+ -
+---
+H12 @A
+HT H2 D3 -> -J HQ D3
+---
+a:AL  b:NP  c:AD  d:AL  e:AL | a:AL  b:NP  c:AD  d:AL  e:AL 
+ H3   [HT]   HA    H6    H5  |  0     0     4(4)  0     0
+ S7    **   [S6]   S3    S5  |  0     0(0)  4     0     0
+ ST   [SQ]   @A    SJ    S9  |  0     0     8(4)  0     0
+ C9    CK   [C5]   C7    CA  |  0     0     8     0     2(2)
+ D2    DT    D4    DQ   [D9] |  2(2)  0     8     0     2
+[C4]   H2    CQ    C8    CT  |  2     2(2)  8     0     2
+ HK   [+J]   H4    D5    D6  |  2     4(2)  8     0     2
+---
+ C3    H7    C2    D7    D8
+ CJ    H8    C6    S4    DK
+ SK    S2    H9    S8    DA
+---
+ -4    +6    +6    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+         -   -  S12
+ -  D13  -   -   -
+ -
+---
+D13 **
+SJ SQ C6 -> H6 DK C9
+---
+a:AD  b:NP  c:AL  d:AL  e:AL | a:AD  b:NP  c:AL  d:AL  e:AL 
+ HA   [HQ]   H9    HK    H7  |  4(4)  0     0     0     0
+[H2]   @A    HT    H3    H4  |  4     2(2)  0     0     0
+ D2   [DQ]   D7    D6    D3  |  5(1)  2     0     0     0
+[D8]   +J    S8    DA    D9  |  5     4(2)  0     0     0
+ S9   [SJ]   S7    S6    S5  |  5     5(1)  0     0     0
+ CT   [CK]   CA    CQ    CJ  |  5     5     5(5)  0     0
+ **    C6   [C8]   C2    S2  |  5(0)  5     5     0     0
+[-J]   DT    S4    H8    ST  |  8(3)  5     5     0     0
+---
+ D5    D4    C4    C3    S3
+ C7    SQ    C5    H5    SK
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+    D12  -   -   -
+ -
+---
+D12 **
+D7 C4 +J -> S9 D5 +J
+---
+a:AD  b:NP  c:AL  d:AL  e:AL | a:AD  b:NP  c:AL  d:AL  e:AL 
+ C6   [CJ]   C9    CT    C7  |  0     3(3)  0     0     0
+ DK   [DA]   DQ    D8    ST  |  0     7(4)  0     0     0
+ C2   [C4]   C3    CA    C5  |  1(1)  7     0     0     0
+[D4]   D6    CK    S7    S5  |  1     8(1)  0     0     0
+ **   [HT]   H4    HQ    HK  |  4(3)  8     0     0     0
+[H9]   H8    H3    H6    H7  |  4(0)  8     0     0     0
+[D2]   D7    S3    SQ    H2  |  4     9(1)  0     0     0
+ D9   [@A]   S4    S8    S2  |  4    10(1)  0     0     0
+ C8   [DT]   SJ    S6    H5  |  4    12(2)  0     0     0
+ HA   [D3]   SK    CQ    -J  |  4    12     0     0     4(4)
+---
+ +6    +6    -4    -4    -4
+=== 2026-05-01 17:14:37
+ a   b   c   d   e
+ -   -   -  D12  -
+ -   -   -
+---
+D12 @A
+D7 H7 C5 -> S4 DK D7
+---
+a:AL  b:AL  c:AL  d:NP  e:AD | a:AL  b:AL  c:AL  d:NP  e:AD 
+ CA    C7    C4   [CT]   CQ  |  4(4)  0     0     0     0
+[C6]   CJ    C9    C5    H8  |  4     1(1)  0     0     0
+ HT   [H9]   HK    H7    -J  |  4     1     0     0     3(3)
+ D9    H5    DQ    D2   [D8] |  4     1     1(1)  0     3
+ S6    SQ   [S8]   ST    @A  |  4     1     1     0     6(3)
+ D3    H4    D5    DA   [D4] |  4     1     1     1(1)  6
+ DT    C2    C8   [+J]   S2  |  4     1     1     3(2)  6
+ H6    HQ    S3   [D6]   HA  |  4     1     1     5(2)  6
+ SJ    S5    CK   [SK]   S7  |  4     1     1     8(3)  6
+---
+ H2    H3    C3    **    S9
+---
+ -4    -4    -4    +6    +6

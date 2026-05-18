@@ -1,0 +1,72 @@
+# Everything before the first `=== ...` separator is discarded by the parser,
+# so this preamble can hold free-form notes (the parser has no comment syntax —
+# `#` is just decoration).
+# A few editing shortcuts that aren't worth putting in the manual:
+#   - The `=== ...` header is a free-form label shown in the replay-selection menu.
+#     Writer emits a timestamp, but you can replace it with any name (e.g.
+#     `=== replaySample`) — the text after `=== ` becomes the menu entry.
+#   - The bidding section (the ` a   b   c   d   e ` header and `S12  -  C13 ...` rows
+#     before the first `---`) is optional. If omitted, replay assumes Napoleon declared
+#     the recorded bid once and everyone else passed.
+#   - The cumulative honor counts to the right of `|` on each trick line are optional.
+#     Drop the `|` and everything after it and the trick still parses.
+#   - The final score-delta line (e.g. ` +6   -4   -4   -4   +6`) is optional.
+=== replay sample 1 (raw)
+ a   b   c   d   e
+S12  -  C13  -  D13
+S13  -   -   -   -
+---
+S13 **
+ST HA D9 -> HQ D9 C3
+---
+a:NP  b:AL  c:AL  d:AL  e:AD | a:NP  b:AL  c:AL  d:AL  e:AD
+[HA]   H9    H6    H4    HT  |  3(3)  0     0     0     0
+[S2]   S8    S3    S4    S7  |  3(0)  0     0     0     0
+[SK]   SQ    S5    S9    HJ  |  6(3)  0     0     0     0
+[ST]   C4    -J    DT    **  |  6     0     0     0     3(3)
+ C7    DJ    HK    H5   [H3] |  6     0     2(2)  0     3
+ CK    C6   [C5]   D3    H2  |  7(1)  0     2     0     3
+[+J]   C2    CT    H7    D4  |  9(2)  0     2     0     3
+[@A]   C9    DQ    D8    D5  | 11(2)  0     2     0     3
+---
+ C8    D2    DK    DA    D6
+ S6    CQ    CA    H8    D7
+---
+ +6    -4    -4    -4    +6
+=== replay sample 2 (omitted)
+S12 **
+D7 D5 S6 -> D7 S8 HK
+---
+a:AL  b:AL  c:AL  d:AD  e:NP
+ SQ    S7    S3    +J   [S2]
+ DQ    D3    D8   [D*]   DK
+ D4    C3    DJ   [D9]   D5
+ C7    CQ   [C8]   CK    C5
+ C2    CT    CA   [C6]   C9
+[H7]   H5    H8    H9    H4
+ C4    ST    S4   [SK]   S6
+ DA    HT    @Q   [DT]   @A
+ H2    HA   [H3]   D2    S5
+ D6    HJ    H6    S9   [-J]
+=== replay sample 3 (solo)
+ a   b   c   d   e
+H12 D13  -   -   -
+H13 D14  -   -   -
+H14  -   -   -   -
+---
+H14 **
+C8 +J C5 -> D4 C8 C5
+---
+a:NP  b:AL  c:AL  d:AL  e:AL | a:NP  b:AL  c:AL  d:AL  e:AL
+[HA]   H3    H2    HQ    H4  |  2(2)  0     0     0     0
+[HK]   -J    HT    DT    H5  |  2     4(4)  0     0     0
+ @A   [S3]   S5    S2    S4  |  3(1)  4     0     0     0
+[+J]   D5    D6    D3    H8  |  4(1)  4     0     0     0
+[H9]   C7    S6    C3    D7  |  4(0)  4     0     0     0
+[SQ]   ST    S7    DQ    S8  |  7(3)  4     0     0     0
+[SK]   S9    CT    CK    SJ  | 11(4)  4     0     0     0
+[H7]   DK    D8    C4    C9  | 12(1)  4     0     0     0
+[H6]   DA    D2    C6    C2  | 13(1)  4     0     0     0
+[**]   CA    CJ    D9    CQ  | 16(3)  4     0     0     0
+---
+ +12   -3    -3    -3    -3
