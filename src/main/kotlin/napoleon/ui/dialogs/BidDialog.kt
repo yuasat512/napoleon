@@ -34,5 +34,6 @@ fun showBidDialog(
     }
 
     showButtonListDialog(owner, "宣言", buttons, lastBidIndex, closable = true)
+    if (selectedBid == null) newLastBidIndex = 0
     return selectedBid to newLastBidIndex
 }

@@ -1,5 +1,15 @@
 package napoleon.ui
 
+// 以下はレイアウトの視覚調整値 (見た目のさじ加減で決めた値)。
+// これら以外の座標・寸法は CANVAS/CARD/FONT サイズとこれらから機械的に導出される。
+private const val GAP = 10 // オブジェクト同士の間隔
+private const val FIELD_SIZE = 216 // 場札 5 枚を収める正方形の一辺
+private const val TOP_ROW_INSET = 24 // P2/P3 が重なったとき P2 カード右下のランクが少しだけ見える幅
+private const val HONOR_STEP_W = 26 // オナーカード一覧の横ステップ (キティ山札の重ね幅も兼ねる)
+private const val HONOR_STEP_H = 45 // オナーカード一覧の縦ステップ
+private const val HAND_STEP_LARGE = 30 // 大カード手札 / キティ中央札の重ね幅
+private const val HAND_STEP_SMALL = 19 // 小カード手札の重ね幅
+
 sealed interface Slot {
     val handX: Int
     val handY: Int
@@ -38,19 +48,31 @@ class GameLayout {
     val honorRect: Rect
     val balloonW: Int
     val balloonH: Int
+    val infoW: Int
     val handLift: Int
 
     init {
-        val bx = (CANVAS_W - CARD_W) / 2
-        val by = 12
-        val bz = 42
-        balloonW = 4 + FONT_SIZE * 6
-        balloonH = 4 + FONT_SIZE * 2
-        val xx = bz + (CARD_H - CARD_W) / 2
-        val gp = 10
-        handLift = gp
-        val honorStepW = 26
-        val honorStepH = 45
+        balloonW = BOX_PADDING * 2 + FONT_SIZE * 5
+        balloonH = BOX_PADDING * 2 + FONT_SIZE * 2
+        infoW = BOX_PADDING * 2 + FONT_SIZE * 9 / 2
+        handLift = GAP
+        val infoRectY = CARD_SM_H * 2 + balloonH * 2 + GAP * 5
+
+        // 場札 5 枚を一辺 FIELD_SIZE の正方形に収める。正方形は画面中央水平、P0 バルーンから縦 GAP 上に下辺。
+        // 縦は 0 / 1,4 / 2,3 が等間隔。横は 0 が中央、1/4 が正方形左右の縁、2/3 が縁から TOP_ROW_INSET 内側。
+        val fieldBottom = infoRectY - GAP
+        val fieldTop = fieldBottom - FIELD_SIZE
+        val fieldLeft = (CANVAS_W - FIELD_SIZE) / 2
+        val fieldRight = fieldLeft + FIELD_SIZE
+        val rowStep = (FIELD_SIZE - CARD_H) / 2
+        val areaY23 = fieldTop
+        val areaY14 = fieldTop + rowStep
+        val areaY0 = fieldBottom - CARD_H
+        val areaX0 = (CANVAS_W - CARD_W) / 2
+        val areaX1 = fieldLeft
+        val areaX2 = fieldLeft + TOP_ROW_INSET
+        val areaX3 = fieldRight - CARD_W - TOP_ROW_INSET
+        val areaX4 = fieldRight - CARD_W
 
         fun playerSlot(
             handX: Int,
@@ -63,70 +85,103 @@ class GameLayout {
             areaX: Int,
             areaY: Int,
         ): PlayerSlot {
-            val infoX = handX + if (handStep < 0) CARD_SM_W - balloonW else 0
+            val infoX = handX + if (handStep < 0) CARD_SM_W - infoW else 0
             val infoY = handY - balloonH - handLift
-            return PlayerSlot(handX, handY, handStep, small, backMode, balloonX, balloonY, areaX, areaY, infoX, infoY)
+            return PlayerSlot(
+                handX,
+                handY,
+                handStep,
+                small,
+                backMode,
+                balloonX,
+                balloonY,
+                areaX,
+                areaY,
+                infoX,
+                infoY,
+            )
         }
 
         playerSlots =
             arrayOf(
                 playerSlot(
-                    (CANVAS_W - (CARD_W + 9 * 30)) / 2,
-                    CANVAS_H - CARD_H - 8,
-                    30,
+                    (CANVAS_W - (CARD_W + 9 * HAND_STEP_LARGE)) / 2,
+                    CANVAS_H - CARD_H - GAP,
+                    HAND_STEP_LARGE,
                     false,
                     0,
                     (CANVAS_W - balloonW) / 2,
-                    by + bz * 2 + CARD_H + 8,
-                    bx,
-                    by + bz * 2,
+                    infoRectY,
+                    areaX0,
+                    areaY0,
                 ),
                 playerSlot(
-                    8,
-                    CARD_SM_H + balloonH * 2 + gp * 3 + 8,
-                    19,
+                    GAP,
+                    CARD_SM_H + balloonH * 2 + GAP * 4,
+                    HAND_STEP_SMALL,
                     true,
                     1,
-                    bx - xx - balloonW - 8,
-                    CARD_SM_H + balloonH + gp * 2 + 8,
-                    bx - xx,
-                    by + bz,
+                    areaX1 - balloonW - GAP,
+                    CARD_SM_H + balloonH + GAP * 3,
+                    areaX1,
+                    areaY14,
                 ),
-                playerSlot(8, balloonH * 1 + gp * 1 + 8, 19, true, 1, bx - 37 - balloonW - 8, 8, bx - 37, by),
+                playerSlot(GAP, balloonH + GAP * 2, HAND_STEP_SMALL, true, 1, areaX2 - balloonW - GAP, GAP, areaX2, areaY23),
                 playerSlot(
-                    CANVAS_W - CARD_SM_W - 8,
-                    balloonH * 1 + gp * 1 + 8,
-                    -19,
+                    CANVAS_W - CARD_SM_W - GAP,
+                    balloonH + GAP * 2,
+                    -HAND_STEP_SMALL,
                     true,
                     1,
-                    bx + 37 + CARD_W + 8,
-                    8,
-                    bx + 37,
-                    by,
+                    areaX3 + CARD_W + GAP,
+                    GAP,
+                    areaX3,
+                    areaY23,
                 ),
                 playerSlot(
-                    CANVAS_W - CARD_SM_W - 8,
-                    CARD_SM_H + balloonH * 2 + gp * 3 + 8,
-                    -19,
+                    CANVAS_W - CARD_SM_W - GAP,
+                    CARD_SM_H + balloonH * 2 + GAP * 4,
+                    -HAND_STEP_SMALL,
                     true,
                     1,
-                    bx + xx + CARD_W + 8,
-                    CARD_SM_H + balloonH + gp * 2 + 8,
-                    bx + xx,
-                    by + bz,
+                    areaX4 + CARD_W + GAP,
+                    CARD_SM_H + balloonH + GAP * 3,
+                    areaX4,
+                    areaY14,
                 ),
             )
 
-        kittyCenterSlot = KittySlot((CANVAS_W - (CARD_W + 2 * 30)) / 2, 54, 30, false, 1)
-        kittyPileSlot = KittySlot(8, CANVAS_H - CARD_SM_H - 8, honorStepW, true, 2)
+        kittyCenterSlot = KittySlot((CANVAS_W - (CARD_W + 2 * HAND_STEP_LARGE)) / 2, areaY14, HAND_STEP_LARGE, false, 1)
+        kittyPileSlot = KittySlot(GAP, CANVAS_H - CARD_SM_H - GAP, HONOR_STEP_W, true, 2)
 
         infoRect =
             Rect(
-                8,
-                CARD_SM_H * 2 + balloonH * 2 + gp * 4 + 8,
-                4 + FONT_SIZE * 7 + FONT_SIZE / 2,
-                4 + FONT_SIZE * 6,
+                GAP,
+                infoRectY,
+                BOX_PADDING * 2 + FONT_SIZE * 7 + FONT_SIZE / 2,
+                BOX_PADDING * 2 + FONT_SIZE * 6,
             )
-        honorRect = Rect(CANVAS_W - 8 - CARD_SM_W - honorStepW * 4, CANVAS_H - 8 - CARD_SM_H - honorStepH * 3, honorStepW, honorStepH)
+        honorRect =
+            Rect(
+                CANVAS_W - GAP - CARD_SM_W - HONOR_STEP_W * 4,
+                CANVAS_H - GAP - CARD_SM_H - HONOR_STEP_H * 3,
+                HONOR_STEP_W,
+                HONOR_STEP_H,
+            )
+
+        // CANVAS_W/H が十分大きく、隣り合う要素が重ならないことを検証する。
+        // 視覚調整値やキャンバスサイズを変えて窮屈になったら起動時に気付けるようにする。
+        val kittyTopGap = kittyPileSlot.handY - (infoRect.y + infoRect.h)
+        check(kittyTopGap >= GAP) {
+            "CANVAS_H が小さすぎる: 左下の情報欄と交換後キティの間隔が $kittyTopGap px (GAP=$GAP 以上必要)"
+        }
+        val p4HonorGap = honorRect.y - (playerSlots[4].handY + CARD_SM_H)
+        check(p4HonorGap >= GAP) {
+            "CANVAS_H が小さすぎる: P4 手札下端と獲得絵札の間隔が $p4HonorGap px (GAP=$GAP 以上必要)"
+        }
+        val p0InfoGap = playerSlots[0].handX - (infoRect.x + infoRect.w)
+        check(p0InfoGap >= GAP) {
+            "CANVAS_W が小さすぎる: P0 手札左端と左下情報欄の右端の間隔が $p0InfoGap px (GAP=$GAP 以上必要)"
+        }
     }
 }

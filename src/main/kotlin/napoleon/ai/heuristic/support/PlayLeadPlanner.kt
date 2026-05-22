@@ -37,7 +37,7 @@ class PlayLeadPlanner(
 
         val certainWins = legal.filter { evaluator.isCertainWinAfter(it) }
         if (certainWins.isNotEmpty()) {
-            val idx = certainWins.minByOrNull { evaluator.inherentPower(me.hand[it]) }!!
+            val idx = evaluator.weakestByPower(certainWins)
             if (!me.hand[idx].isPowerCard(trump)) {
                 logger.log(
                     idx,
@@ -99,7 +99,7 @@ class PlayLeadPlanner(
             return idx
         }
 
-        val idx = legal.minByOrNull { evaluator.inherentPower(me.hand[it]) }!!
+        val idx = evaluator.weakestByPower(legal)
         logger.log(idx, legal, "リード: 該当戦略なし、最小パワー札でしのぐ")
         return idx
     }

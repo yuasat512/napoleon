@@ -13,8 +13,8 @@ import napoleon.core.Suit
 import napoleon.engine.GameEngine
 import napoleon.engine.GameRecorder
 import napoleon.io.PlayerIO
-import napoleon.replay.GameRecordReader
-import napoleon.replay.ReplayEntry
+import napoleon.record.GameRecordReader
+import napoleon.record.ReplayEntry
 import napoleon.session.GameController
 import napoleon.session.ScoreKeeper
 import napoleon.ui.dialogs.showAdjutantDialog

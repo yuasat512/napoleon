@@ -8,8 +8,8 @@ import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.engine.GameEngine
 import napoleon.engine.GameRecorder
 import napoleon.io.PlayerIO
-import napoleon.replay.GameRecordReader
-import napoleon.replay.ReplayEntry
+import napoleon.record.GameRecordReader
+import napoleon.record.ReplayEntry
 import napoleon.replay.ReplayStrategy
 import napoleon.session.GameController
 import napoleon.session.ScoreKeeper

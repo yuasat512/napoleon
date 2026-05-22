@@ -27,7 +27,7 @@ interface AiContext {
     val curPlayer: SelfPlayerView
     val publicPlayers: Array<out PublicPlayerView>
 
-    val trickHistory: List<TrickRecord>
+    val trickHistory: List<ResolvedTrick>
 
     // ナポレオンがキティに送り込んだ全カードの記憶。視点プレイヤーがナポレオンのときのみ非 null。
     // 他プレイヤーには裏向き (非絵札) の捨て札を見せてはいけない。

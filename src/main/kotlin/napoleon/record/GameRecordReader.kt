@@ -1,14 +1,11 @@
-package napoleon.replay
+package napoleon.record
 
 import napoleon.core.Bid
 import napoleon.core.Card
 import napoleon.core.GameRules.HAND_SIZE
 import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
-import napoleon.core.Rank
-import napoleon.core.Suit
-import napoleon.record.GameRecord
-import napoleon.record.PLAYER_NAMES
+import napoleon.core.PLAYER_NAMES
 import java.nio.file.Path
 import kotlin.io.path.readText
 
@@ -77,7 +74,7 @@ object GameRecordReader {
                 allCells
                     .drop(maxOf(0, firstNonEmpty))
                     .filter { it.isNotEmpty() }
-                    .map { if (it == "-") null else Bid(parseSuit(it[0]), it.substring(1).toInt()) }
+                    .map { if (it == "-") null else Bid(CardNotation.parseSuit(it[0]), it.substring(1).toInt()) }
         } else {
             bidFirstPlayerId = 0
             bidSequence = emptyList()
@@ -85,10 +82,10 @@ object GameRecordReader {
 
         val declLines = sections[declIdx].lines()
         val declParts = declLines[0].trim().split(" ")
-        val bidSuit = parseSuit(declParts[0][0])
+        val bidSuit = CardNotation.parseSuit(declParts[0][0])
         val bidTarget = declParts[0].substring(1).toInt()
         val bid = Bid(bidSuit, bidTarget)
-        val adjutantCard = parseCard(declParts[1], bidSuit)
+        val adjutantCard = CardNotation.parseCard(declParts[1], bidSuit)
 
         val kittyLine = declLines[1]
         val arrowIdx = kittyLine.indexOf("->")
@@ -97,14 +94,14 @@ object GameRecordReader {
                 .substring(0, arrowIdx)
                 .trim()
                 .split(" ")
-                .map { parseCard(it, bidSuit) }
+                .map { CardNotation.parseCard(it, bidSuit) }
                 .toTypedArray()
         val discardedCards =
             kittyLine
                 .substring(arrowIdx + 2)
                 .trim()
                 .split(" ")
-                .map { parseCard(it, bidSuit) }
+                .map { CardNotation.parseCard(it, bidSuit) }
                 .toTypedArray()
 
         val trickLines = sections[tricksIdx].lines()
@@ -138,14 +135,20 @@ object GameRecordReader {
                 val isLead = rawCell.contains('[')
                 val cardStr = rawCell.replace("[", "").replace("]", "").trim()
 
+                // 最終トリックでは請求スートは意味を持たないため無視する。
                 val jokerDeclaredSuit =
-                    if (isLead && cardStr.length == 2 && cardStr[1] == '*' && cardStr[0] != '*') {
-                        parseSuit(cardStr[0])
+                    if (isLead &&
+                        cardStr.length == 2 &&
+                        cardStr[1] == '*' &&
+                        cardStr[0] != '*' &&
+                        tricks.size < HAND_SIZE - 1
+                    ) {
+                        CardNotation.parseSuit(cardStr[0])
                     } else {
                         null
                     }
 
-                val card = parseCard(cardStr, bidSuit)
+                val card = CardNotation.parseCard(cardStr, bidSuit)
                 trick.cards[j] = card
                 if (isLead) {
                     trick.leadId = j
@@ -167,7 +170,7 @@ object GameRecordReader {
                     val start = j * colWidth
                     if (start >= line.length) break
                     val cardStr = line.substring(start, minOf(start + colWidth, line.length)).trim()
-                    if (cardStr.isNotEmpty()) remaining[j].add(parseCard(cardStr, bidSuit))
+                    if (cardStr.isNotEmpty()) remaining[j].add(CardNotation.parseCard(cardStr, bidSuit))
                 }
             }
         }
@@ -214,26 +217,4 @@ object GameRecordReader {
         val firstToken = firstLine.trim().split(Regex("\\s+")).firstOrNull() ?: return false
         return firstToken.matches(Regex("[+-]\\d+"))
     }
-
-    private fun parseSuit(c: Char): Suit = Suit.realEntries.firstOrNull { it.shortName[0] == c } ?: error("Unknown suit: $c")
-
-    private fun parseRank(s: String): Rank = Rank.entries.firstOrNull { it.shortName == s } ?: error("Unknown rank: $s")
-
-    private fun parseCard(
-        s: String,
-        trump: Suit,
-    ): Card =
-        when (s) {
-            "**" -> Card.JOKER
-            "@A" -> Card.MIGHTY
-            "+J" -> Card.rightBower(trump)
-            "-J" -> Card.leftBower(trump)
-            "@Q" -> Card.SLIP
-            else ->
-                if (s.endsWith("*")) {
-                    Card.JOKER
-                } else {
-                    Card.of(parseSuit(s[0]), parseRank(s.substring(1)))
-                }
-        }
 }

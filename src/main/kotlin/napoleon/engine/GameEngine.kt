@@ -10,13 +10,13 @@ import napoleon.core.GameRules.HAND_SIZE
 import napoleon.core.GameRules.HONOR_COUNT
 import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
-import napoleon.core.HonorEstimate
 import napoleon.core.ScoreTable
 import napoleon.core.Suit
 import napoleon.engine.view.AiContext
+import napoleon.engine.view.HonorEstimate
 import napoleon.engine.view.PublicPlayerView
+import napoleon.engine.view.ResolvedTrick
 import napoleon.engine.view.TrickPlay
-import napoleon.engine.view.TrickRecord
 import kotlin.random.Random
 
 // ナポレオン1局の状態機械。AiContext を実装することで AI に公開する読み取り面を兼ね、
@@ -72,10 +72,10 @@ class GameEngine(
     override var jokerCallActive = false
         private set
 
-    private val trickLog = mutableListOf<TrickRecord>()
+    private val trickLog = mutableListOf<ResolvedTrick>()
     private val currentTrickPlays = mutableListOf<TrickPlay>()
     private var napoleonDiscards: List<Card>? = null
-    override val trickHistory: List<TrickRecord> get() = trickLog
+    override val trickHistory: List<ResolvedTrick> get() = trickLog
     override val napoleonKittyDiscards: List<Card>?
         get() = napoleonDiscards?.takeIf { curPlayer.id == napoleonId }
 
@@ -91,17 +91,13 @@ class GameEngine(
         get() {
             knownVoidsCache?.let { return it }
             val result = Array(PLAYER_COUNT) { mutableSetOf<Suit>() }
-
-            fun applyTrick(
-                plays: List<TrickPlay>,
-                jokerDeclared: Suit?,
-            ) {
-                if (plays.isEmpty()) return
+            forEachTrick { plays, jokerDeclared ->
+                if (plays.isEmpty()) return@forEachTrick
                 val leadCard = plays[0].card
                 val leadSuit =
                     when {
                         jokerDeclared != null -> jokerDeclared
-                        leadCard.isJoker() -> return
+                        leadCard.isJoker() -> return@forEachTrick
                         else -> leadCard.suit
                     }
                 for (i in 1 until plays.size) {
@@ -110,8 +106,6 @@ class GameEngine(
                     if (played.suit != leadSuit) result[plays[i].playerId] += leadSuit
                 }
             }
-            for (rec in trickLog) applyTrick(rec.plays, rec.jokerDeclaredSuit)
-            applyTrick(currentTrickPlays, jokerDeclaredSuit)
             @Suppress("UNCHECKED_CAST")
             return (result as Array<Set<Suit>>).also { knownVoidsCache = it }
         }
@@ -122,18 +116,20 @@ class GameEngine(
         get() {
             knownNoJokerCache?.let { return it }
             val result = BooleanArray(PLAYER_COUNT)
-
-            fun applyTrick(plays: List<TrickPlay>) {
-                if (plays.isEmpty() || !plays[0].card.isJokerCall()) return
+            forEachTrick { plays, _ ->
+                if (plays.isEmpty() || !plays[0].card.isJokerCall()) return@forEachTrick
                 for (i in 1 until plays.size) {
                     if (!plays[i].card.isJoker()) result[plays[i].playerId] = true
                 }
             }
-            for (rec in trickLog) applyTrick(rec.plays)
-            applyTrick(currentTrickPlays)
             knownNoJokerCache = result
             return result
         }
+
+    private inline fun forEachTrick(action: (plays: List<TrickPlay>, jokerDeclared: Suit?) -> Unit) {
+        for (rec in trickLog) action(rec.plays, rec.jokerDeclaredSuit)
+        action(currentTrickPlays, jokerDeclaredSuit)
+    }
 
     private fun invalidateInferenceCache() {
         knownVoidsCache = null
@@ -165,8 +161,8 @@ class GameEngine(
 
     fun placeBid(newBid: Bid?): BidOutcome {
         if (newBid != null) {
-            check(newBid.target in Bid.MIN_TARGET..Bid.MAX_TARGET) {
-                "bid target out of range [${Bid.MIN_TARGET}..${Bid.MAX_TARGET}]: ${newBid.target}"
+            check(newBid.target in config.bidMinTarget..Bid.MAX_TARGET) {
+                "bid target out of range [${config.bidMinTarget}..${Bid.MAX_TARGET}]: ${newBid.target}"
             }
             val current = bid
             check(current == null || newBid > current) {
@@ -187,7 +183,10 @@ class GameEngine(
         val threshold = if (bid != null) PLAYER_COUNT - 1 else PLAYER_COUNT * 2
         return when {
             bidPassCount < threshold -> BidOutcome.CONTINUE
-            bid != null -> BidOutcome.WON
+            bid != null -> {
+                napoleonId = curPlayer.id
+                BidOutcome.WON
+            }
             else -> BidOutcome.ALL_PASSED
         }
     }
@@ -197,8 +196,8 @@ class GameEngine(
     }
 
     fun designateAdjutant(card: Card) {
+        check(napoleonId == curPlayer.id) { "napoleonId must be set at bid won: napoleonId=$napoleonId, curPlayer=${curPlayer.id}" }
         adjutantCard = card
-        napoleonId = curPlayer.id
         adjutantId =
             players
                 .firstOrNull { p -> (0 until HAND_SIZE).any { p.hand[it] == card } }
@@ -330,7 +329,7 @@ class GameEngine(
         }
 
         curPlayer.honorsTaken += honorGain
-        trickLog += TrickRecord(currentTrickPlays.toList(), jokerDeclaredSuit, curPlayer.id)
+        trickLog += ResolvedTrick(currentTrickPlays.toList(), jokerDeclaredSuit, curPlayer.id)
         currentTrickPlays.clear()
         trickTurn = 0
         invalidateInferenceCache()

@@ -1,5 +1,7 @@
 package napoleon.config
 
+import napoleon.core.Bid
+
 class Config {
     var gameCount = 5
     var wait = 600
@@ -15,6 +17,10 @@ class Config {
 
     // 揮発性。リプレイや --debug 時に全プレイヤーの手札とキティを表示する。
     var showAllCards = false
+
+    // 揮発性。エンジンの宣言下限バリデーション。リプレイで古いルール (10/11 宣言を含む) の譜を
+    // 読み込む際に下げて使う。AI/UI 側の通常宣言下限は Bid.MIN_TARGET をそのまま参照する。
+    var bidMinTarget = Bid.MIN_TARGET
 
     fun load(): Config =
         apply {

@@ -20,7 +20,7 @@ class PlayDebugLogger(
         val card = me.hand[idx]
         val trickNo = context.trickHistory.size + 1
         val lead = context.leadSuit?.shortName ?: "-"
-        val hand = (0 until me.handCount).joinToString(",") { fmtCard(me.hand[it]) }
+        val hand = (0 until me.handCount).joinToString(",") { "${me.hand[it]}" }
         val legalStr = fmtIdxList(legal)
 
         val flags =
@@ -48,7 +48,7 @@ class PlayDebugLogger(
         formatKnownNoJoker(me)?.let { parts += it }
         parts += "hand=[$hand]"
         parts += "legal=[$legalStr]"
-        parts += "pick=$idx:${fmtCard(card)}"
+        parts += "pick=$idx:$card"
         parts += "reason=$reason"
 
         println("[HeuristicAI P${me.id}] ${parts.joinToString(" ")}")
@@ -56,12 +56,12 @@ class PlayDebugLogger(
 
     fun fmtIdxList(indices: List<Int>): String {
         val me = context.curPlayer
-        return indices.joinToString(",") { "$it:${fmtCard(me.hand[it])}" }
+        return indices.joinToString(",") { "$it:${me.hand[it]}" }
     }
 
     private fun formatAdjutant(): String {
         val adj = context.adjutantCard ?: return "?"
-        return if (context.adjutantRevealed) "${fmtCard(adj)}*" else fmtCard(adj)
+        return if (context.adjutantRevealed) "$adj*" else "$adj"
     }
 
     private fun formatCurrentTrick(me: SelfPlayerView): String? {
@@ -74,9 +74,9 @@ class PlayDebugLogger(
                     if (p.id == leaderId) {
                         val s = context.strengthOf(p.playedCard)
                         val tag = if (roleInference.isLikelyTeammate(p.id)) "A" else "E"
-                        "P${p.id}:${fmtCard(p.playedCard)}(L,$s,$tag)"
+                        "P${p.id}:${p.playedCard}(L,$s,$tag)"
                     } else {
-                        "P${p.id}:${fmtCard(p.playedCard)}"
+                        "P${p.id}:${p.playedCard}"
                     }
                 }
         return "trick=[$played]"
@@ -90,14 +90,14 @@ class PlayDebugLogger(
         if (context.trickHistory.isNotEmpty()) cards += context.kittyHonorCards
         if (cards.isEmpty()) return null
         cards.sortBy { it.honorIndex }
-        return "pubHonors=[${cards.joinToString(",") { fmtCard(it) }}]"
+        return "pubHonors=[${cards.joinToString(",")}]"
     }
 
     private fun formatKitty(): String? {
         if (context.trickHistory.isNotEmpty()) return null
         val cards = context.kittyHonorCards
         if (cards.isEmpty()) return null
-        return "kitty=[${cards.joinToString(",") { fmtCard(it) }}]"
+        return "kitty=[${cards.joinToString(",")}]"
     }
 
     private fun formatKnownVoids(me: SelfPlayerView): String? {

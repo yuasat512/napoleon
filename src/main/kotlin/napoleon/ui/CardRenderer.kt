@@ -19,6 +19,7 @@ private const val KEY_COLOR = 0xFF00FF00.toInt()
 class CardRenderer(
     private val image: BufferedImage,
     private val config: Config,
+    private val gameNumber: () -> Int,
 ) {
     private val cardM: BufferedImage
     private val cardS: BufferedImage
@@ -38,7 +39,6 @@ class CardRenderer(
         card: Card,
         small: Boolean,
         backMode: Int,
-        gameNumber: Int,
     ) {
         var rank = card.rank.ordinal
         var suit = card.suit.ordinal
@@ -46,15 +46,16 @@ class CardRenderer(
         // backMode != 0 のスロット (他プレイヤーの手札・キティ) は基本裏向き。
         // backMode==1 は常時裏、backMode==2 (キティ山) は数札 (rank<8) のみ裏向き。
         // gameNumber and 1 で局ごとに 2 種類の裏柄を交互に切り替える。
+        val gn = gameNumber()
         if (!config.showAllCards && backMode != 0) {
             if (backMode == 1 || rank < 8) {
                 rank = 13
-                suit = 2 + (gameNumber and 1)
+                suit = 2 + (gn and 1)
             }
         } else if (card.isJoker()) {
             // ジョーカーは画像シート上に専用枠を持たず、(rank=13, suit∈{0,1}) のスロットを流用する。
             rank = 13
-            suit = gameNumber and 1
+            suit = gn and 1
         }
 
         val src = if (small) cardS else cardM
@@ -77,13 +78,12 @@ class CardRenderer(
     // 3_Suit.png から FONT_SIZE x FONT_SIZE の 1 セルを切り出して描画する。Suit.NONE.ordinal=4 は副官マーク用に
     // 予約された 5 番目のセルを指す。
     fun drawSuit(
+        g: Graphics2D,
         ax: Int,
         ay: Int,
         suit: Suit,
     ) {
-        val g = image.createGraphics()
         g.drawImage(suitImg.getSubimage(suit.ordinal * GLYPH_SIZE, 0, GLYPH_SIZE, GLYPH_SIZE), ax, ay, null)
-        g.dispose()
     }
 
     private fun copyWithKey(

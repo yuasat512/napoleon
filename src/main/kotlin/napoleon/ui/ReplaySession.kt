@@ -6,7 +6,7 @@ import napoleon.core.GameRules.HAND_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.engine.GameEngine
 import napoleon.io.PlayerIO
-import napoleon.replay.ReplayEntry
+import napoleon.record.ReplayEntry
 import napoleon.replay.ReplayStrategy
 import napoleon.session.GameController
 import napoleon.session.ScoreKeeper
@@ -24,6 +24,7 @@ class ReplaySession(
             auto = true
             playThrough = entry.record.tricks.size == HAND_SIZE
             showAllCards = true
+            bidMinTarget = 1
         }
     private val replayEngine = GameEngine(replayConfig)
     val view = GameView(replayEngine, replayConfig)

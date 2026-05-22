@@ -3,7 +3,7 @@ package napoleon.engine.view
 import napoleon.core.Card
 import napoleon.core.Suit
 
-data class TrickRecord(
+data class ResolvedTrick(
     val plays: List<TrickPlay>,
     val jokerDeclaredSuit: Suit?,
     val winnerId: Int,

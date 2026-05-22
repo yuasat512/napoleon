@@ -168,6 +168,12 @@ class TrickEvaluator(
             else -> context.sameCandidate && card.suit == context.leadSuit
         }
 
+    // 候補手札インデックスのうち inherentPower が最小のものを返す。
+    fun weakestByPower(indices: List<Int>): Int {
+        val me = context.curPlayer
+        return indices.minByOrNull { inherentPower(me.hand[it]) }!!
+    }
+
     // 「この札の素の強さ」を、文脈 (リードスートや既出役札) から切り離して採点する。
     // リード候補の温存判定など、トリックを取ったり負けたりする評価とは別軸の指標。
     fun inherentPower(card: Card): Int {

@@ -1,4 +1,4 @@
-package napoleon.record
+package napoleon.core
 
 import napoleon.core.GameRules.PLAYER_COUNT
 

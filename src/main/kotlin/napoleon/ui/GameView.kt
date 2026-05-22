@@ -7,9 +7,9 @@ import napoleon.core.GameRules.HONOR_COUNT
 import napoleon.core.GameRules.INVALID_INDEX
 import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
+import napoleon.core.PLAYER_NAMES
 import napoleon.core.Suit
 import napoleon.engine.GameEngine
-import napoleon.record.PLAYER_NAMES
 import java.awt.AlphaComposite
 import java.awt.Color
 import java.awt.Graphics2D
@@ -19,8 +19,16 @@ private const val FS = FONT_SIZE
 private val TXT_COL = Color.WHITE
 private val NUM_COL = Color(0x80, 0xFF, 0xFF)
 private val NEG_COL = Color(0xFF, 0xB0, 0xB0)
+private val INFO_RECT_COMPOSITE = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 96f / 255f)
+private val INFO_RECT_COL = Color(0x40, 0x40, 0xFF)
 
 private enum class Balloon { NONE, BID, REDEAL, APPOINT, PLAY, DECLARE }
+
+private class BalloonView(
+    val text: String,
+    val suit: Suit? = null,
+    val suitYOffset: Int = 0,
+)
 
 // ゲーム盤の描画ロジック。BufferedImage を 2 倍高さで確保し、上半分が表示画像・下半分が
 // 初期背景 (フェルト) のスナップショット。restore() でこのスナップショットから矩形領域を
@@ -30,7 +38,7 @@ class GameView(
     private val config: Config,
 ) {
     val image = BufferedImage(CANVAS_W, CANVAS_H * 2, BufferedImage.TYPE_INT_ARGB)
-    private val renderer = CardRenderer(image, config)
+    private val renderer = CardRenderer(image, config) { engine.gameNumber }
     private val glyph = GlyphRenderer()
 
     private val layout = GameLayout()
@@ -41,6 +49,7 @@ class GameView(
     private val honorRect = layout.honorRect
     private val balloonW = layout.balloonW
     private val balloonH = layout.balloonH
+    private val infoW = layout.infoW
     private val handLift = layout.handLift
 
     // キティの表向き枚数。配布で 3、ナポが拾うと 0、返却で 3、第 1 トリック後は絵札分減る。
@@ -88,19 +97,12 @@ class GameView(
                         pl.hand[j],
                         slot.small,
                         slot.backMode,
-                        engine.gameNumber,
                     )
                 }
-                val rc = Rect(slot.infoX, slot.infoY, balloonW, balloonH)
-                drawInfoRect(g, rc)
-                drawText(g, rc.x, rc.y, -rc.w, PLAYER_NAMES[pid])
-                g.color = if (pl.points < 0) NEG_COL else NUM_COL
-                drawText(g, rc.x, rc.y + FS, 0, "${pl.points}")
-                g.color = TXT_COL
-                drawText(g, rc.x, rc.y + FS, rc.w, "${pl.honorsTaken}枚")
+                drawPlayerInfo(g, pid)
             }
 
-            drawKitty(g, kittyCenterSlot)
+            drawKittyAt(g, kittyCenterSlot)
 
             val rc = infoRect
             drawInfoRect(g, rc)
@@ -133,14 +135,13 @@ class GameView(
             updateBalloon(g, engine.playerIdAt(-1), Balloon.NONE)
 
             val text = "　%2d枚".format(engine.bidTarget)
-            val tx = infoRect.x + infoRect.w - glyph.textWidth(text) - 2
-            val ty = infoRect.y + 2 + FS
+            val tx = infoRect.x + infoRect.w - glyph.textWidth(text) - BOX_PADDING
+            val ty = infoRect.y + BOX_PADDING + FS
             g.color = TXT_COL
-            renderer.drawSuit(tx, ty, engine.trump)
+            renderer.drawSuit(g, tx, ty, engine.trump)
             glyph.drawString(g, tx, ty, text)
 
-            val slot = playerSlots[engine.curPlayer.id]
-            renderer.drawSuit(slot.infoX + (balloonW - FS) / 2, slot.infoY + 2 + FS, engine.trump)
+            drawPlayerInfo(g, engine.napoleonId)
         }
     }
 
@@ -150,11 +151,11 @@ class GameView(
 
             val card = engine.adjutantCard!!
             val str = adjutantName(card, engine.trump)
-            val tx = infoRect.x + infoRect.w - glyph.textWidth(str) - 2
-            val ty = infoRect.y + 2 + FS * 2
+            val tx = infoRect.x + infoRect.w - glyph.textWidth(str) - BOX_PADDING
+            val ty = infoRect.y + BOX_PADDING + FS * 2
             g.color = TXT_COL
             if (!card.isPowerCard(engine.trump)) {
-                renderer.drawSuit(tx, ty, card.suit)
+                renderer.drawSuit(g, tx, ty, card.suit)
             }
             glyph.drawString(g, tx, ty, str)
         }
@@ -163,7 +164,7 @@ class GameView(
     fun onDraw() {
         kittyVisibleCount = 0
         withGraphics { g ->
-            eraseKittyAt(g, kittyCenterSlot)
+            drawKittyAt(g, kittyCenterSlot) // kittyVisibleCount=0 のため中央キティを消去
             updatePlayerHand(g, engine.curPlayer.id)
         }
     }
@@ -185,7 +186,7 @@ class GameView(
 
             val slot = playerSlots[pid]
             val card = engine.players[pid].playedCard
-            renderer.drawCard(g, slot.areaX, slot.areaY, card, false, 0, engine.gameNumber)
+            renderer.drawCard(g, slot.areaX, slot.areaY, card, false, 0)
 
             updateBalloon(g, pid, Balloon.PLAY)
 
@@ -232,18 +233,18 @@ class GameView(
                 for (j in 0 until 5) {
                     val card = engine.honorCards[j + i * 5]
                     if (card != null) {
-                        renderer.drawCard(g, honorArea.x + j * honorRect.w, honorArea.y + i * honorRect.h, card, true, 0, engine.gameNumber)
+                        renderer.drawCard(g, honorArea.x + j * honorRect.w, honorArea.y + i * honorRect.h, card, true, 0)
                     }
                 }
             }
 
             val slot = playerSlots[engine.curPlayer.id]
             val honorMaxW = 2 * FS
-            val rc3 = Rect(slot.infoX + balloonW - honorMaxW - 2, slot.infoY + 2 + FS, honorMaxW, FS)
+            val rc3 = Rect(slot.infoX + infoW - honorMaxW - BOX_PADDING, slot.infoY + BOX_PADDING + FS, honorMaxW, FS)
             restore(g, rc3)
             drawInfoRect(g, rc3)
             val honorStr = "${engine.curPlayer.honorsTaken}枚"
-            glyph.drawString(g, slot.infoX + balloonW - glyph.textWidth(honorStr) - 2, rc3.y, honorStr)
+            glyph.drawString(g, slot.infoX + infoW - glyph.textWidth(honorStr) - BOX_PADDING, rc3.y, honorStr)
 
             drawHonorEstimate(g)
 
@@ -265,7 +266,39 @@ class GameView(
             for (pid in 1 until PLAYER_COUNT) {
                 drawHandAtSlot(g, playerSlots[pid], engine.players[pid].hand, engine.players[pid].handCount, 0, null, backMode = 0)
             }
+            // 副官未公開のまま終局したケース (副官札が他チーム手札に残ったまま勝敗確定など) でも
+            // 結果画面では副官マークを公開する。
+            for (pid in 0 until PLAYER_COUNT) {
+                drawPlayerInfo(g, pid, showAdjutant = true)
+            }
         }
+    }
+
+    private fun drawPlayerInfo(
+        g: Graphics2D,
+        pid: Int,
+        showAdjutant: Boolean = engine.adjutantRevealed,
+    ) {
+        val slot = playerSlots[pid]
+        val pl = engine.players[pid]
+        val rc = Rect(slot.infoX, slot.infoY, infoW, balloonH)
+        restore(g, rc)
+        drawInfoRect(g, rc)
+        val name = PLAYER_NAMES[pid]
+        val nameW = glyph.textWidth(name)
+        val nameX = rc.x + (rc.w - nameW) / 2
+        val nameY = rc.y + BOX_PADDING
+        glyph.drawString(g, nameX, nameY, name)
+        if (engine.bid != null && pid == engine.napoleonId) {
+            renderer.drawSuit(g, nameX + nameW + FS / 2, nameY, engine.trump)
+        }
+        if (showAdjutant && pid == engine.adjutantId) {
+            renderer.drawSuit(g, nameX - FS - FS / 2, nameY, Suit.NONE)
+        }
+        g.color = if (pl.points < 0) NEG_COL else NUM_COL
+        drawText(g, rc.x, rc.y + FS, 0, "${pl.points}")
+        g.color = TXT_COL
+        drawText(g, rc.x, rc.y + FS, rc.w, "${pl.honorsTaken}枚")
     }
 
     fun reset() {
@@ -298,8 +331,8 @@ class GameView(
         g: Graphics2D,
         rc: Rect,
     ) {
-        g.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 96f / 255f)
-        g.color = Color(0x40, 0x40, 0xFF)
+        g.composite = INFO_RECT_COMPOSITE
+        g.color = INFO_RECT_COL
         g.fillRect(rc.x, rc.y, rc.w, rc.h)
         g.composite = AlphaComposite.SrcOver
         g.color = TXT_COL
@@ -312,13 +345,13 @@ class GameView(
         aPos: Int,
         text: String,
     ) {
-        var y = ay + 2
+        var y = ay + BOX_PADDING
         for (line in text.split("\n")) {
             val x =
                 when {
                     aPos < 0 -> ax - (aPos + glyph.textWidth(line)) / 2
-                    aPos > 0 -> ax + aPos - glyph.textWidth(line) - 2
-                    else -> ax + 2
+                    aPos > 0 -> ax + aPos - glyph.textWidth(line) - BOX_PADDING
+                    else -> ax + BOX_PADDING
                 }
             glyph.drawString(g, x, y, line)
             y += FS
@@ -372,7 +405,6 @@ class GameView(
                 cards[j],
                 slot.small,
                 backMode,
-                engine.gameNumber,
             )
         }
     }
@@ -384,39 +416,8 @@ class GameView(
         drawHandAtSlot(g, slot, engine.kitty.cards, kittyVisibleCount, KITTY_SIZE - kittyVisibleCount, null, slot.backMode)
     }
 
-    private fun drawKitty(
-        g: Graphics2D,
-        slot: KittySlot,
-    ) {
-        for (j in 0 until kittyVisibleCount) {
-            renderer.drawCard(
-                g,
-                slot.handX + j * slot.handStep,
-                slot.handY,
-                engine.kitty.cards[j],
-                slot.small,
-                slot.backMode,
-                engine.gameNumber,
-            )
-        }
-    }
-
-    private fun eraseKittyAt(
-        g: Graphics2D,
-        slot: KittySlot,
-    ) {
-        val cw = if (slot.small) CARD_SM_W else CARD_W
-        val ch = if (slot.small) CARD_SM_H else CARD_H
-        val w = (KITTY_SIZE - 1) * slot.handStep + cw
-        restore(g, Rect(slot.handX, slot.handY - handLift, w, ch + handLift))
-    }
-
     private fun updateAdjutant(g: Graphics2D) {
-        val slot = playerSlots[engine.adjutantId]
-        val rc = Rect(slot.infoX + (balloonW - FS) / 2, slot.infoY + 2 + FS, FS, FS)
-        restore(g, rc)
-        drawInfoRect(g, rc)
-        renderer.drawSuit(rc.x, rc.y, Suit.NONE)
+        drawPlayerInfo(g, engine.adjutantId)
         drawHonorEstimate(g)
     }
 
@@ -428,83 +429,61 @@ class GameView(
         val slot = playerSlots[pid]
         val rc = Rect(slot.balloonX, slot.balloonY, balloonW, balloonH)
         restore(g, rc)
-        if (message != Balloon.NONE) drawInfoRect(g, rc)
-
+        val view = balloonView(pid, message) ?: return
+        drawInfoRect(g, rc)
+        view.suit?.let { renderer.drawSuit(g, rc.x + BOX_PADDING, rc.y + BOX_PADDING + view.suitYOffset, it) }
         g.color = TXT_COL
-        val str: String? = balloonText(pid, message, rc, g)
-        if (str != null) {
-            g.color = TXT_COL
-            for ((i, line) in str.split("\n").withIndex()) {
-                glyph.drawString(g, rc.x + 2, rc.y + 2 + FS * i, line)
-            }
+        for ((i, line) in view.text.split("\n").withIndex()) {
+            glyph.drawString(g, rc.x + BOX_PADDING, rc.y + BOX_PADDING + FS * i, line)
         }
     }
 
-    private fun balloonText(
+    private fun balloonView(
         pid: Int,
         message: Balloon,
-        rc: Rect,
-        g: Graphics2D,
-    ): String? =
+    ): BalloonView? =
         when (message) {
+            Balloon.NONE -> null
             Balloon.BID -> {
                 val bid = engine.players[pid].bid
-                if (bid == null) {
-                    "パス"
-                } else {
-                    renderer.drawSuit(rc.x + 2, rc.y + 2, bid.suit)
-                    "　${bid.target}枚"
-                }
+                if (bid == null) BalloonView("パス") else BalloonView("　${bid.target}枚", bid.suit)
             }
-            Balloon.REDEAL -> "配り直し"
+            Balloon.REDEAL -> BalloonView("配り直し")
             Balloon.APPOINT -> {
                 val card = engine.adjutantCard!!
-                if (!card.isPowerCard(engine.trump)) {
-                    renderer.drawSuit(rc.x + 2, rc.y + 2 + FS, card.suit)
-                }
-                "副官は\n${adjutantName(card, engine.trump)}"
+                val suit = if (!card.isPowerCard(engine.trump)) card.suit else null
+                BalloonView("副官は\n${adjutantName(card, engine.trump)}", suit, FS)
             }
             Balloon.DECLARE -> {
                 val estimate = engine.estimateHonors(pid)
-                when {
-                    estimate.napoleonHonors == HONOR_COUNT -> "完全勝利！"
-                    estimate.napoleonHonors >= engine.bidTarget -> "勝利！"
-                    else -> "敗北…"
-                }
+                val text =
+                    when {
+                        estimate.napoleonHonors == HONOR_COUNT -> "完全勝利！"
+                        estimate.napoleonHonors >= engine.bidTarget -> "勝利！"
+                        else -> "敗北…"
+                    }
+                BalloonView(text)
             }
-            Balloon.PLAY -> playBalloonText(pid, rc, g)
-            Balloon.NONE -> null
+            Balloon.PLAY -> playBalloonView(pid)
         }
 
-    private fun playBalloonText(
-        pid: Int,
-        rc: Rect,
-        g: Graphics2D,
-    ): String? {
+    private fun playBalloonView(pid: Int): BalloonView? {
         val handCount = engine.players[pid].handCount
         val card = engine.players[pid].playedCard
         val winning = engine.isTrickLeader(pid)
         return when {
             card.isJoker() -> {
                 val declaredSuit = engine.jokerDeclaredSuit
-                if (handCount > 0 && declaredSuit != null) {
-                    renderer.drawSuit(rc.x + 2, rc.y + 2, declaredSuit)
-                    "　請求"
-                } else {
-                    "ジョーカー"
-                }
+                if (handCount > 0 && declaredSuit != null) BalloonView("　請求", declaredSuit) else BalloonView("ジョーカー")
             }
-            card.isMighty() -> "マイティ"
-            card.isRightBower(engine.trump) -> "正ジャック"
-            card.isLeftBower(engine.trump) -> "裏ジャック"
-            card.isJokerCall() && !engine.jokerPlayed && engine.trickTurn == 1 && handCount > 0 -> "ジョーカー\n請求"
-            card.isSlip() && engine.mightyInTrick -> "よろめき"
-            card.suit == engine.trump && card.suit != engine.leadSuit && winning -> "チェック"
-            card.isRankTwo() && winning && handCount != HAND_SIZE - 1 -> "セイム"
-            else -> {
-                restore(g, rc)
-                null
-            }
+            card.isMighty() -> BalloonView("マイティ")
+            card.isRightBower(engine.trump) -> BalloonView("正ジャック")
+            card.isLeftBower(engine.trump) -> BalloonView("裏ジャック")
+            card.isJokerCall() && !engine.jokerPlayed && engine.trickTurn == 1 && handCount > 0 -> BalloonView("ジョーカー\n請求")
+            card.isSlip() && engine.mightyInTrick -> BalloonView("よろめき")
+            card.suit == engine.trump && card.suit != engine.leadSuit && winning -> BalloonView("チェック")
+            card.isRankTwo() && winning && handCount != HAND_SIZE - 1 -> BalloonView("セイム")
+            else -> null
         }
     }
 
@@ -521,12 +500,13 @@ class GameView(
         }
 
     private fun drawHonorEstimate(g: Graphics2D) {
-        val numW = infoRect.w - (2 + FS * 7 / 2)
-        val rc = Rect(infoRect.x + 2 + FS * 7 / 2, infoRect.y + 2 + FS * 4, numW, FS * 2)
+        val numW = infoRect.w - (BOX_PADDING + FS * 7 / 2)
+        val rc = Rect(infoRect.x + BOX_PADDING + FS * 7 / 2, infoRect.y + BOX_PADDING + FS * 4, numW, FS * 2)
         restore(g, rc)
         drawInfoRect(g, rc)
 
-        val estimate = engine.estimateHonors(0)
+        // showAllCards (リプレイ・--debug) では全カード可視なので副官視点で厳密値を返させる。
+        val estimate = engine.estimateHonors(if (config.showAllCards) engine.adjutantId else 0)
         val nap = estimate.napoleonHonors
         val ally = estimate.allyHonors
         val diff = estimate.unknownHonors

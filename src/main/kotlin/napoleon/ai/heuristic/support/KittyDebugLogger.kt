@@ -14,7 +14,7 @@ class KittyDebugLogger(
         if (!context.debug) return
         val pid = context.curPlayer.id
         val me = context.curPlayer
-        val discardStr = discard.joinToString(",") { "$it:${fmtCard(me.hand[it])}" }
+        val discardStr = discard.joinToString(",") { "$it:${me.hand[it]}" }
         val voidedStr = if (voidedSuits.isEmpty()) "-" else voidedSuits.joinToString(",") { it.shortName }
         println(
             "[HeuristicAI P$pid] kitty discard=[$discardStr] firstTrickConfident=$firstTrickConfident voided=[$voidedStr]",

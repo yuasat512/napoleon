@@ -65,7 +65,7 @@ class PlayFollowPlanner(
             } else if (!leader.playedCard.isHighRoleCard(context.trump) && trickHonors >= 1) {
                 val certainWins = legal.filter { evaluator.isCertainWinAfter(it) }
                 if (certainWins.isNotEmpty()) {
-                    val idx = certainWins.minByOrNull { evaluator.inherentPower(me.hand[it]) }!!
+                    val idx = evaluator.weakestByPower(certainWins)
                     logger.log(
                         idx,
                         legal,
@@ -77,7 +77,7 @@ class PlayFollowPlanner(
                 }
             }
             val preserved = filterOutAdjutantIfPossible(legal, role, trickHonors)
-            val idx = preserved.minByOrNull { evaluator.inherentPower(me.hand[it]) }!!
+            val idx = evaluator.weakestByPower(preserved)
             logger.log(idx, legal, "フォロー: 味方リードのため最小パワー札で温存")
             return idx
         }
@@ -86,7 +86,7 @@ class PlayFollowPlanner(
         if (certainWins.isNotEmpty() && (trickHonors >= 1 || remainingAfterMe >= 1)) {
             val preserved = filterOutAdjutantIfPossible(certainWins, role, trickHonors)
             val pool = preserved.ifEmpty { certainWins }
-            val idx = pool.minByOrNull { evaluator.inherentPower(me.hand[it]) }!!
+            val idx = evaluator.weakestByPower(pool)
             if (!(me.hand[idx].isHighRoleCard(context.trump) && trickHonors < 2)) {
                 logger.log(
                     idx,
@@ -122,7 +122,7 @@ class PlayFollowPlanner(
         if (shouldChase && beaters.isNotEmpty()) {
             val preserved = filterOutAdjutantIfPossible(beaters, role, trickHonors)
             val pool = preserved.ifEmpty { beaters }
-            val idx = pool.minByOrNull { evaluator.inherentPower(me.hand[it]) }!!
+            val idx = evaluator.weakestByPower(pool)
             logger.log(
                 idx,
                 legal,

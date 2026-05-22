@@ -79,6 +79,12 @@ class Card private constructor(
     // 役札 + 切り札A。脅威評価で「ほぼ非役札では超えられないカード」をまとめて扱うため。
     fun isHighRoleCard(trump: Suit): Boolean = isPowerCard(trump) || (suit == trump && rank == Rank.RANK_A)
 
+    override fun toString(): String =
+        when (suit) {
+            Suit.NONE -> "**"
+            else -> "${suit.shortName}${rank.shortName}"
+        }
+
     companion object {
         const val CARD_COUNT = 53
 

@@ -1,8 +1,7 @@
 package napoleon.record
 
-import napoleon.core.Card
 import napoleon.core.GameRules.PLAYER_COUNT
-import napoleon.core.Suit
+import napoleon.core.PLAYER_NAMES
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 import java.time.LocalDateTime
@@ -27,7 +26,7 @@ class GameRecordWriter {
             val bidCells =
                 buildList {
                     repeat(record.bidFirstPlayerId) { add(null) }
-                    for (b in record.bidSequence) add(if (b == null) " -" else "${suitStr(b.suit)}${b.target}")
+                    for (b in record.bidSequence) add(if (b == null) " -" else "${b.suit.shortName}${b.target}")
                 }
             var rowStart = 0
             while (rowStart < bidCells.size) {
@@ -40,10 +39,10 @@ class GameRecordWriter {
                 rowStart += PLAYER_COUNT
             }
             appendLine("---")
-            appendLine("${suitStr(trump)}${record.bid.target} ${cardStr(record.adjutantCard, trump)}")
+            appendLine("${trump.shortName}${record.bid.target} ${CardNotation.format(record.adjutantCard, trump)}")
             appendLine(
-                "${record.drawnCards.joinToString(" ") { cardStr(it, trump) }} -> ${
-                    record.discardedCards.joinToString(" ") { cardStr(it, trump) }
+                "${record.drawnCards.joinToString(" ") { CardNotation.format(it, trump) }} -> ${
+                    record.discardedCards.joinToString(" ") { CardNotation.format(it, trump) }
                 }",
             )
             appendLine("---")
@@ -68,7 +67,7 @@ class GameRecordWriter {
                         .joinToString("") { pid ->
                             val card = trick.cards[pid]!!
                             val isLead = pid == trick.leadId
-                            val cs = cardStr(card, trump, isLead, trick.mightyInTrick, trick.jokerDeclaredSuit)
+                            val cs = CardNotation.format(card, trump, isLead, trick.mightyInTrick, trick.jokerDeclaredSuit)
                             val cell = if (isLead) "[$cs]" else " $cs "
                             cell.padEnd(colWidth)
                         }.dropLast(1)
@@ -92,7 +91,7 @@ class GameRecordWriter {
                     val row =
                         (0 until PLAYER_COUNT).joinToString("") { pid ->
                             val hands = record.remainingHands[pid]
-                            val cell = if (r < hands.size) " ${cardStr(hands[r], trump)} " else ""
+                            val cell = if (r < hands.size) " ${CardNotation.format(hands[r], trump)} " else ""
                             cell.padEnd(colWidth)
                         }
                     appendLine(row.trimEnd())
@@ -117,24 +116,4 @@ class GameRecordWriter {
         path.parent?.createDirectories()
         path.writeText(text + "\n", options = arrayOf(StandardOpenOption.CREATE, StandardOpenOption.APPEND))
     }
-
-    private fun cardStr(
-        card: Card,
-        trump: Suit,
-        isLead: Boolean = false,
-        mightyInTrick: Boolean = false,
-        jokerDeclaredSuit: Suit? = null,
-    ): String =
-        when {
-            card.isJoker() -> {
-                if (isLead && jokerDeclaredSuit != null) "${suitStr(jokerDeclaredSuit)}*" else "**"
-            }
-            card.isMighty() -> "@A"
-            card.isRightBower(trump) -> "+J"
-            card.isLeftBower(trump) -> "-J"
-            card.isSlip() && mightyInTrick -> "@Q"
-            else -> "${card.suit.shortName}${card.rank.shortName}"
-        }
-
-    private fun suitStr(suit: Suit): String = suit.shortName
 }
