@@ -20,7 +20,7 @@ class TrickEvaluator(
     // 副官未公開のときは「副官候補集合」の中で最悪値 (ナポ軍合計の下限・連合軍合計の下限) を
     // 採用することで、誤判定 (まだ確定していないのに確定と見なす) を防ぐ。
     fun classifyDecisiveOnTake(candidateIsHonor: Boolean): Decisive {
-        val n = context.bid?.target ?: return Decisive.NONE
+        val n = context.bid!!.target
         val hLow = countTrickHonors() + (if (candidateIsHonor) 1 else 0)
         val napId = context.napoleonId
         val napHonors = context.publicPlayers[napId].honorsTaken
@@ -111,7 +111,7 @@ class TrickEvaluator(
             if (!canBeatLeader(card, context.strengthOf(leader.playedCard))) return false
         }
 
-        val leadSuit: Suit? =
+        val leadSuit: Suit =
             when {
                 context.trickTurn == 0 -> if (card.isJoker()) chooseJokerLeadSuit() else card.suit
                 else -> context.leadSuit
@@ -135,19 +135,19 @@ class TrickEvaluator(
 
     fun canThreatPlayInTrick(
         threat: Card,
-        leadSuit: Suit?,
+        leadSuit: Suit,
         leadVoidPossible: Boolean,
     ): Boolean {
         if (threat.isJoker()) return true
-        if (leadSuit == null || leadSuit == Suit.NONE) return true
+        if (leadSuit == Suit.NONE) return true
         if (threat.suit == leadSuit) return true
         return leadVoidPossible
     }
 
     // リードスート不所持 (= 切り札等で割り込める) プレイヤーが存在しうるかを判定する。
     // 既に void と判明している、または過去にそのスートがリードされていれば余地あり。
-    fun isLeadSuitVoidPossible(leadSuit: Suit?): Boolean {
-        if (leadSuit == null || leadSuit == Suit.NONE) return true
+    fun isLeadSuitVoidPossible(leadSuit: Suit): Boolean {
+        if (leadSuit == Suit.NONE) return true
         val me = context.curPlayer
         for (p in context.publicPlayers) {
             if (p.id == me.id) continue

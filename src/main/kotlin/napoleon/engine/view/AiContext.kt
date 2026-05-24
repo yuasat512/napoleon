@@ -11,14 +11,14 @@ interface AiContext {
     val trump: Suit
 
     val napoleonId: Int
-    val adjutantCard: Card?
+    val adjutantCard: Card
     val adjutantRevealed: Boolean
 
     // 副官カードは公開情報だが、副官 ID は副官カードが場に出るまで隠す。
     val adjutantIdIfRevealed: Int?
 
     val trickTurn: Int
-    val leadSuit: Suit?
+    val leadSuit: Suit
     val mightyInTrick: Boolean
     val sameCandidate: Boolean
     val jokerCallActive: Boolean

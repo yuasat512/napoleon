@@ -38,6 +38,13 @@ tasks.register<JavaExec>("runRegression") {
     mainClass = "napoleon.regression.RegressionKt"
 }
 
+tasks.register<JavaExec>("runAiStats") {
+    group = "verification"
+    dependsOn(tasks.testClasses)
+    classpath = sourceSets["test"].runtimeClasspath
+    mainClass = "napoleon.stats.AiMatchStatsKt"
+}
+
 tasks.register<JavaExec>("regenerateImages") {
     group = "build setup"
     dependsOn(tasks.testClasses)

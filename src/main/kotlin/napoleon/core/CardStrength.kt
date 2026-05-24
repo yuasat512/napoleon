@@ -20,7 +20,7 @@ object CardStrength {
     fun evaluate(
         card: Card,
         trump: Suit,
-        leadSuit: Suit?,
+        leadSuit: Suit,
         mightyInTrick: Boolean,
         sameActive: Boolean,
     ): Int {

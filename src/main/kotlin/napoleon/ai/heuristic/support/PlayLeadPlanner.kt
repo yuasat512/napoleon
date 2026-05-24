@@ -169,7 +169,7 @@ class PlayLeadPlanner(
     private fun isMightyRiskyAsLead(): Boolean {
         val me = context.curPlayer
         if ((0 until me.handCount).any { me.hand[it].isSlip() }) return false
-        if (context.adjutantCard?.isSlip() == true) return false
+        if (context.adjutantCard.isSlip()) return false
         if (context.napoleonKittyDiscards?.any { it.isSlip() } == true) return false
         if (context.kittyHonorCards.any { it.isSlip() }) return false
         for (rec in context.trickHistory) for (p in rec.plays) if (p.card.isSlip()) return false
@@ -188,10 +188,10 @@ class PlayLeadPlanner(
         when (role) {
             Role.ADJUTANT -> return null
             Role.NAPOLEON -> {
-                if (context.adjutantCard?.isJoker() == true) return null
+                if (context.adjutantCard.isJoker()) return null
             }
             Role.ALLY -> {
-                if (context.adjutantCard?.isJoker() != true) {
+                if (!context.adjutantCard.isJoker()) {
                     val napId = context.napoleonId
                     val adjRevealed = context.adjutantIdIfRevealed
                     if (context.knownNoJoker[napId] && adjRevealed != null && context.knownNoJoker[adjRevealed]) {

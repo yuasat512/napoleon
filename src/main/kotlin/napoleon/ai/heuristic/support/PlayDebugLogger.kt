@@ -2,6 +2,7 @@ package napoleon.ai.heuristic.support
 
 import napoleon.core.Card
 import napoleon.core.GameRules.PLAYER_COUNT
+import napoleon.core.Suit
 import napoleon.engine.view.AiContext
 import napoleon.engine.view.SelfPlayerView
 
@@ -19,7 +20,7 @@ class PlayDebugLogger(
         val me = context.curPlayer
         val card = me.hand[idx]
         val trickNo = context.trickHistory.size + 1
-        val lead = context.leadSuit?.shortName ?: "-"
+        val lead = if (context.leadSuit == Suit.NONE) "-" else context.leadSuit.shortName
         val hand = (0 until me.handCount).joinToString(",") { "${me.hand[it]}" }
         val legalStr = fmtIdxList(legal)
 
@@ -60,7 +61,7 @@ class PlayDebugLogger(
     }
 
     private fun formatAdjutant(): String {
-        val adj = context.adjutantCard ?: return "?"
+        val adj = context.adjutantCard
         return if (context.adjutantRevealed) "$adj*" else "$adj"
     }
 

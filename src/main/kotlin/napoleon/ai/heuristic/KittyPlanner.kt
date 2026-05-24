@@ -39,7 +39,7 @@ class KittyPlanner(
         val adjutant = context.adjutantCard
 
         val sideCount = countSideSuits(trump, count)
-        val soloConfirmed = adjutant != null && (0 until count).any { me.hand[it] == adjutant }
+        val soloConfirmed = (0 until count).any { me.hand[it] == adjutant }
         val trumpCount = countTrumps(trump, count)
 
         val scores =
@@ -118,7 +118,7 @@ class KittyPlanner(
         scores: IntArray,
         trump: Suit,
         trumpCount: Int,
-        adjutant: Card?,
+        adjutant: Card,
         soloConfirmed: Boolean,
     ): List<Suit> {
         if (trumpCount < 3) return emptyList()
@@ -147,7 +147,7 @@ class KittyPlanner(
     private fun applyDumpPenalty(
         scores: IntArray,
         trump: Suit,
-        adjutant: Card?,
+        adjutant: Card,
         sideCount: IntArray,
     ) {
         val me = context.curPlayer

@@ -278,9 +278,9 @@ Each following player obeys the rules below, evaluated in order from the top:
 
 ### 7-4. Card Strength
 
-The winner of the trick is determined by the following priority (higher rows are stronger). For the individual rules of each card, see [§3](#3-special-cards).
+Card strength is determined by the following priority (higher rows are stronger). For the individual rules of each card, see [§3](#3-special-cards).
 
-| Priority | Card | Notes |
+| Priority | Card | Within same priority |
 |:---:|:---|:---|
 | 1 | **Slip** (only if the Mighty is played in the same trick) | — |
 | 2 | **Mighty** | — |
@@ -289,7 +289,7 @@ The winner of the trick is determined by the following priority (higher rows are
 | 5 | **Left Bower** | — |
 | 6 | Trump-suit card (only when the lead suit is not the trump) | By rank (A strongest) |
 | 7 | Lead-suit card | By rank (A strongest). Under Same ([§7-5](#7-5-same)), rank 2 is the strongest |
-| 8 | Any other card | Does not affect the trick outcome |
+| 8 | Any other card | No ranking among them (always weakest) |
 
 > [!NOTE]
 > A Slip that does not meet the condition for priority 1 is treated as the Hearts Q under priority 6, 7, or 8.

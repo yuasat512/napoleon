@@ -43,7 +43,7 @@ class GameEngine(
         private set
     override val trump: Suit get() = bid!!.suit
     val bidTarget: Int get() = bid!!.target
-    override var adjutantCard: Card? = null
+    override var adjutantCard: Card = Card.JOKER
         private set
     override var napoleonId = 0
         private set
@@ -61,7 +61,7 @@ class GameEngine(
 
     override var trickTurn = 0
         private set
-    override var leadSuit: Suit? = null
+    override var leadSuit: Suit = Suit.NONE
         private set
     var jokerDeclaredSuit: Suit? = null
         private set
@@ -242,7 +242,7 @@ class GameEngine(
 
         kitty.sortForDisplay()
         val adjutant = adjutantCard
-        if (adjutant?.rank?.isHonor == true) {
+        if (adjutant.rank.isHonor) {
             adjutantRevealed = kitty.cards.any { it == adjutant }
         }
     }
@@ -278,7 +278,7 @@ class GameEngine(
             leadSuit =
                 when {
                     jokerSuit != null -> jokerSuit
-                    card.isJoker() -> null
+                    card.isJoker() -> Suit.NONE
                     else -> card.suit
                 }
             // セイム成立 (§6-10) は「2トリック目以降・全員同一スート・役札不在」の3条件。
@@ -355,7 +355,7 @@ class GameEngine(
                 napHonors >= bidTarget -> ScoreTable.Verdict.WIN
                 else -> ScoreTable.Verdict.LOSS
             }
-        return GameResult(verdict, napoleonId == adjutantId, napoleonId, adjutantId)
+        return GameResult(verdict, napoleonId, adjutantId)
     }
 
     fun finishGame(): Boolean {
@@ -423,7 +423,7 @@ class GameEngine(
 
     private fun resetGameState() {
         bid = null
-        adjutantCard = null
+        adjutantCard = Card.JOKER
         napoleonId = 0
         adjutantId = 0
         adjutantRevealed = false
@@ -432,7 +432,7 @@ class GameEngine(
 
         bidPassCount = 0
         trickTurn = 0
-        leadSuit = null
+        leadSuit = Suit.NONE
         jokerDeclaredSuit = null
         mightyInTrick = false
         sameCandidate = false

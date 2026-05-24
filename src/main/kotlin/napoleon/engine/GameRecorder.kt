@@ -38,7 +38,7 @@ class GameRecorder(
     fun onAppoint() {
         record?.apply {
             bid = engine.bid!!
-            adjutantCard = engine.adjutantCard!!
+            adjutantCard = engine.adjutantCard
             napoleonId = engine.napoleonId
             adjutantId = engine.adjutantId
         }

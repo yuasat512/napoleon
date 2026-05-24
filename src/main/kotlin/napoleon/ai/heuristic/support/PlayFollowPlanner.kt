@@ -4,6 +4,7 @@ import napoleon.core.Card
 import napoleon.core.CardStrength
 import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.core.Rank
+import napoleon.core.Suit
 import napoleon.engine.view.AiContext
 
 // フォロー時の手選び。セイム成立 → 決着確定札の奪取 → 味方リード時の温存/上乗せ → 敵リード時の確実勝ち奪取
@@ -145,7 +146,8 @@ class PlayFollowPlanner(
     }
 
     private fun seimFollowIndex(legal: List<Int>): Int? {
-        val lead = context.leadSuit ?: return null
+        val lead = context.leadSuit
+        if (lead == Suit.NONE) return null
         if (lead == context.trump) return null
         if (context.mightyInTrick) return null
         if (!context.sameCandidate) return null
@@ -224,7 +226,7 @@ class PlayFollowPlanner(
         if (role != Role.ADJUTANT) return candidates
         if (context.adjutantRevealed) return candidates
         if (trickHonors > 0) return candidates
-        val adj = context.adjutantCard ?: return candidates
+        val adj = context.adjutantCard
         if (!adj.isHighRoleCard(context.trump)) return candidates
         val me = context.curPlayer
         val adjIdx = (0 until me.handCount).firstOrNull { me.hand[it] == adj } ?: return candidates

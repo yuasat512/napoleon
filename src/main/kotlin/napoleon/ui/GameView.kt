@@ -149,7 +149,7 @@ class GameView(
         withGraphics { g ->
             updateBalloon(g, engine.curPlayer.id, Balloon.APPOINT)
 
-            val card = engine.adjutantCard!!
+            val card = engine.adjutantCard
             val str = adjutantName(card, engine.trump)
             val tx = infoRect.x + infoRect.w - glyph.textWidth(str) - BOX_PADDING
             val ty = infoRect.y + BOX_PADDING + FS * 2
@@ -450,7 +450,7 @@ class GameView(
             }
             Balloon.REDEAL -> BalloonView("配り直し")
             Balloon.APPOINT -> {
-                val card = engine.adjutantCard!!
+                val card = engine.adjutantCard
                 val suit = if (!card.isPowerCard(engine.trump)) card.suit else null
                 BalloonView("副官は\n${adjutantName(card, engine.trump)}", suit, FS)
             }

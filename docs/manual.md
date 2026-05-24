@@ -65,7 +65,7 @@ A vertically stacked button dialog. Choose 「パス」 (Pass) or 「(suit) N枚
 Select via radio buttons.
 
 - **ジョーカー / マイティ / 正ジャック / 裏ジャック** (Joker / Mighty / Right Bower / Left Bower): single click
-- **その他** (Other): choose a suit and a rank from the dropdown menus
+- **その他** (Other): choose a suit and a rank (10 shown as T) from the dropdown menus
 - Press Enter or click OK to confirm
 
 ### 4-4. Kitty Draw and Return
