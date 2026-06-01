@@ -6,6 +6,7 @@ import napoleon.config.Config
 import napoleon.core.GameRules.HONOR_COUNT
 import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.engine.GameEngine
+import napoleon.engine.view.AiContext
 import napoleon.io.PlayerIO
 import napoleon.session.GameController
 import napoleon.session.ScoreKeeper
@@ -13,10 +14,12 @@ import napoleon.session.ScoreKeeper
 // AI 同士を固定シードで多数回対戦させて挙動を数値化する統計ハーネス。
 // 回帰テストと違い pass/fail はせず、集計結果を標準出力するだけ。
 //   バリエーション1: 全員 HeuristicStrategy。宣言枚数の平均・両軍の勝率/獲得枚数の平均を見る。
+//   バリエーション2: 連合席のみ副官 ID を透視 (オラクル)。副官特定を完璧にした場合の連合勝率の上限を測る。
 // 副官兼任の局はノイズとして集計から除外し、副官ありの局を目標数ちょうど集める。
 // 実行: ./gradlew :runAiStats
 fun main() {
     runBaseline()
+    runOracleAllies()
 }
 
 private const val DEFAULT_GAMES = 10000
@@ -132,6 +135,51 @@ private fun runBaseline() {
     println("Allies   side winrate : ${pct(n - napWins, n)}")
     println("avg honors  Napoleon  : %.3f / %d".format(napHonorSum.toDouble() / n, HONOR_COUNT))
     println("avg honors  Allies    : %.3f / %d".format(allyHonorSum.toDouble() / n, HONOR_COUNT))
+}
+
+// 連合席のみ副官 ID を透視させ、副官特定を完璧にしたときの連合勝率の上限を測る。
+// バリエーション1 との差分が「特定強化で得られる伸びしろ」の目安になる。
+private fun runOracleAllies() {
+    var declaredSum = 0L
+    var napWins = 0
+    var napHonorSum = 0L
+    var allyHonorSum = 0L
+
+    val io =
+        runSession({ engine ->
+            val oracle = OracleAdjutantContext(engine)
+            Array(PLAYER_COUNT) { HeuristicStrategy(oracle) }
+        }, { g ->
+            declaredSum += g.declared
+            if (g.napWin) napWins++
+            napHonorSum += g.napHonors
+            allyHonorSum += g.allyHonors
+        })
+
+    val n = io.collected
+    println()
+    println("=== Variation 2: allies see adjutant id (oracle) ===")
+    println("games (with adjutant): $n   (solo excluded: ${io.soloSkipped}, seed: $SEED)")
+    if (n == 0) return
+    println("avg declared target   : %.3f".format(declaredSum.toDouble() / n))
+    println("Napoleon side winrate : ${pct(napWins, n)}")
+    println("Allies   side winrate : ${pct(n - napWins, n)}")
+    println("avg honors  Napoleon  : %.3f / %d".format(napHonorSum.toDouble() / n, HONOR_COUNT))
+    println("avg honors  Allies    : %.3f / %d".format(allyHonorSum.toDouble() / n, HONOR_COUNT))
+}
+
+// 連合席 (= 自分がナポレオンでも副官でもない席) が手番のときだけ副官 ID を透視させる AiContext デコレータ。
+// ナポレオン軍席には実際の公開状況をそのまま見せるので、両軍に差がつくのは連合の副官特定能力だけになる。
+private class OracleAdjutantContext(
+    private val engine: GameEngine,
+) : AiContext by engine {
+    override val adjutantIdIfRevealed: Int?
+        get() {
+            val viewer = engine.curPlayer.id
+            val viewerIsAlly = viewer != engine.napoleonId && viewer != engine.adjutantId
+            if (viewerIsAlly) return engine.adjutantId
+            return if (engine.adjutantRevealed) engine.adjutantId else null
+        }
 }
 
 // 配り直し率 = 配り直し回数 / 総配局数。総配局数は完了局 (副官あり + ソロ) と配り直しの和。

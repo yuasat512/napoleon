@@ -71,7 +71,7 @@ class Card private constructor(
 
     fun isLeftBower(trump: Suit): Boolean = this == leftBower(trump)
 
-    fun isRankTwo(): Boolean = rank == Rank.RANK_2
+    fun isRankTwo(): Boolean = rank == Rank.RANK_2 && suit != Suit.NONE
 
     // 役札 (マイティ・ジョーカー・正ジャック・裏ジャック) 判定。
     fun isPowerCard(trump: Suit): Boolean = isMighty() || isJoker() || isRightBower(trump) || isLeftBower(trump)

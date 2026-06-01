@@ -1,4 +1,4 @@
-package napoleon.ai.heuristic.support
+package napoleon.ai.heuristic.log
 
 import napoleon.core.Bid
 import napoleon.core.Suit

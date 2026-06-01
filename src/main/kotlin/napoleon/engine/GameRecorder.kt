@@ -26,7 +26,7 @@ class GameRecorder(
         record =
             GameRecord().apply {
                 bidFirstPlayerId = engine.curPlayer.id
-                pointsBefore = IntArray(PLAYER_COUNT) { engine.players[it].points }
+                pointsBefore = perPlayer { it.points }
             }
         currentTrick = null
     }
@@ -65,7 +65,7 @@ class GameRecorder(
             mightyInTrick = engine.mightyInTrick
             jokerDeclaredSuit = engine.jokerDeclaredSuit
         }
-        prevHonors = IntArray(PLAYER_COUNT) { engine.players[it].honorsTaken }
+        prevHonors = perPlayer { it.honorsTaken }
     }
 
     fun onTrickEnd() {
@@ -81,7 +81,7 @@ class GameRecorder(
     fun onGameEnd() {
         val rec = record!!
         rec.remainingCount = engine.players[0].handCount
-        rec.pointsAfter = IntArray(PLAYER_COUNT) { engine.players[it].points }
+        rec.pointsAfter = perPlayer { it.points }
         if (rec.remainingCount > 0) {
             rec.remainingHands =
                 Array(PLAYER_COUNT) { pid ->
@@ -92,4 +92,6 @@ class GameRecorder(
         writer.appendToFile(logFile, rec)
         record = null
     }
+
+    private fun perPlayer(value: (Player) -> Int) = IntArray(PLAYER_COUNT) { value(engine.players[it]) }
 }

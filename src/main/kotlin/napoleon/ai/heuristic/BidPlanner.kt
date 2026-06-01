@@ -1,6 +1,6 @@
 package napoleon.ai.heuristic
 
-import napoleon.ai.heuristic.support.BidDebugLogger
+import napoleon.ai.heuristic.log.BidDebugLogger
 import napoleon.ai.heuristic.support.HandEvaluator
 import napoleon.core.Bid
 import napoleon.core.Suit

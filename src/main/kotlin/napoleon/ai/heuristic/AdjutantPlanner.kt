@@ -34,9 +34,7 @@ class AdjutantPlanner(
                 Card.of(trump, Rank.RANK_3),
                 Card.of(trump, Rank.RANK_2),
             )
-        val pick =
-            preferences.firstOrNull { it !in have }
-                ?: error("All preference cards are in own hand — physically impossible")
-        return pick
+        return preferences.firstOrNull { it !in have }
+            ?: error("All preference cards are in own hand — physically impossible")
     }
 }

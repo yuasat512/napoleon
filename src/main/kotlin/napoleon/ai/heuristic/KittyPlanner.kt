@@ -1,7 +1,8 @@
 package napoleon.ai.heuristic
 
-import napoleon.ai.heuristic.support.KittyDebugLogger
+import napoleon.ai.heuristic.log.KittyDebugLogger
 import napoleon.core.Card
+import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.core.Rank
 import napoleon.core.Suit
 import napoleon.engine.view.AiContext
@@ -52,7 +53,7 @@ class KittyPlanner(
         if (confident) applyDumpPenalty(scores, trump, adjutant, sideCount)
 
         val sorted = (0 until count).sortedBy { scores[it] }
-        val discard = sorted.take(3).toIntArray()
+        val discard = sorted.take(KITTY_SIZE).toIntArray()
         discard.sort()
         logger.log(discard, confident, voided)
         return discard
@@ -91,10 +92,8 @@ class KittyPlanner(
         sideCount: IntArray,
     ): Int =
         when {
-            c.isJoker() -> 100_000
-            c.isMighty() -> 100_000
-            c.isRightBower(trump) -> 90_000
-            c.isLeftBower(trump) -> 90_000
+            c.isJoker() || c.isMighty() -> 100_000
+            c.isRightBower(trump) || c.isLeftBower(trump) -> 90_000
             c.suit == trump && (c.rank == Rank.RANK_A || c.rank == Rank.RANK_K) -> 70_000 + c.rank.ordinal
             c.suit == trump -> 10_000 + c.rank.ordinal
             c.rank == Rank.RANK_A -> 5_000 + sideCount[c.suit.ordinal]
@@ -167,17 +166,18 @@ class KittyPlanner(
         }
     }
 
-    // 1 トリック目の制圧は構造的に保証される:
-    //   副官あり: AdjutantPlanner の優先順序がチームでの JOKER/MIGHTY 保有を保証する。
-    //   ソロ: 副官カードがキティに来たケース。優先順序が高い JOKER/MIGHTY は既に自分の手札にあるはず。
+    // 1 トリック目を取り切れる見込み。第1トリックは自分 (ナポレオン) のリードなので、自分の手に JOKER か
+    // MIGHTY があれば確実に取り切れ、表向き絵札 (dump) を回収できる。
+    //   ソロ: 副官カードがキティ由来。優先順序が高い JOKER/MIGHTY は既に自分の手札にあるはずで、
     //         error() はその不変条件が崩れていないかを検出する。
+    //   副官あり: チームの JOKER/MIGHTY が副官側にある場合、第1トリックで取れる保証はない (リードスート・
+    //         手番次第で他家のマイティに奪われる)。安全側に倒し、自分が制圧札を持たなければ dump しない。
     private fun firstTrickConfident(soloConfirmed: Boolean): Boolean {
-        if (!soloConfirmed) return true
         val me = context.curPlayer
-        for (i in 0 until me.handCount) {
-            val c = me.hand[i]
-            if (c.isJoker() || c.isMighty()) return true
-        }
-        error("solo confirmed but neither JOKER nor MIGHTY in hand (broken adjutant invariant)")
+        val hasControl = (0 until me.handCount).any { me.hand[it].isJoker() || me.hand[it].isMighty() }
+        if (hasControl) return true
+        if (soloConfirmed) error("solo confirmed but neither JOKER nor MIGHTY in hand (broken adjutant invariant)")
+        // 制圧札 (JOKER/MIGHTY) を持たなければ第1トリックを取り切る保証がないので dump しない。
+        return false
     }
 }

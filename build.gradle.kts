@@ -31,6 +31,13 @@ application {
     mainClass = "napoleon.app.MainKt"
 }
 
+tasks.register<JavaExec>("regenerateImages") {
+    group = "build setup"
+    dependsOn(tasks.testClasses)
+    classpath = sourceSets["test"].runtimeClasspath
+    mainClass = "napoleon.ui.ImageGeneratorKt"
+}
+
 tasks.register<JavaExec>("runRegression") {
     group = "verification"
     dependsOn(tasks.testClasses)
@@ -45,9 +52,18 @@ tasks.register<JavaExec>("runAiStats") {
     mainClass = "napoleon.stats.AiMatchStatsKt"
 }
 
-tasks.register<JavaExec>("regenerateImages") {
-    group = "build setup"
+tasks.register<JavaExec>("runPlayScan") {
+    group = "verification"
     dependsOn(tasks.testClasses)
     classpath = sourceSets["test"].runtimeClasspath
-    mainClass = "napoleon.ui.ImageGeneratorKt"
+    mainClass = "napoleon.stats.PlayBranchScanKt"
+    systemProperties(System.getProperties().mapKeys { it.key.toString() })
+}
+
+tasks.register<JavaExec>("runAbCompare") {
+    group = "verification"
+    dependsOn(tasks.testClasses)
+    classpath = sourceSets["test"].runtimeClasspath
+    mainClass = "napoleon.stats.AiAbCompareKt"
+    systemProperties(System.getProperties().mapKeys { it.key.toString() })
 }

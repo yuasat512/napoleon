@@ -241,9 +241,8 @@ class GameEngine(
         curPlayer.sortHand()
 
         kitty.sortForDisplay()
-        val adjutant = adjutantCard
-        if (adjutant.rank.isHonor) {
-            adjutantRevealed = kitty.cards.any { it == adjutant }
+        if (adjutantCard.rank.isHonor) {
+            adjutantRevealed = kitty.cards.any { it == adjutantCard }
         }
     }
 
@@ -305,27 +304,26 @@ class GameEngine(
     fun resolveTrick(): GameResult? {
         var honorGain = 0
         var topStrength = INVALID_STRENGTH
+
+        fun collectHonor(card: Card) {
+            if (card.rank.isHonor) {
+                honorGain++
+                honorCards[card.honorIndex] = card
+            }
+        }
         for (p in players) {
             val strength = strengthOf(p.playedCard)
             if (topStrength < strength) {
                 topStrength = strength
                 curPlayer = p
             }
-            if (p.playedCard.rank.isHonor) {
-                honorGain++
-                honorCards[p.playedCard.honorIndex] = p.playedCard
-            }
+            collectHonor(p.playedCard)
         }
 
         // 1トリック目の勝者はキティに残った絵札も総取りする。
         // 全員1枚ずつ出した直後なので "handCount == HAND_SIZE - 1" が1トリック目の判定。
         if (curPlayer.handCount == HAND_SIZE - 1) {
-            for (card in kitty.cards) {
-                if (card.rank.isHonor) {
-                    honorGain++
-                    honorCards[card.honorIndex] = card
-                }
-            }
+            for (card in kitty.cards) collectHonor(card)
         }
 
         curPlayer.honorsTaken += honorGain

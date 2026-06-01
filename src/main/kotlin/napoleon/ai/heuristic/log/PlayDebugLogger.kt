@@ -1,5 +1,7 @@
-package napoleon.ai.heuristic.support
+package napoleon.ai.heuristic.log
 
+import napoleon.ai.heuristic.support.RoleInference
+import napoleon.ai.heuristic.support.TrickEvaluator
 import napoleon.core.Card
 import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.core.Suit
@@ -11,12 +13,17 @@ class PlayDebugLogger(
     private val roleInference: RoleInference,
     private val evaluator: TrickEvaluator,
 ) {
+    // route = 固定の戦術ルート (集計キー)、detail = 可変の補助情報 (候補札など)。reason フィールドは
+    // この 2 つを DETAIL_SEP で連結して出力し、PlayBranchScan は DETAIL_SEP の前 (= route.label) だけで
+    // 集計する。detail が空ならルートラベルだけを出す。
     fun log(
         idx: Int,
         legal: List<Int>,
-        reason: String,
+        route: PlayRoute,
+        detail: String = "",
     ) {
         if (!context.debug) return
+        val reason = if (detail.isEmpty()) route.label else "${route.label}$DETAIL_SEP$detail"
         val me = context.curPlayer
         val card = me.hand[idx]
         val trickNo = context.trickHistory.size + 1
@@ -118,5 +125,11 @@ class PlayDebugLogger(
         val ids = (0 until PLAYER_COUNT).filter { it != me.id && context.knownNoJoker[it] }
         if (ids.isEmpty()) return null
         return "noJoker=[${ids.joinToString(",") { "P$it" }}]"
+    }
+
+    companion object {
+        // reason フィールド内で固定ルート (route.label) と可変 detail を区切るトークン。
+        // PlayBranchScan はこのトークンの前だけを集計キーにする。ルートラベル・detail には含めない。
+        const val DETAIL_SEP = " | "
     }
 }
