@@ -309,7 +309,7 @@ class TrickEvaluator(
     // 1 枚刈る (ジョーカーはマイティ以外には勝つので取り切れる)。切り札がスペードのときは敵マイティにジョーカーが
     // 食われ得るため、マイティが味方 (自分の手札 or 副官指定) にあるときだけスペードを指定し、なければ最も手薄なサイド
     // スートに逃がす。「ジョーカー保持かつマイティが味方にない」のは副官に JOKER を指定したナポがキティで JOKER を
-    // 拾った副官兼任のときだけ (AdjutantPlanner の不変条件: ナポ軍は JOKER/MIGHTY のどちらかを必ず保有) なので、この
+    // 拾った副官なしのときだけ (AdjutantPlanner の不変条件: ナポ軍は JOKER/MIGHTY のどちらかを必ず保有) なので、この
     // 逃がしは実質その救済。
     fun chooseJokerLeadSuit(): Suit {
         val trump = context.trump

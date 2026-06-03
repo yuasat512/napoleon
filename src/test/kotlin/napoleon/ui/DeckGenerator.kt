@@ -72,9 +72,8 @@ class DeckGenerator(
         mdc[0].saveImage(File(outputDir, "2_DeckS.png"))
 
         // 文字列描画用スートのアルファマップを RGBA PNG として保存。テキスト中で隣接する全角文字より
-        // 一回り大きく見えないよう、セルは SUIT_S x SUIT_S 維持で内側を 2px 縮めて baseline (下端) に
-        // 揃える。
-        createSuit(mdc[0], SUIT_S, SUIT_S, SUIT_S - 2, SUIT_S - 2, bottomAlign = true)
+        // 一回り大きく見えないよう、セルは SUIT_S x SUIT_S 維持で内側を 2px 縮める。
+        createSuit(mdc[0], SUIT_S, SUIT_S, SUIT_S - 2, SUIT_S - 2)
         mdc[1].setBitmap(SUIT_S * 5 shl LV, SUIT_S shl LV)
         mdc[1].copyRect(0, 0, SUIT_S * 5 shl LV, SUIT_S shl LV, mdc[0], 0, 0)
         mdc[1].setAlpha()
@@ -91,15 +90,12 @@ class DeckGenerator(
     // 5 種のスート文字 ♣♦♥♠★ を innerW x innerH に収まる最大フォントで描画し、cellW x cellH の
     // セル内に配置する (innerW < cellW なら周囲に余白が生まれる)。次いで左右対称化 + 上半分=正立 /
     // 下半分=反転 のアルファ素材を作る。innerW/innerH 省略時はセル全体に詰めて描画する。
-    // bottomAlign=true で縦方向を下端揃えにする (テキスト中の全角文字と並べたとき baseline 寄りに
-    // 見せたい用途。カード絵柄は中央揃えのまま)。
     private fun createSuit(
         mdc: MemDC,
         cellW0: Int,
         cellH0: Int,
         innerW0: Int = cellW0,
         innerH0: Int = cellH0,
-        bottomAlign: Boolean = false,
     ) {
         val szWork = 500
         val tw = cellW0 shl LV
@@ -128,7 +124,7 @@ class DeckGenerator(
                 val w = rc.right - rc.left - 1
                 val h = rc.bottom - rc.top - 1
                 if (w <= iw && h <= ih) {
-                    val yOffset = if (bottomAlign) th - h else (th - h) / 2
+                    val yOffset = (th - h) / 2
                     mdc.bitBlt(i * tw + (tw - w) / 2, yOffset, w, h, work, rc.left, rc.top)
                     mdc.copyRect(i * tw + tw / 2, 0, tw / 2, th, i * tw, 0, MemDC.CopyFlag.CF_X)
                     mdc.copyRect(i * tw, th, tw, th, i * tw, 0, MemDC.CopyFlag.CF_R)

@@ -17,7 +17,7 @@ import napoleon.session.ScoreKeeper
 // 「全く同じ配牌・同じロール割当・同じソロスキップ」になり、席0は kitty/play でのみ分岐する。よって
 // 両 run の席0勝率の差は「同一局面での改良手の純粋な効果」= 席順バイアスを含まないペア比較になる。
 // (席0固定の素の比較には席順バイアスがある。実測でナポ役は約 -1.9pt 席0が不利なので、必ず対照との差で見る。)
-// 副官兼任 (ソロ) の局はノイズとして除外。実行: ./gradlew :runAbCompare  (-Dgames= -Dseed= で上書き可)
+// 副官なし (ソロ) の局はノイズとして除外。実行: ./gradlew :runAbCompare  (-Dgames= -Dseed= で上書き可)
 fun main() {
     val games = System.getProperty("games")?.toIntOrNull() ?: DEFAULT_GAMES
     val seed = System.getProperty("seed")?.toIntOrNull() ?: DEFAULT_SEED

@@ -36,14 +36,14 @@
 
 [docs/game-spec.ja.md](docs/game-spec.ja.md) (日本語) または [docs/game-spec.md](docs/game-spec.md) (English) を参照。
 
-## Contributing
+## コントリビューション
 
 個人プロジェクトのため、Issue や Pull Request の対応は行っておりません。Fork はご自由にどうぞ。
 
 ## アセット
 
-カード絵柄 (`src/main/resources/{1_DeckM,2_DeckS}.png`) は、ChatGPT (OpenAI) で生成した画像 (`src/test/resources/deck-source/`) から派生しています。
+カード絵柄 (`src/main/resources/{1_DeckM,2_DeckS}.png`) は、ChatGPT (OpenAI) で生成した画像 (`src/test/resources/deck-source/`) から派生している。
 
 ## ライセンス
 
-[MIT License](LICENSE)。商用・改変・再配布など自由にどうぞ。第三者ライブラリのライセンスは [NOTICE](NOTICE) を参照。
+[MIT License](LICENSE)。商用・改変・再配布など自由に利用できる。第三者ライブラリのライセンスは [NOTICE](NOTICE) を参照。

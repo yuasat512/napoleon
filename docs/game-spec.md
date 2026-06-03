@@ -24,7 +24,7 @@ A 53-card deck is used: the standard 52 cards plus one Joker.
 ### 2-1. Ranks and Suits
 
 - **Ranks**: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A (13 ranks).
-- **Suits**: Clubs, Diamonds, Hearts, Spades.
+- **Suits**: Clubs, Diamonds, Hearts, Spades (4 suits).
 
 ### 2-2. Honor Cards, Number Cards, and the Joker
 
@@ -166,7 +166,7 @@ Suit strength is as follows.
 
 ### 6-3. Adjutant Designation
 
-Napoleon designates any single card from the 53-card deck as the **adjutant card** and announces it to all players. The holder of the adjutant card becomes the Adjutant.
+Napoleon designates any single card from the 53-card deck as the **adjutant card** and announces it to all players. At this point, the holder of the adjutant card becomes the Adjutant.
 
 The Adjutant must not reveal themselves. The Adjutant becomes known when the adjutant card is played, or when the outcome has been determined.
 

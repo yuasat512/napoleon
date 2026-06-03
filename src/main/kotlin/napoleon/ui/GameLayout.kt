@@ -30,7 +30,11 @@ data class PlayerSlot(
     val areaY: Int,
     val infoX: Int,
     val infoY: Int,
-) : Slot
+) : Slot {
+    // handStep の符号が席の左右を決める。負 = 画面右側で情報欄も右寄せ (infoX 参照)。
+    // 情報欄内の要素 (得点/絵札数/スートマーク) の配置もこれに合わせて左右反転する。
+    val rightAnchored: Boolean get() = handStep < 0
+}
 
 data class KittySlot(
     override val handX: Int,

@@ -6,7 +6,7 @@ object ScoreTable {
     enum class Role { NAPOLEON, ADJUTANT, ALLIES }
 
     // 結果 × 役職の得点増減表。各行は (NAPOLEON, ADJUTANT, ALLIES) の3要素。
-    // 0..2行目は副官あり、3..5行目は副官兼任。視認性のため ktlint を抑止する。
+    // 0..2行目は副官あり、3..5行目は副官なし。視認性のため ktlint を抑止する。
     @Suppress("ktlint")
     private val scores: IntArray = intArrayOf(
         12, 12, -8, // PERFECT_WIN

@@ -54,7 +54,7 @@ When the wait time is `0`, advance to the next step after each animation by **cl
 
 ### 4-2. Bidding
 
-A vertically stacked button dialog. Choose 「パス」 (Pass) or 「(suit) N枚」 (suit + count). Buttons not higher than the most recent bid, or above the maximum bid (Spades 20), are disabled.
+A vertically stacked button dialog. Choose 「パス」 (Pass) or 「(suit) N枚」 (suit + count). Each suit's button shows the lowest count that can be bid in that suit; a suit whose minimum would exceed the maximum bid (Spades 20) is disabled.
 
 - ↑↓ ←→: cycle through enabled buttons
 - Enter / Space: confirm
@@ -108,8 +108,9 @@ Counts are aggregated across 6 patterns (**standard / solo × Perfect Win / Win 
 
 - **Rows (6)**: standard Perfect Win / Win / Loss, solo Perfect Win / Win / Loss
 - **Columns (3)**: Napoleon / Adjutant / Allied army (the Adjutant column shows "-" for solo rows)
+- **Bottom row**: the win rate for each column (role)
 
-The **cumulative view** (Menu → 「成績表」) shows the average score; at **session end**, the current session's score and ranking are shown.
+The summary shows the overall win rate, together with the average score in the **cumulative view** (Menu → 「成績表」) or the session's score and ranking at **session end**.
 
 ## 8. Files
 

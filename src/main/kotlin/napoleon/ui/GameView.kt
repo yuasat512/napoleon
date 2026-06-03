@@ -239,12 +239,11 @@ class GameView(
             }
 
             val slot = playerSlots[engine.curPlayer.id]
-            val honorMaxW = 2 * FS
-            val rc3 = Rect(slot.infoX + infoW - honorMaxW - BOX_PADDING, slot.infoY + BOX_PADDING + FS, honorMaxW, FS)
-            restore(g, rc3)
-            drawInfoRect(g, rc3)
-            val honorStr = "${engine.curPlayer.honorsTaken}枚"
-            glyph.drawString(g, slot.infoX + infoW - glyph.textWidth(honorStr) - BOX_PADDING, rc3.y, honorStr)
+            // 絵札枚数だけを部分再描画する (位置は drawPlayerInfo と共通の honorCell)。
+            val cell = honorCell(slot)
+            restore(g, cell)
+            drawInfoRect(g, cell)
+            drawHonorCount(g, slot, engine.curPlayer.honorsTaken)
 
             drawHonorEstimate(g)
 
@@ -289,16 +288,39 @@ class GameView(
         val nameX = rc.x + (rc.w - nameW) / 2
         val nameY = rc.y + BOX_PADDING
         glyph.drawString(g, nameX, nameY, name)
-        if (engine.bid != null && pid == engine.napoleonId) {
-            renderer.drawSuit(g, nameX + nameW + FS / 2, nameY, engine.trump)
+        val rightX = rc.x + rc.w - FS - BOX_PADDING
+        val leftX = rc.x + BOX_PADDING
+        val primaryX = if (slot.rightAnchored) leftX else rightX
+        val oppositeX = if (slot.rightAnchored) rightX else leftX
+        val isNapoleon = engine.bid != null && pid == engine.napoleonId
+        val isAdjutant = showAdjutant && pid == engine.adjutantId
+        if (isNapoleon) {
+            renderer.drawSuit(g, primaryX, nameY, engine.trump)
         }
-        if (showAdjutant && pid == engine.adjutantId) {
-            renderer.drawSuit(g, nameX - FS - FS / 2, nameY, Suit.NONE)
+        if (isAdjutant) {
+            renderer.drawSuit(g, if (isNapoleon) oppositeX else primaryX, nameY, Suit.NONE)
         }
         g.color = if (pl.points < 0) NEG_COL else NUM_COL
-        drawText(g, rc.x, rc.y + FS, 0, "${pl.points}")
+        drawText(g, rc.x, rc.y + FS, if (slot.rightAnchored) rc.w else 0, "${pl.points}")
         g.color = TXT_COL
-        drawText(g, rc.x, rc.y + FS, rc.w, "${pl.honorsTaken}枚")
+        drawHonorCount(g, slot, pl.honorsTaken)
+    }
+
+    // 絵札枚数 "N枚" (最大 "20枚"=2*FS幅) の部分再描画 (onTrick) で消去する矩形。
+    // drawHonorCount の寄せ方向と揃えるため、右寄せ席は左端・それ以外は右端にアンカーする。
+    private fun honorCell(slot: PlayerSlot): Rect {
+        val w = 2 * FS
+        val x = if (slot.rightAnchored) slot.infoX + BOX_PADDING else slot.infoX + infoW - w - BOX_PADDING
+        return Rect(x, slot.infoY + BOX_PADDING + FS, w, FS)
+    }
+
+    private fun drawHonorCount(
+        g: Graphics2D,
+        slot: PlayerSlot,
+        honorsTaken: Int,
+    ) {
+        // 得点と逆側に寄せる (右寄せ席は左、それ以外は右)。drawText の寄せロジックを再利用。
+        drawText(g, slot.infoX, slot.infoY + FS, if (slot.rightAnchored) 0 else infoW, "${honorsTaken}枚")
     }
 
     fun reset() {
