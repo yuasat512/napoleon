@@ -2,16 +2,14 @@ package napoleon.engine
 
 import napoleon.core.Bid
 import napoleon.core.Card
-import napoleon.core.GameRules.HAND_SIZE
-import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.engine.view.SelfPlayerView
 
 class Player(
     override val id: Int,
 ) : SelfPlayerView {
-    // ナポレオンがキティ交換中に一時的に持つ 13 枚 (10 + KITTY_SIZE) を収容できるサイズ。
-    override val hand = Array(HAND_SIZE + KITTY_SIZE) { Card.JOKER }
-    override var handCount = 0
+    // ナポレオンはキティ交換中だけ一時的に HAND_SIZE + KITTY_SIZE (13) 枚に膨らむ。
+    override val hand = mutableListOf<Card>()
+    override val handCount get() = hand.size
     override var honorsTaken = 0
 
     override var playedCard: Card = Card.JOKER
@@ -20,6 +18,6 @@ class Player(
     var points = 0
 
     fun sortHand() {
-        hand.sort(0, handCount)
+        hand.sort()
     }
 }

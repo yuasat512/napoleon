@@ -12,21 +12,18 @@ import napoleon.engine.view.AiContext
 // 入れ替えも安全。各フェーズの判断はそれぞれの Planner に委譲し、本クラスは薄いファサードに留める。
 class HeuristicStrategy(
     context: AiContext,
-    // 既定 BASELINE = 現行の出荷挙動 (本番/GUI/回帰)。CANDIDATE は A/B ハーネス専用の実験挙動セレクタ。
-    // 現在アクティブな実験はない。実験を足すときは variant が PlayPlanner → 各 Planner / RoleInference に渡る。
-    variant: HeuristicVariant = HeuristicVariant.BASELINE,
 ) : PlayerStrategy {
     private val handEvaluator = HandEvaluator(context)
     private val bidPlanner = BidPlanner(context, handEvaluator)
     private val adjutantPlanner = AdjutantPlanner(context)
     private val kittyPlanner = KittyPlanner(context)
-    private val playPlanner = PlayPlanner(context, variant)
+    private val playPlanner = PlayPlanner(context)
 
     override fun chooseBid(): Bid? = bidPlanner.chooseBid()
 
     override fun chooseAdjutant(): Card = adjutantPlanner.chooseAdjutant()
 
-    override fun chooseKittySwap(): IntArray = kittyPlanner.chooseKittySwap()
+    override fun chooseKittySwap(): List<Int> = kittyPlanner.chooseKittySwap()
 
     override fun choosePlay(): Pair<Int, Suit?> = playPlanner.choosePlay()
 }

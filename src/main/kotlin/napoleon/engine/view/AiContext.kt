@@ -25,7 +25,7 @@ interface AiContext {
     val jokerPlayed: Boolean
 
     val curPlayer: SelfPlayerView
-    val publicPlayers: Array<out PublicPlayerView>
+    val publicPlayers: List<PublicPlayerView>
 
     val trickHistory: List<ResolvedTrick>
 
@@ -37,7 +37,7 @@ interface AiContext {
     val kittyHonorCards: List<Card>
 
     // 各プレイヤーが追従不能 (= 該当スートを持たない) と確定したスート集合。playerId でインデックス。
-    val knownVoids: Array<Set<Suit>>
+    val knownVoids: List<Set<Suit>>
 
     // ジョーカー請求 (♣3 リード) でジョーカーを出さなかったことから、ジョーカー非保持と確定したプレイヤー。
     // リードした本人は対象外 (自分でジョーカーを持っていた可能性が残る)。

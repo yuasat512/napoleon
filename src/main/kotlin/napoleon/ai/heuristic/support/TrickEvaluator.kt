@@ -48,7 +48,7 @@ class TrickEvaluator(
             // よろめき (♥Q) が既に出ていればマイティはトリックを取れない。
             val me = context.curPlayer
             for (p in context.publicPlayers) {
-                if (p.id != me.id && p.handCount < me.handCount && p.playedCard.isSlip()) return false
+                if (p.id != me.id && p.handCount < me.hand.size && p.playedCard.isSlip()) return false
             }
         }
         return context.strengthOf(candidate) > leaderStrength
@@ -60,7 +60,7 @@ class TrickEvaluator(
         var bestStrength = Int.MIN_VALUE
         var found = false
         for (p in context.publicPlayers) {
-            if (p.handCount < me.handCount) {
+            if (p.handCount < me.hand.size) {
                 val s = context.strengthOf(p.playedCard)
                 if (!found || s > bestStrength) {
                     bestStrength = s
@@ -96,7 +96,7 @@ class TrickEvaluator(
         var bestStrength = CardStrength.evaluate(card, trump, leadSuit, mighty, same)
         for (p in context.publicPlayers) {
             if (p.id == me.id) continue
-            if (p.handCount < me.handCount) {
+            if (p.handCount < me.hand.size) {
                 val s = CardStrength.evaluate(p.playedCard, trump, leadSuit, mighty, same)
                 if (s > bestStrength) {
                     bestStrength = s
@@ -111,7 +111,7 @@ class TrickEvaluator(
         val me = context.curPlayer
         var n = 0
         for (p in context.publicPlayers) {
-            if (p.handCount < me.handCount && p.playedCard.rank.isHonor) n++
+            if (p.handCount < me.hand.size && p.playedCard.rank.isHonor) n++
         }
         // 1 トリック目はキティに残った絵札も「このトリックを取れば獲得できる絵札」に含める。
         if (context.trickHistory.isEmpty()) n += context.kittyHonorCards.size
@@ -172,15 +172,14 @@ class TrickEvaluator(
         val mightyInTrick = context.mightyInTrick || card.isMighty()
 
         // このトリックでまだ着手していない後続席。誰もいなければ (= 自分が最終手番) リーダー超え確認済みなので取り切る。
-        val remaining = context.publicPlayers.filter { it.id != me.id && it.handCount == me.handCount }
+        val remaining = context.publicPlayers.filter { it.id != me.id && it.handCount == me.hand.size }
         if (remaining.isEmpty()) return true
 
         val excluded = context.seenCards()
 
         // 到達し得るセイム状態。後続が台札スート void になれば崩れる (same=false は後続がいる限り常に到達可能)。
         // 自札がセイムを維持する札 (sameActiveAfter) なら、後続が全員追従して成立する世界 (same=true) も到達可能。
-        val sameStates = mutableListOf(false)
-        if (sameActiveAfter(card)) sameStates += true
+        val sameStates = if (sameActiveAfter(card)) listOf(false, true) else listOf(false)
 
         for (same in sameStates) {
             val myStrength = CardStrength.evaluate(card, trump, leadSuit, mightyInTrick, same)
@@ -188,7 +187,7 @@ class TrickEvaluator(
             // 勝っていても、後続の void でセイムが崩れた世界では既出のリーダー札に逆転され得る (台札スートの 2 で頻出)。
             // 先着札は同強度なら相手が勝つので >= で弾く。
             for (p in context.publicPlayers) {
-                if (p.handCount >= me.handCount) continue
+                if (p.handCount >= me.hand.size) continue
                 val played = CardStrength.evaluate(p.playedCard, trump, leadSuit, mightyInTrick, same)
                 if (played >= myStrength) return false
             }
@@ -320,7 +319,7 @@ class TrickEvaluator(
 
     private fun isMightyOnOurSide(): Boolean {
         val me = context.curPlayer
-        if ((0 until me.handCount).any { me.hand[it].isMighty() }) return true
+        if (me.hand.any { it.isMighty() }) return true
         return context.adjutantCard.isMighty()
     }
 
@@ -329,7 +328,7 @@ class TrickEvaluator(
         val trump = context.trump
         return Suit.realEntries
             .filter { it != trump }
-            .minByOrNull { s -> (0 until me.handCount).count { me.hand[it].suit == s } }
+            .minByOrNull { s -> me.hand.count { it.suit == s } }
             ?: error("trump excludes every real suit — impossible")
     }
 }

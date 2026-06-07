@@ -20,8 +20,7 @@ class RandomStrategy(
         var bestSuit = Suit.CLUBS
         for (suit in Suit.realEntries) {
             val score =
-                (0 until HAND_SIZE).sumOf { i ->
-                    val card = context.curPlayer.hand[i]
+                context.curPlayer.hand.sumOf { card ->
                     if (card.isPowerCard(suit)) {
                         20
                     } else if (card.suit == suit) {
@@ -69,18 +68,16 @@ class RandomStrategy(
             )
         val hand = context.curPlayer.hand
         return preferences.firstOrNull { card ->
-            (0 until HAND_SIZE).none { hand[it] == card }
+            card !in hand
         } ?: error("All adjutant candidates are in own hand")
     }
 
-    override fun chooseKittySwap(): IntArray {
-        val array = Array(HAND_SIZE + KITTY_SIZE) { it }
-        array.shuffle(rng)
-        return array.take(KITTY_SIZE).toIntArray()
-    }
+    override fun chooseKittySwap(): List<Int> = (0 until HAND_SIZE + KITTY_SIZE).shuffled(rng).take(KITTY_SIZE)
 
     override fun choosePlay(): Pair<Int, Suit?> {
-        val playable = (0 until context.curPlayer.handCount).filter { context.canFollow(it) }
+        val playable =
+            context.curPlayer.hand.indices
+                .filter { context.canFollow(it) }
         val idx = playable[rng.nextInt(playable.size)]
         val suit = if (context.requiresJokerSuitChoice(idx)) Suit.realEntries[rng.nextInt(Suit.realEntries.size)] else null
         return idx to suit

@@ -20,9 +20,7 @@ class RoleInference(
             return Role.ADJUTANT
         }
         val adj = context.adjutantCard
-        for (i in 0 until me.handCount) {
-            if (me.hand[i] == adj) return Role.ADJUTANT
-        }
+        if (adj in me.hand) return Role.ADJUTANT
         return Role.ALLY
     }
 
@@ -42,19 +40,14 @@ class RoleInference(
         val napId = context.napoleonId
         if (role == Role.NAPOLEON) {
             val adj = context.adjutantCard
-            val adjInHand = (0 until viewer.handCount).any { viewer.hand[it] == adj }
+            val adjInHand = adj in viewer.hand
             val adjInKitty = context.napoleonKittyDiscards!!.contains(adj)
             if (adjInHand || adjInKitty) return listOf(napId)
         }
 
         // 連合軍視点では napId (副官なし) も候補に残す。ナポレオン視点では napId == viewer.id の
         // ため自動的に除外され、副官なし確定は上で処理済み。
-        val filtered = mutableListOf<Int>()
-        for (pid in 0 until PLAYER_COUNT) {
-            if (pid == viewer.id) continue
-            if (hypothesisConsistent(pid)) filtered += pid
-        }
-        return filtered
+        return (0 until PLAYER_COUNT).filter { it != viewer.id && hypothesisConsistent(it) }
     }
 
     fun isLikelyTeammate(pid: Int): Boolean {

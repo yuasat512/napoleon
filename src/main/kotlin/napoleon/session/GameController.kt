@@ -11,7 +11,7 @@ import napoleon.io.PlayerIO
 // transition(...) は UI が進行を中断したとき false を返し、ユーザ入力後に UI が step() を呼んで再開する。
 class GameController(
     private val engine: GameEngine,
-    private val strategies: Array<PlayerStrategy>,
+    private val strategies: List<PlayerStrategy>,
     private val scoreKeeper: ScoreKeeper,
     private val recorder: GameRecorder?,
     private val io: PlayerIO,

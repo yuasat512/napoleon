@@ -57,7 +57,7 @@ class GameFrame(
 ) : JFrame("Napoleon"),
     PlayerIO {
     private val engine = GameEngine(config)
-    private val strategies: Array<PlayerStrategy> = Array(PLAYER_COUNT) { HeuristicStrategy(engine) }
+    private val strategies: List<PlayerStrategy> = List(PLAYER_COUNT) { HeuristicStrategy(engine) }
     private val view = GameView(engine, config)
     private val recorder = if (config.gameLog) GameRecorder(engine) else null
     private val scoreKeeper = ScoreKeeper(engine.players, config, recordStore)
@@ -282,10 +282,10 @@ class GameFrame(
 
     override fun promptAdjutant(): Card = showAdjutantDialog(this, engine.trump)
 
-    override fun promptKittySwap(): IntArray? {
+    override fun promptKittySwap(): List<Int>? {
         if (inputReady) {
             inputReady = false
-            return selectedCards.copyOf()
+            return selectedCards.toList()
         }
         selectedCards.fill(INVALID_INDEX)
         handleHover()

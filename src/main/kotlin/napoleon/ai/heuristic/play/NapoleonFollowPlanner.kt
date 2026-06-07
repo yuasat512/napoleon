@@ -165,7 +165,8 @@ class NapoleonFollowPlanner(
         val adj = context.adjutantCard
         if (!adj.isHighRoleCard(context.trump)) return candidates
         val me = context.curPlayer
-        val adjIdx = (0 until me.handCount).firstOrNull { me.hand[it] == adj } ?: return candidates
+        val adjIdx = me.hand.indexOf(adj)
+        if (adjIdx < 0) return candidates
         val filtered = candidates.filter { it != adjIdx }
         return filtered.ifEmpty { candidates }
     }

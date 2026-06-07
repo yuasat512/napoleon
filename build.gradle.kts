@@ -57,13 +57,11 @@ tasks.register<JavaExec>("runPlayScan") {
     dependsOn(tasks.testClasses)
     classpath = sourceSets["test"].runtimeClasspath
     mainClass = "napoleon.stats.PlayBranchScanKt"
-    systemProperties(System.getProperties().mapKeys { it.key.toString() })
 }
 
-tasks.register<JavaExec>("runAbCompare") {
+tasks.register<JavaExec>("runTrickStats") {
     group = "verification"
     dependsOn(tasks.testClasses)
     classpath = sourceSets["test"].runtimeClasspath
-    mainClass = "napoleon.stats.AiAbCompareKt"
-    systemProperties(System.getProperties().mapKeys { it.key.toString() })
+    mainClass = "napoleon.stats.TrickWinnerStatsKt"
 }

@@ -14,7 +14,7 @@ interface PlayerIO {
 
     fun promptAdjutant(): Card = error("No user input available")
 
-    fun promptKittySwap(): IntArray? = error("No user input available")
+    fun promptKittySwap(): List<Int>? = error("No user input available")
 
     fun promptPlay(): Pair<Int, Suit?>? = error("No user input available")
 

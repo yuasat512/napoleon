@@ -28,7 +28,7 @@ class PlayDebugLogger(
         val card = me.hand[idx]
         val trickNo = context.trickHistory.size + 1
         val lead = if (context.leadSuit == Suit.NONE) "-" else context.leadSuit.shortName
-        val hand = (0 until me.handCount).joinToString(",") { "${me.hand[it]}" }
+        val hand = me.hand.joinToString(",") { "$it" }
         val legalStr = fmtIdxList(legal)
 
         val flags =
@@ -77,7 +77,7 @@ class PlayDebugLogger(
         val leaderId = evaluator.determineCurrentLeader().id
         val played =
             context.publicPlayers
-                .filter { it.handCount < me.handCount }
+                .filter { it.handCount < me.hand.size }
                 .joinToString(",") { p ->
                     if (p.id == leaderId) {
                         val s = context.strengthOf(p.playedCard)

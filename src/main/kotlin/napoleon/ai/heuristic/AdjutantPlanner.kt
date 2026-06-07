@@ -13,8 +13,7 @@ class AdjutantPlanner(
     fun chooseAdjutant(): Card {
         val trump = context.trump
         val me = context.curPlayer
-        val have = HashSet<Card>()
-        for (i in 0 until me.handCount) have += me.hand[i]
+        val have = me.hand.toSet()
         val preferences =
             listOf(
                 Card.JOKER,

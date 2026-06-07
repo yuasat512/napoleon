@@ -45,7 +45,7 @@ data class KittySlot(
 ) : Slot
 
 class GameLayout {
-    val playerSlots: Array<PlayerSlot>
+    val playerSlots: List<PlayerSlot>
     val kittyCenterSlot: KittySlot
     val kittyPileSlot: KittySlot
     val infoRect: Rect
@@ -107,7 +107,7 @@ class GameLayout {
         }
 
         playerSlots =
-            arrayOf(
+            listOf(
                 playerSlot(
                     (CANVAS_W - (CARD_W + 9 * HAND_STEP_LARGE)) / 2,
                     CANVAS_H - CARD_H - GAP,

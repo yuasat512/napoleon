@@ -10,11 +10,14 @@ import java.io.PrintStream
 // block 実行中だけ System.out を横取りし、改行区切りの 1 行ごとに onLine を呼ぶ。巨大なログを
 // メモリやファイルに残さず行ごとに数えて捨てるためのもの。block 終了後は UTF-8 の実 stdout に戻す
 // ので、日本語のレポートはそのまま println で出力できる (Windows の SJIS 文字化けを回避)。
+// Windows の既定 stdout は SJIS で日本語が化けるため、UTF-8 で書く実 stdout を返す。
+fun utf8Stdout(): PrintStream = PrintStream(FileOutputStream(FileDescriptor.out), true, "UTF-8")
+
 fun captureStdoutLines(
     onLine: (String) -> Unit,
     block: () -> Unit,
 ) {
-    val realOut = PrintStream(FileOutputStream(FileDescriptor.out), true, "UTF-8")
+    val realOut = utf8Stdout()
     System.setOut(PrintStream(LineTallyStream(onLine), true, "UTF-8"))
     try {
         block()

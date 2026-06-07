@@ -24,15 +24,15 @@ import kotlin.random.Random
 class GameEngine(
     val config: Config,
 ) : AiContext {
-    val players = Array(PLAYER_COUNT) { Player(it) }
+    val players = List(PLAYER_COUNT) { Player(it) }
     val kitty = Kitty()
 
     // リプレイ/テストでデッキを差し込むための注入口。次の dealCards で消費・クリアされる。
-    var fixedDeck: Array<Card>? = null
+    var fixedDeck: List<Card>? = null
 
     private val rng = if (config.seed != 0) Random(config.seed.toLong()) else Random.Default
 
-    override val publicPlayers: Array<out PublicPlayerView> get() = players
+    override val publicPlayers: List<PublicPlayerView> get() = players
 
     override var curPlayer: Player = players[0]
         private set
@@ -84,13 +84,13 @@ class GameEngine(
 
     // 進行中・完了済トリックから派生する推論キャッシュ。AI 呼び出しのたび参照され、
     // カードプレイ・トリック解決・配り直しの各タイミングで無効化する。
-    private var knownVoidsCache: Array<Set<Suit>>? = null
+    private var knownVoidsCache: List<Set<Suit>>? = null
     private var knownNoJokerCache: BooleanArray? = null
 
-    override val knownVoids: Array<Set<Suit>>
+    override val knownVoids: List<Set<Suit>>
         get() {
             knownVoidsCache?.let { return it }
-            val result = Array(PLAYER_COUNT) { mutableSetOf<Suit>() }
+            val result = List(PLAYER_COUNT) { mutableSetOf<Suit>() }
             forEachTrick { plays, jokerDeclared ->
                 if (plays.isEmpty()) return@forEachTrick
                 val leadCard = plays[0].card
@@ -106,8 +106,7 @@ class GameEngine(
                     if (played.suit != leadSuit) result[plays[i].playerId] += leadSuit
                 }
             }
-            @Suppress("UNCHECKED_CAST")
-            return (result as Array<Set<Suit>>).also { knownVoidsCache = it }
+            return result.also { knownVoidsCache = it }
         }
 
     override val debug: Boolean get() = config.debug
@@ -143,7 +142,7 @@ class GameEngine(
     }
 
     fun dealCards() {
-        val deck = fixedDeck?.also { fixedDeck = null } ?: Card.ALL.toTypedArray().also { it.shuffle(rng) }
+        val deck = fixedDeck?.also { fixedDeck = null } ?: Card.ALL.toMutableList().also { it.shuffle(rng) }
 
         resetGameState()
 
@@ -151,8 +150,8 @@ class GameEngine(
             players[i].apply {
                 bid = null
                 honorsTaken = 0
-                handCount = HAND_SIZE
-                deck.copyInto(hand, 0, i * HAND_SIZE, (i + 1) * HAND_SIZE)
+                hand.clear()
+                hand.addAll(deck.subList(i * HAND_SIZE, (i + 1) * HAND_SIZE))
                 sortHand()
             }
         }
@@ -200,44 +199,34 @@ class GameEngine(
         adjutantCard = card
         adjutantId =
             players
-                .firstOrNull { p -> (0 until HAND_SIZE).any { p.hand[it] == card } }
+                .firstOrNull { p -> card in p.hand }
                 ?.id ?: curPlayer.id
     }
 
     fun drawKitty() {
-        kitty.cards.copyInto(curPlayer.hand, HAND_SIZE, 0, KITTY_SIZE)
-        curPlayer.handCount += KITTY_SIZE
+        curPlayer.hand.addAll(kitty.cards)
     }
 
-    fun swapKitty(discardIndices: IntArray) {
+    fun swapKitty(discardIndices: List<Int>) {
         check(discardIndices.size == KITTY_SIZE) {
-            "kitty swap size must be $KITTY_SIZE: got ${discardIndices.size} (${discardIndices.toList()})"
+            "kitty swap size must be $KITTY_SIZE: got ${discardIndices.size} ($discardIndices)"
         }
         for (i in discardIndices) {
             check(i in 0 until curPlayer.handCount) {
-                "kitty swap index out of range [0..${curPlayer.handCount - 1}]: $i (${discardIndices.toList()})"
+                "kitty swap index out of range [0..${curPlayer.handCount - 1}]: $i ($discardIndices)"
             }
         }
-        check(discardIndices.toHashSet().size == discardIndices.size) {
-            "kitty swap has duplicate indices: ${discardIndices.toList()}"
+        check(discardIndices.toSet().size == discardIndices.size) {
+            "kitty swap has duplicate indices: $discardIndices"
         }
-        val sorted = discardIndices.sortedArray()
         val hand = curPlayer.hand
+        val sorted = discardIndices.sorted()
 
-        val returned = Array(KITTY_SIZE) { hand[sorted[it]] }
+        val returned = sorted.map { hand[it] }
         kitty.takeBack(returned)
-        napoleonDiscards = returned.toList()
+        napoleonDiscards = returned
 
-        var keepCursor = 0
-        var discardCursor = 0
-        for (src in 0 until HAND_SIZE + KITTY_SIZE) {
-            if (discardCursor < KITTY_SIZE && sorted[discardCursor] == src) {
-                discardCursor++
-            } else {
-                hand[keepCursor++] = hand[src]
-            }
-        }
-        curPlayer.handCount = HAND_SIZE
+        for (i in sorted.asReversed()) hand.removeAt(i)
         curPlayer.sortHand()
 
         kitty.sortForDisplay()
@@ -267,8 +256,7 @@ class GameEngine(
             }
         }
         val card = curPlayer.hand[handIndex]
-        curPlayer.hand.copyInto(curPlayer.hand, handIndex, handIndex + 1, curPlayer.handCount)
-        curPlayer.handCount--
+        curPlayer.hand.removeAt(handIndex)
         curPlayer.playedCard = card
         currentTrickPlays += TrickPlay(curPlayer.id, card)
 
@@ -377,9 +365,9 @@ class GameEngine(
         if (trickTurn == 0 || card.isJoker()) return true
         // ジョーカー請求 (♣3 リード) ではジョーカー保持者は強制的にジョーカーを出す必要がある。
         // 手札はソート済みなので、ジョーカーを持つなら必ず末尾に位置する。
-        if (jokerCallActive && cp.hand[cp.handCount - 1].isJoker()) return false
+        if (jokerCallActive && cp.hand.last().isJoker()) return false
         if (card.suit == leadSuit) return true
-        return (0 until cp.handCount).none { cp.hand[it].suit == leadSuit }
+        return cp.hand.none { it.suit == leadSuit }
     }
 
     fun isTrickLeader(pid: Int): Boolean {

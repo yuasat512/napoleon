@@ -16,19 +16,18 @@ import napoleon.engine.view.AiContext
 
 class PlayPlanner(
     private val context: AiContext,
-    private val variant: HeuristicVariant,
 ) {
     private val roleInference = RoleInference(context)
     private val evaluator = TrickEvaluator(context, roleInference)
     private val logger = PlayDebugLogger(context, roleInference, evaluator)
-    private val napoleonLeadPlanner = NapoleonLeadPlanner(context, roleInference, evaluator, logger, variant)
-    private val allyLeadPlanner = AllyLeadPlanner(context, roleInference, evaluator, logger, variant)
+    private val napoleonLeadPlanner = NapoleonLeadPlanner(context, roleInference, evaluator, logger)
+    private val allyLeadPlanner = AllyLeadPlanner(context, roleInference, evaluator, logger)
     private val napoleonFollowPlanner = NapoleonFollowPlanner(context, roleInference, evaluator, logger)
     private val allyFollowPlanner = AllyFollowPlanner(context, roleInference, evaluator, logger)
 
     fun choosePlay(): Pair<Int, Suit?> {
         val me = context.curPlayer
-        val legal = (0 until me.handCount).filter { context.canFollow(it) }
+        val legal = me.hand.indices.filter { context.canFollow(it) }
         val idx =
             when {
                 legal.size == 1 -> legal[0].also { logger.log(it, legal, PlayRoute.FORCED_SINGLE) }

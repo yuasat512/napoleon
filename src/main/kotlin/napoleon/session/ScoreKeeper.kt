@@ -8,7 +8,7 @@ import napoleon.core.ScoreTable
 import napoleon.engine.Player
 
 class ScoreKeeper(
-    private val players: Array<Player>,
+    private val players: List<Player>,
     private val config: Config,
     private val recordStore: RecordStore?,
 ) {

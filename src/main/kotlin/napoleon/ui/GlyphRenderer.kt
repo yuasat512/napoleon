@@ -27,7 +27,7 @@ private const val FULL_CHARS =
 class GlyphRenderer {
     private val baseAtlas: BufferedImage =
         ImageIO.read(javaClass.classLoader.getResourceAsStream("5_Glyph.png"))
-    private val tintCache = HashMap<Int, BufferedImage>()
+    private val tintCache = mutableMapOf<Int, BufferedImage>()
 
     fun charWidth(c: Char): Int = if (c.code <= 0x7F) HALF_W else FULL_W
 

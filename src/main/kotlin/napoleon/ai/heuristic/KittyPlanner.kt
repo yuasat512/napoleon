@@ -33,53 +33,39 @@ class KittyPlanner(
         private const val VOID = 2_000
     }
 
-    fun chooseKittySwap(): IntArray {
+    fun chooseKittySwap(): List<Int> {
         val me = context.curPlayer
         val trump = context.trump
-        val count = me.handCount
         val adjutant = context.adjutantCard
 
-        val sideCount = countSideSuits(trump, count)
-        val soloConfirmed = (0 until count).any { me.hand[it] == adjutant }
-        val trumpCount = countTrumps(trump, count)
+        val sideCount = countSideSuits(trump)
+        val soloConfirmed = adjutant in me.hand
+        val trumpCount = countTrumps(trump)
 
-        val scores =
-            IntArray(count) { i ->
-                baseScore(me.hand[i], trump, sideCount)
-            }
+        val scores = IntArray(me.hand.size) { i -> baseScore(me.hand[i], trump, sideCount) }
 
         val voided = applyVoidBonus(scores, trump, trumpCount, adjutant, soloConfirmed)
         val confident = firstTrickConfident(soloConfirmed)
         if (confident) applyDumpPenalty(scores, trump, adjutant, sideCount)
 
-        val sorted = (0 until count).sortedBy { scores[it] }
-        val discard = sorted.take(KITTY_SIZE).toIntArray()
-        discard.sort()
+        val discard =
+            me.hand.indices
+                .sortedBy { scores[it] }
+                .take(KITTY_SIZE)
+                .sorted()
         logger.log(discard, confident, voided)
         return discard
     }
 
-    private fun countTrumps(
-        trump: Suit,
-        count: Int,
-    ): Int {
+    private fun countTrumps(trump: Suit): Int {
         val me = context.curPlayer
-        var n = 0
-        for (i in 0 until count) {
-            val c = me.hand[i]
-            if (c.suit == trump || c.isMighty()) n++
-        }
-        return n
+        return me.hand.count { it.suit == trump || it.isMighty() }
     }
 
-    private fun countSideSuits(
-        trump: Suit,
-        count: Int,
-    ): IntArray {
+    private fun countSideSuits(trump: Suit): IntArray {
         val me = context.curPlayer
         val result = IntArray(Suit.realEntries.size)
-        for (i in 0 until count) {
-            val c = me.hand[i]
+        for (c in me.hand) {
             if (c.suit == Suit.NONE || c.suit == trump) continue
             result[c.suit.ordinal]++
         }
@@ -124,10 +110,9 @@ class KittyPlanner(
         val maxSize = if (soloConfirmed) 4 else 3
         val voided = mutableListOf<Suit>()
         val me = context.curPlayer
-        val count = me.handCount
         for (suit in Suit.realEntries) {
             if (suit == trump) continue
-            val inSuit = (0 until count).filter { me.hand[it].suit == suit }
+            val inSuit = me.hand.indices.filter { me.hand[it].suit == suit }
             if (inSuit.isEmpty() || inSuit.size > maxSize) continue
             if (inSuit.any { me.hand[it].rank == Rank.RANK_A }) continue
             val voidable =
@@ -150,8 +135,7 @@ class KittyPlanner(
         sideCount: IntArray,
     ) {
         val me = context.curPlayer
-        val count = me.handCount
-        for (i in 0 until count) {
+        for (i in me.hand.indices) {
             val c = me.hand[i]
             if (c == adjutant) continue
             if (c.suit == Suit.NONE || c.suit == trump) continue
@@ -174,7 +158,7 @@ class KittyPlanner(
     //         手番次第で他家のマイティに奪われる)。安全側に倒し、自分が制圧札を持たなければ dump しない。
     private fun firstTrickConfident(soloConfirmed: Boolean): Boolean {
         val me = context.curPlayer
-        val hasControl = (0 until me.handCount).any { me.hand[it].isJoker() || me.hand[it].isMighty() }
+        val hasControl = me.hand.any { it.isJoker() || it.isMighty() }
         if (hasControl) return true
         if (soloConfirmed) error("solo confirmed but neither JOKER nor MIGHTY in hand (broken adjutant invariant)")
         // 制圧札 (JOKER/MIGHTY) を持たなければ第1トリックを取り切る保証がないので dump しない。

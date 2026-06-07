@@ -27,21 +27,16 @@ class ReplayStrategy(
 
     override fun chooseAdjutant(): Card = record.adjutantCard
 
-    override fun chooseKittySwap(): IntArray {
+    override fun chooseKittySwap(): List<Int> {
         val hand = context.curPlayer.hand
-        val count = context.curPlayer.handCount
-        return record.discardedCards
-            .map { target ->
-                (0 until count).first { hand[it] == target }
-            }.toIntArray()
+        return record.discardedCards.map { target -> hand.indexOf(target) }
     }
 
     override fun choosePlay(): Pair<Int, Suit?> {
         val trick = record.tricks[trickIdx++]
         val card = trick.cards[myId]!!
         val hand = context.curPlayer.hand
-        val count = context.curPlayer.handCount
-        val handIdx = (0 until count).first { hand[it] == card }
+        val handIdx = hand.indexOf(card)
         val jokerSuit = if (card.isJoker() && trick.leadId == myId) trick.jokerDeclaredSuit else null
         return handIdx to jokerSuit
     }

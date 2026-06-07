@@ -38,7 +38,7 @@ abstract class PlayFollowPlanner(
         val me = context.curPlayer
         for (p in context.publicPlayers) {
             if (p.id == me.id) continue
-            if (p.handCount < me.handCount) {
+            if (p.handCount < me.hand.size) {
                 if (p.playedCard.isPowerCard(context.trump)) return null
             }
         }
@@ -81,7 +81,7 @@ abstract class PlayFollowPlanner(
         val me = context.curPlayer
         for (p in context.publicPlayers) {
             if (p.id == me.id) continue
-            if (p.handCount < me.handCount) continue
+            if (p.handCount < me.hand.size) continue
             if (!roleInference.isLikelyTeammate(p.id)) return false
         }
         return true

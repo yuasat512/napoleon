@@ -34,7 +34,7 @@ fun main() {
                 this.seed = seed
             }
         val engine = GameEngine(config)
-        val strategies: Array<PlayerStrategy> = Array(PLAYER_COUNT) { HeuristicStrategy(engine) }
+        val strategies: List<PlayerStrategy> = List(PLAYER_COUNT) { HeuristicStrategy(engine) }
         val scoreKeeper = ScoreKeeper(engine.players, config, null)
         val controller = GameController(engine, strategies, scoreKeeper, null, object : PlayerIO {})
         controller.start()
@@ -86,7 +86,7 @@ private class PlayTally {
 
 // 1 フェーズ (リード or フォロー) の集計。ラベル × team の件数表を持ち、レポート 1 ブロックを描く。
 private class PhaseCounts {
-    private val counts = LinkedHashMap<String, IntArray>()
+    private val counts = linkedMapOf<String, IntArray>()
     private var napTotal = 0
     private var allyTotal = 0
 
@@ -147,16 +147,4 @@ private class PhaseCounts {
         n: Int,
         base: Int,
     ): Double = if (base == 0) 0.0 else 100.0 * n / base
-
-    // ASCII (コード < 0x80) を 1、それ以外 (全角) を 2 と数えた、等幅フォント上の表示桁数。
-    private fun dispWidth(s: String): Int = s.sumOf { if (it.code < 0x80) 1 else 2 }
-
-    // 表示桁数 width まで左を空白で詰める (右揃え)。全角を含むヘッダを数値列の右端に合わせるのに使う。
-    private fun padStartDisp(
-        s: String,
-        width: Int,
-    ): String {
-        val pad = width - dispWidth(s)
-        return if (pad > 0) " ".repeat(pad) + s else s
-    }
 }

@@ -1,6 +1,5 @@
 package napoleon.ai.heuristic.play
 
-import napoleon.ai.heuristic.HeuristicVariant
 import napoleon.ai.heuristic.log.PlayDebugLogger
 import napoleon.ai.heuristic.log.PlayRoute
 import napoleon.ai.heuristic.support.Decisive
@@ -17,7 +16,6 @@ abstract class PlayLeadPlanner(
     protected val roleInference: RoleInference,
     protected val evaluator: TrickEvaluator,
     protected val logger: PlayDebugLogger,
-    protected val variant: HeuristicVariant,
 ) {
     abstract fun chooseLead(legal: List<Int>): Int
 
@@ -37,20 +35,19 @@ abstract class PlayLeadPlanner(
     }
 
     // 自分以外の敵候補 (味方候補でないプレイヤー) で void と判明しているスート集合。
-    protected fun collectEnemyVoidSuits(): Set<Suit> {
-        val result = HashSet<Suit>()
-        val me = context.curPlayer
-        val trump = context.trump
-        for (p in context.publicPlayers) {
-            if (p.id == me.id) continue
-            if (roleInference.isLikelyTeammate(p.id)) continue
-            for (s in context.knownVoids[p.id]) {
-                if (s == trump || s == Suit.NONE) continue
-                result.add(s)
+    protected fun collectEnemyVoidSuits(): Set<Suit> =
+        buildSet {
+            val me = context.curPlayer
+            val trump = context.trump
+            for (p in context.publicPlayers) {
+                if (p.id == me.id) continue
+                if (roleInference.isLikelyTeammate(p.id)) continue
+                for (s in context.knownVoids[p.id]) {
+                    if (s == trump || s == Suit.NONE) continue
+                    add(s)
+                }
             }
         }
-        return result
-    }
 }
 
 // リード手の選択結果。idx=手札位置、route=戦術ルート (集計キー)、detail=可変補助情報 (候補札など)。

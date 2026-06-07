@@ -263,7 +263,7 @@ class GameView(
     fun onResult() {
         withGraphics { g ->
             for (pid in 1 until PLAYER_COUNT) {
-                drawHandAtSlot(g, playerSlots[pid], engine.players[pid].hand, engine.players[pid].handCount, 0, null, backMode = 0)
+                drawHandAtSlot(g, playerSlots[pid], engine.players[pid].hand, 0, null, backMode = 0)
             }
             // 副官未公開のまま終局したケース (副官札が他チーム手札に残ったまま勝敗確定など) でも
             // 結果画面では副官マークを公開する。
@@ -388,18 +388,18 @@ class GameView(
     ) {
         val slot = playerSlots[pid]
         val pl = engine.players[pid]
-        drawHandAtSlot(g, slot, pl.hand, pl.handCount, dec, selected, slot.backMode)
+        drawHandAtSlot(g, slot, pl.hand, dec, selected, slot.backMode)
     }
 
     private fun drawHandAtSlot(
         g: Graphics2D,
         slot: Slot,
-        cards: Array<Card>,
-        count: Int,
+        cards: List<Card>,
         dec: Int,
         selected: IntArray?,
         backMode: Int,
     ) {
+        val count = cards.size
         if (count + dec <= 0) return
         val cw = if (slot.small) CARD_SM_W else CARD_W
         val ch = if (slot.small) CARD_SM_H else CARD_H
@@ -435,7 +435,7 @@ class GameView(
         g: Graphics2D,
         slot: KittySlot,
     ) {
-        drawHandAtSlot(g, slot, engine.kitty.cards, kittyVisibleCount, KITTY_SIZE - kittyVisibleCount, null, slot.backMode)
+        drawHandAtSlot(g, slot, engine.kitty.cards.take(kittyVisibleCount), KITTY_SIZE - kittyVisibleCount, null, slot.backMode)
     }
 
     private fun updateAdjutant(g: Graphics2D) {

@@ -7,7 +7,7 @@ class KittyDebugLogger(
     private val context: AiContext,
 ) {
     fun log(
-        discard: IntArray,
+        discard: List<Int>,
         firstTrickConfident: Boolean,
         voidedSuits: List<Suit>,
     ) {

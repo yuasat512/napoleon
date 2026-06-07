@@ -1,6 +1,5 @@
 package napoleon.ui
 
-import napoleon.ai.PlayerStrategy
 import napoleon.config.Config
 import napoleon.core.GameRules.HAND_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
@@ -35,7 +34,7 @@ class ReplaySession(
 
     init {
         val strategies =
-            Array<PlayerStrategy>(PLAYER_COUNT) { pid ->
+            List(PLAYER_COUNT) { pid ->
                 val myBids =
                     entry.record.bidSequence.filterIndexed { k, _ ->
                         (entry.record.bidFirstPlayerId + k) % PLAYER_COUNT == pid

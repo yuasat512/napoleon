@@ -3,14 +3,13 @@ package napoleon.record
 import napoleon.core.Bid
 import napoleon.core.Card
 import napoleon.core.GameRules.HAND_SIZE
-import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.core.PLAYER_NAMES
 import java.nio.file.Path
 import kotlin.io.path.readText
 
 data class ReplayEntry(
-    val deck: Array<Card>,
+    val deck: List<Card>,
     val record: GameRecord,
     val label: String,
 )
@@ -95,14 +94,12 @@ object GameRecordReader {
                 .trim()
                 .split(" ")
                 .map { CardNotation.parseCard(it, bidSuit) }
-                .toTypedArray()
         val discardedCards =
             kittyLine
                 .substring(arrowIdx + 2)
                 .trim()
                 .split(" ")
                 .map { CardNotation.parseCard(it, bidSuit) }
-                .toTypedArray()
 
         val trickLines = sections[tricksIdx].lines()
         val rolesPart = trickLines[0].substringBefore("|")
@@ -177,18 +174,20 @@ object GameRecordReader {
 
         // 配り直しを再現するためログから初期手札を復元する。非ナポレオンは played+remaining で済むが、
         // ナポレオンは途中でキティを 3 枚受け取って 3 枚戻しているため、戻した分を足し、引いた分を除く。
-        val deck = Array(PLAYER_COUNT * HAND_SIZE + KITTY_SIZE) { Card.JOKER }
-        for (pid in 0 until PLAYER_COUNT) {
-            val played = tricks.map { it.cards[pid]!! }
-            val hand =
-                if (pid == napoleonId) {
-                    (played + remaining[pid] + discardedCards.toList() - drawnCards.toList().toSet()).toTypedArray()
-                } else {
-                    (played + remaining[pid]).toTypedArray()
+        val deck =
+            buildList {
+                for (pid in 0 until PLAYER_COUNT) {
+                    val played = tricks.map { it.cards[pid]!! }
+                    addAll(
+                        if (pid == napoleonId) {
+                            played + remaining[pid] + discardedCards - drawnCards.toSet()
+                        } else {
+                            played + remaining[pid]
+                        },
+                    )
                 }
-            hand.copyInto(deck, pid * HAND_SIZE)
-        }
-        drawnCards.copyInto(deck, PLAYER_COUNT * HAND_SIZE)
+                addAll(drawnCards)
+            }
 
         val record =
             GameRecord().apply {

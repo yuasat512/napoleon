@@ -1,6 +1,5 @@
 package napoleon.ai.heuristic.play
 
-import napoleon.ai.heuristic.HeuristicVariant
 import napoleon.ai.heuristic.log.PlayDebugLogger
 import napoleon.ai.heuristic.log.PlayRoute
 import napoleon.ai.heuristic.support.Decisive
@@ -13,14 +12,13 @@ import napoleon.engine.view.AiContext
 // 連合軍のリード戦術。決着確定 (ナポ軍敗北) → ジョーカー請求 → セイム狙いの非切り札2 →
 // 確実勝ち最弱 → 低位探り → 最弱札のフォールバックに進む。切り札リード (能動的セイム・高位切り札
 // 吸い出し) は主導権を渡すリスクが勝つため、敵 void へのラフ誘発リード (NapoleonLeadPlanner の同型) は
-// 計測上ほぼ中立のため、いずれも連合では行わない (履歴は HeuristicVariant 参照)。
+// 計測上ほぼ中立のため、いずれも連合では行わない (履歴は ai-dev.ja.md §2 参照)。
 class AllyLeadPlanner(
     context: AiContext,
     roleInference: RoleInference,
     evaluator: TrickEvaluator,
     logger: PlayDebugLogger,
-    variant: HeuristicVariant,
-) : PlayLeadPlanner(context, roleInference, evaluator, logger, variant) {
+) : PlayLeadPlanner(context, roleInference, evaluator, logger) {
     private val followOdds = FollowOdds(context)
 
     override fun chooseLead(legal: List<Int>): Int {
@@ -59,7 +57,7 @@ class AllyLeadPlanner(
         if (context.jokerPlayed) return null
         if (context.trump == Suit.CLUBS) return null
         val me = context.curPlayer
-        if ((0 until me.handCount).any { me.hand[it].isJoker() }) return null
+        if (me.hand.any { it.isJoker() }) return null
         return legal.firstOrNull { me.hand[it].isJokerCall() }
     }
 

@@ -27,7 +27,7 @@ class FollowOdds(
     fun pAllLaterFollow(suit: Suit): Double {
         if (suit == Suit.NONE) return 0.0
         val me = context.curPlayer
-        val handCount = me.handCount
+        val handCount = me.hand.size
         val later = context.publicPlayers.count { it.id != me.id && it.handCount >= handCount }
         if (later != GameRules.PLAYER_COUNT - 1) {
             error("pAllLaterFollow はリード時専用 (later=$later, handCount=$handCount)")

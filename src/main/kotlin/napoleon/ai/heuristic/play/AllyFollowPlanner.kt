@@ -234,12 +234,11 @@ class AllyFollowPlanner(
     private fun heldPreserveSuits(): Set<Suit> {
         val me = context.curPlayer
         val trump = context.trump
-        val suits = HashSet<Suit>()
-        for (i in 0 until me.handCount) {
-            val c = me.hand[i]
-            if (c.isLeftBower(trump) || c.isMighty() || c.isSlip() || c.isJokerCall()) suits += c.suit
+        return buildSet {
+            for (c in me.hand) {
+                if (c.isLeftBower(trump) || c.isMighty() || c.isSlip() || c.isJokerCall()) add(c.suit)
+            }
         }
-        return suits
     }
 
     // 役札・切り札以外の絵札で、同スートにまだ上位ランクが残っているもの。
@@ -250,12 +249,14 @@ class AllyFollowPlanner(
         val trump = context.trump
         if (c.suit == trump) return false
         if (c.isPowerCard(trump)) return false
-        val gone = HashSet<Card>()
-        for (p in context.publicPlayers) {
-            if (p.handCount < me.handCount) gone += p.playedCard
-        }
-        for (rec in context.trickHistory) for (play in rec.plays) gone += play.card
-        for (h in context.kittyHonorCards) gone += h
+        val gone =
+            buildSet {
+                for (p in context.publicPlayers) {
+                    if (p.handCount < me.hand.size) add(p.playedCard)
+                }
+                for (rec in context.trickHistory) for (play in rec.plays) add(play.card)
+                addAll(context.kittyHonorCards)
+            }
         for (r in Rank.entries) {
             if (r <= c.rank) continue
             if (Card.of(c.suit, r) !in gone) return true

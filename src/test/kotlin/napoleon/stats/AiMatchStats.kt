@@ -84,7 +84,7 @@ private class StatsCollectorIO(
 
 // 1 セッションを回して副官あり局を targetNonSolo 局集める。strategyFactory は席ごとの戦略を生成する。
 private fun runSession(
-    strategyFactory: (GameEngine) -> Array<PlayerStrategy>,
+    strategyFactory: (GameEngine) -> List<PlayerStrategy>,
     onGame: (GameSnapshot) -> Unit,
     targetNonSolo: Int = DEFAULT_GAMES,
 ): StatsCollectorIO {
@@ -118,7 +118,7 @@ private fun runBaseline() {
     var allyHonorSum = 0L
 
     val io =
-        runSession({ engine -> Array(PLAYER_COUNT) { HeuristicStrategy(engine) } }, { g ->
+        runSession({ engine -> List(PLAYER_COUNT) { HeuristicStrategy(engine) } }, { g ->
             declaredSum += g.declared
             if (g.napWin) napWins++
             napHonorSum += g.napHonors
@@ -148,7 +148,7 @@ private fun runOracleAllies() {
     val io =
         runSession({ engine ->
             val oracle = OracleAdjutantContext(engine)
-            Array(PLAYER_COUNT) { HeuristicStrategy(oracle) }
+            List(PLAYER_COUNT) { HeuristicStrategy(oracle) }
         }, { g ->
             declaredSum += g.declared
             if (g.napWin) napWins++

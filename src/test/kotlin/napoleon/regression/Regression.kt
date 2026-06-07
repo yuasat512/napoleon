@@ -57,7 +57,7 @@ private fun runRandomBaseline(logPath: Path) {
                 seed = 12345
             },
         )
-    val strategies: Array<PlayerStrategy> = Array(PLAYER_COUNT) { RandomStrategy(engine) }
+    val strategies: List<PlayerStrategy> = List(PLAYER_COUNT) { RandomStrategy(engine) }
     val recorder = GameRecorder(engine, logPath)
     val scoreKeeper = ScoreKeeper(engine.players, engine.config, null)
     val controller = GameController(engine, strategies, scoreKeeper, recorder, object : PlayerIO {})
@@ -74,8 +74,8 @@ private fun replayOne(
             auto = true
         }
     val engine = GameEngine(config)
-    val strategies: Array<PlayerStrategy> =
-        Array(PLAYER_COUNT) { pid ->
+    val strategies: List<PlayerStrategy> =
+        List(PLAYER_COUNT) { pid ->
             val myBids =
                 entry.record.bidSequence.filterIndexed { k, _ ->
                     (entry.record.bidFirstPlayerId + k) % PLAYER_COUNT == pid
@@ -102,7 +102,7 @@ private fun heuristicSmoke() {
                 this.seed = seed
             }
         val engine = GameEngine(config)
-        val strategies: Array<PlayerStrategy> = Array(PLAYER_COUNT) { HeuristicStrategy(engine) }
+        val strategies: List<PlayerStrategy> = List(PLAYER_COUNT) { HeuristicStrategy(engine) }
         val scoreKeeper = ScoreKeeper(engine.players, config, null)
         val controller = GameController(engine, strategies, scoreKeeper, null, object : PlayerIO {})
         controller.start()

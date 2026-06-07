@@ -10,5 +10,5 @@ interface PublicPlayerView {
 }
 
 interface SelfPlayerView : PublicPlayerView {
-    val hand: Array<Card>
+    val hand: List<Card>
 }

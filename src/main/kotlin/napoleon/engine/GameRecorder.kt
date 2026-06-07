@@ -1,7 +1,6 @@
 package napoleon.engine
 
 import napoleon.core.Bid
-import napoleon.core.GameRules.KITTY_SIZE
 import napoleon.core.GameRules.PLAYER_COUNT
 import napoleon.record.GameRecord
 import napoleon.record.GameRecordWriter
@@ -45,11 +44,11 @@ class GameRecorder(
     }
 
     fun onKittyDraw() {
-        record?.drawnCards = Array(KITTY_SIZE) { engine.kitty.cards[it] }
+        record?.drawnCards = engine.kitty.cards.toList()
     }
 
-    fun onKittySwap(discardIndices: IntArray) {
-        record?.discardedCards = Array(KITTY_SIZE) { engine.curPlayer.hand[discardIndices[it]] }
+    fun onKittySwap(discardIndices: List<Int>) {
+        record?.discardedCards = discardIndices.map { engine.curPlayer.hand[it] }
     }
 
     fun onPlay(handIndex: Int) {
@@ -83,11 +82,7 @@ class GameRecorder(
         rec.remainingCount = engine.players[0].handCount
         rec.pointsAfter = perPlayer { it.points }
         if (rec.remainingCount > 0) {
-            rec.remainingHands =
-                Array(PLAYER_COUNT) { pid ->
-                    val p = engine.players[pid]
-                    Array(p.handCount) { p.hand[it] }
-                }
+            rec.remainingHands = engine.players.map { it.hand.toList() }
         }
         writer.appendToFile(logFile, rec)
         record = null

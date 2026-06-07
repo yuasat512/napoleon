@@ -24,11 +24,11 @@ class GameRecord {
     lateinit var adjutantCard: Card
     var napoleonId = 0
     var adjutantId = 0
-    var drawnCards = emptyArray<Card>()
-    var discardedCards = emptyArray<Card>()
+    var drawnCards: List<Card> = emptyList()
+    var discardedCards: List<Card> = emptyList()
     val tricks = mutableListOf<TrickRecord>()
     var remainingCount = 0
-    var remainingHands = Array(PLAYER_COUNT) { emptyArray<Card>() }
+    var remainingHands: List<List<Card>> = List(PLAYER_COUNT) { emptyList() }
     var pointsBefore = IntArray(PLAYER_COUNT)
     var pointsAfter = IntArray(PLAYER_COUNT)
 }

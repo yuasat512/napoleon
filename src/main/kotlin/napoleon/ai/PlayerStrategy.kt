@@ -9,7 +9,7 @@ interface PlayerStrategy {
 
     fun chooseAdjutant(): Card
 
-    fun chooseKittySwap(): IntArray
+    fun chooseKittySwap(): List<Int>
 
     fun choosePlay(): Pair<Int, Suit?>
 }

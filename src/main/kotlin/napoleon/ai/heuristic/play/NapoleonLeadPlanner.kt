@@ -1,6 +1,5 @@
 package napoleon.ai.heuristic.play
 
-import napoleon.ai.heuristic.HeuristicVariant
 import napoleon.ai.heuristic.log.PlayDebugLogger
 import napoleon.ai.heuristic.log.PlayRoute
 import napoleon.ai.heuristic.support.Decisive
@@ -21,8 +20,7 @@ class NapoleonLeadPlanner(
     roleInference: RoleInference,
     evaluator: TrickEvaluator,
     logger: PlayDebugLogger,
-    variant: HeuristicVariant,
-) : PlayLeadPlanner(context, roleInference, evaluator, logger, variant) {
+) : PlayLeadPlanner(context, roleInference, evaluator, logger) {
     private val followOdds = FollowOdds(context)
 
     override fun chooseLead(legal: List<Int>): Int {
@@ -138,7 +136,7 @@ class NapoleonLeadPlanner(
             .firstOrNull { me.hand[it].suit == trump && me.hand[it].rank == Rank.RANK_A }
             ?.let { return LeadPick(it, PlayRoute.LEAD_NAP1_TRUMP_ACE_DRAW) }
 
-        val trumpCount = (0 until me.handCount).count { me.hand[it].suit == trump }
+        val trumpCount = me.hand.count { it.suit == trump }
         if (trumpCount >= 5 && !avoidTrumpLead) {
             legal
                 .filter {
@@ -161,7 +159,7 @@ class NapoleonLeadPlanner(
                 c.suit != trump && c.suit != Suit.NONE && c.rank == Rank.RANK_A && c != adjCard
             }.minByOrNull { idx ->
                 val s = me.hand[idx].suit
-                (0 until me.handCount).count { me.hand[it].suit == s }
+                me.hand.count { it.suit == s }
             }?.let { return LeadPick(it, PlayRoute.LEAD_NAP1_SIDE_ACE_DRAW) }
 
         if (mightyIdx != null) {
@@ -183,7 +181,7 @@ class NapoleonLeadPlanner(
 
     private fun isMightyRiskyAsLead(): Boolean {
         val me = context.curPlayer
-        if ((0 until me.handCount).any { me.hand[it].isSlip() }) return false
+        if (me.hand.any { it.isSlip() }) return false
         if (context.adjutantCard.isSlip()) return false
         if (context.napoleonKittyDiscards?.any { it.isSlip() } == true) return false
         if (context.kittyHonorCards.any { it.isSlip() }) return false
@@ -195,7 +193,7 @@ class NapoleonLeadPlanner(
     private fun isSideProbeCard(c: Card): Boolean =
         c.suit != context.trump && c.suit != Suit.NONE && !c.rank.isHonor && c.rank != Rank.RANK_2
 
-    // CANDIDATE: 能動的セイムリードの候補。非絵札の 2 のうち、後続 (まだ手番の来ていない相手) 全員がその
+    // 能動的セイムリードの候補。非絵札の 2 のうち、後続 (まだ手番の来ていない相手) 全員がその
     // スートを追従できる見込み (FollowOdds) が閾値以上のものを、最も成立しそうなものから選ぶ。第1トリックは
     // セイム不成立 (§7-1) なので対象外。切り札の 2 は同時に切り札刈り (敵切り札の吸い出し) も兼ねる。
     private fun seimLeadIndex(legal: List<Int>): Int? {
